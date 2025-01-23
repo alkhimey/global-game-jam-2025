@@ -6,11 +6,14 @@ var time: int = 0
 
 signal goal(is_player_1: bool)
 signal goal_reset()
+signal timer()
+signal timer_updated()
 
 
 func _ready():
 	goal.connect(on_goal)
 	goal_reset.connect(on_goal_reset)
+	timer.connect(on_timer)
 
 
 func on_goal(is_player_1: bool):
@@ -27,3 +30,7 @@ func on_goal(is_player_1: bool):
 
 func on_goal_reset():
 	pass
+
+
+func on_timer():
+	time += 1
