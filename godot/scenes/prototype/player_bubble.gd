@@ -27,7 +27,7 @@ func apply_gravity(delta):
 		
 func handle_acceleration(Input_axis, delta):
 	if Input_axis != 0:
-		velocity.x += velocity.x * speed * Input_axis * acceleration * delta
+		velocity.x = move_toward(velocity.x, Input_axis * speed , speed * acceleration)
 		print("test")
 		
 		
