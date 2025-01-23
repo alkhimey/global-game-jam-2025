@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgmgv5446mwlk"]
+
+[ext_resource type="Script" path="res://scenes/prototype/player_bubble.gd" id="1_4cd2k"]
+[ext_resource type="Shader" path="res://scenes/prototype/circle.gdshader" id="2_2rcnu"]
+[ext_resource type="Texture2D" uid="uid://ocd3i468gdem" path="res://Assets/Player_sprite.png" id="3_bgnhu"]
+[ext_resource type="Texture2D" uid="uid://dbht1davmdqwd" path="res://Assets/playar_face_sprite.png" id="4_is5sc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0waut"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee86c"]
+shader = ExtResource("2_2rcnu")
+
+[node name="PlayerBubble" type="CharacterBody2D"]
+position = Vector2(200, 200)
+scale = Vector2(4, 4)
+script = ExtResource("1_4cd2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0waut")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ee86c")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bubble" type="Sprite2D" parent="."]
+texture = ExtResource("3_bgnhu")
+
+[node name="Face" type="Sprite2D" parent="."]
+texture = ExtResource("4_is5sc")

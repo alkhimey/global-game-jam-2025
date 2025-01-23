@@ -1,19 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc1uvgw0gd6pg"]
+[gd_scene load_steps=4 format=3 uid="uid://bc1uvgw0gd6pg"]
 
-[ext_resource type="Script" path="res://scenes/prototype/player_bubble.gd" id="1_geyee"]
-[ext_resource type="Shader" path="res://scenes/prototype/circle.gdshader" id="1_pv6po"]
-[ext_resource type="Texture2D" uid="uid://ocd3i468gdem" path="res://Assets/Player_sprite.png" id="2_bg7fq"]
-[ext_resource type="Texture2D" uid="uid://dbht1davmdqwd" path="res://Assets/playar_face_sprite.png" id="3_0oqe8"]
+[ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_ygrbf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k01xm"]
 normal = Vector2(0, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0waut"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee86c"]
-shader = ExtResource("1_pv6po")
 
 [node name="Prototype" type="Node2D"]
 
@@ -29,30 +21,4 @@ shape = SubResource("WorldBoundaryShape2D_bhtvs")
 position = Vector2(0, 50)
 shape = SubResource("WorldBoundaryShape2D_k01xm")
 
-[node name="PlayerBubble" type="CharacterBody2D" parent="."]
-position = Vector2(200, 200)
-script = ExtResource("1_geyee")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBubble"]
-shape = SubResource("CircleShape2D_0waut")
-
-[node name="ColorRect" type="ColorRect" parent="PlayerBubble"]
-visible = false
-material = SubResource("ShaderMaterial_ee86c")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bubble" type="Sprite2D" parent="PlayerBubble"]
-texture = ExtResource("2_bg7fq")
-
-[node name="Face" type="Sprite2D" parent="PlayerBubble"]
-texture = ExtResource("3_0oqe8")
+[node name="PlayerBubble" parent="." instance=ExtResource("1_ygrbf")]
