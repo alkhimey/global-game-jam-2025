@@ -18,7 +18,7 @@ shader = ExtResource("1_pv6po")
 [node name="Prototype" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(0, 400)
+position = Vector2(0, 230)
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_bhtvs")
@@ -52,7 +52,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Bubble" type="Sprite2D" parent="PlayerBubble"]
+scale = Vector2(4, 4)
 texture = ExtResource("2_bg7fq")
 
 [node name="Face" type="Sprite2D" parent="PlayerBubble"]
+scale = Vector2(4, 4)
 texture = ExtResource("3_0oqe8")
