@@ -8,10 +8,5 @@ func _ready() -> void:
 	GameplayGlobal.timer_updated.connect(on_timer)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func on_timer():
 	text = str(GameplayGlobal.time / 60) + ":" + str(GameplayGlobal.time % 60)
