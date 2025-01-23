@@ -8,6 +8,7 @@
 normal = Vector2(0, 1)
 
 [node name="Prototype" type="Node2D"]
+[node name="TestLevel" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 400)
