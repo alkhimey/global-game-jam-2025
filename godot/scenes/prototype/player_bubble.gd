@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@export var left_input_name: String = "player1_left"
+@export var right_input_name: String = "player1_right"
+@export var up_input_name: String = "player1_up"
 
 
 @export var speed : float = 200.0
@@ -12,7 +15,7 @@ extends CharacterBody2D
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	jump()
-	var Input_axis = Input.get_axis("move_left", "move_right")
+	var Input_axis = Input.get_axis(left_input_name, right_input_name)
 	handle_acceleration(Input_axis, delta)
 	move_and_slide()
 
@@ -29,13 +32,11 @@ func apply_gravity(delta):
 func handle_acceleration(Input_axis, delta):
 	if Input_axis != 0:
 		velocity.x = move_toward(velocity.x, Input_axis * speed , speed * acceleration)
-		print("test")
-		
 		
 func jump():
 	if is_on_floor():
-		if Input.is_action_just_pressed("move_up"):
+		if Input.is_action_just_pressed(up_input_name):
 			velocity.y = jump_velocity
 	else: #חצי קפיצה בשיחרור המקש
-		if Input.is_action_just_released("move_up") and velocity.y < jump_velocity / 2:
+		if Input.is_action_just_released(up_input_name) and velocity.y < jump_velocity / 2:
 				velocity.y = jump_velocity / 2
