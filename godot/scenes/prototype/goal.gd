@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var is_player_1: bool = true
 
 
 func _ready() -> void:
@@ -12,4 +13,6 @@ func _process(delta: float) -> void:
 
 func _on_area_endterd(area: Area2D):
 	print("Goal")
+
 	#add_score_func
+	GameplayGlobal.goal.emit(is_player_1)

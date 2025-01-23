@@ -34,3 +34,5 @@ func on_goal_reset():
 
 func on_timer():
 	time += 1
+
+	timer_updated.emit()
