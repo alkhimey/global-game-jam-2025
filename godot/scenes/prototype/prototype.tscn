@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc1uvgw0gd6pg"]
+
+[ext_resource type="Shader" path="res://scenes/prototype/circle.gdshader" id="1_pv6po"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o1sa0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0waut"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee86c"]
+shader = ExtResource("1_pv6po")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k01xm"]
+normal = Vector2(0, 1)
+
+[node name="Prototype" type="Node2D"]
+
+[node name="Floor" type="RigidBody2D" parent="."]
+
+[node name="FloorShape" type="CollisionShape2D" parent="Floor"]
+position = Vector2(411, 425)
+shape = SubResource("WorldBoundaryShape2D_o1sa0")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(200, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_0waut")
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
+material = SubResource("ShaderMaterial_ee86c")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cieling" type="RigidBody2D" parent="."]
+
+[node name="CielingShape" type="CollisionShape2D" parent="Cieling"]
+position = Vector2(403, 30)
+shape = SubResource("WorldBoundaryShape2D_k01xm")
