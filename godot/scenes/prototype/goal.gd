@@ -3,13 +3,10 @@ extends Area2D
 
 
 func _ready() -> void:
-	area_entered.connect(_on_area_endterd)
+	body_entered.connect(_on_area_2d_body_entered)
+	
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _on_area_endterd(area: Area2D):
-	print("Goal")
-	#add_score_func
+func _on_area_2d_body_entered(body: Node):
+	print("body enterd")
+	##add score +1 to global
