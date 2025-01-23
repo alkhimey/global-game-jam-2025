@@ -21,13 +21,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	jump()
-	var Input_axis = Input.get_axis(left_input_name, right_input_name)
-	handle_acceleration(Input_axis, delta)
+	var input_axis = Input.get_axis(left_input_name, right_input_name)
+	handle_acceleration(input_axis, delta)
+	apply_friction(input_axis, delta)
 	move_and_slide()
 
 
-func apply_friction(Input_axis, delta):
-	if Input_axis == 0 and is_on_floor():
+func apply_friction(input_axis, delta):
+	if input_axis == 0 and is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		
 
@@ -35,9 +36,9 @@ func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * gravity_scale * delta
 		
-func handle_acceleration(Input_axis, delta):
-	if Input_axis != 0:
-		velocity.x = move_toward(velocity.x, Input_axis * speed , speed * acceleration)
+func handle_acceleration(input_axis, delta):
+	if input_axis != 0:
+		velocity.x = move_toward(velocity.x, input_axis * speed , acceleration * delta)
 		
 func jump():
 	if is_on_floor():
