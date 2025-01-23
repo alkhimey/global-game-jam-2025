@@ -7,7 +7,6 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k01xm"]
 normal = Vector2(0, 1)
 
-[node name="Prototype" type="Node2D"]
 [node name="TestLevel" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]

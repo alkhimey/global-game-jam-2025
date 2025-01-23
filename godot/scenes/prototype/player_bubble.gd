@@ -12,6 +12,7 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	jump()
 	var Input_axis = Input.get_axis("move_left", "move_right")
+	handle_acceleration(Input_axis, delta)
 	move_and_slide()
 
 
@@ -26,7 +27,7 @@ func apply_gravity(delta):
 		
 func handle_acceleration(Input_axis, delta):
 	if Input_axis != 0:
-		velocity.x = velocity.x * speed * Input_axis * acceleration * delta
+		velocity.x += velocity.x * speed * Input_axis * acceleration * delta
 		print("test")
 		
 		
