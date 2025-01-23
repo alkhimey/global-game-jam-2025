@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc1uvgw0gd6pg"]
+[gd_scene load_steps=4 format=3 uid="uid://bc1uvgw0gd6pg"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_5ut0j"]
-[ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="2_hq62u"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -22,7 +21,13 @@ shape = SubResource("WorldBoundaryShape2D_bhtvs")
 position = Vector2(0, 50)
 shape = SubResource("WorldBoundaryShape2D_k01xm")
 
-[node name="PlayerBubble" parent="." instance=ExtResource("1_5ut0j")]
+[node name="Player1" parent="." instance=ExtResource("1_5ut0j")]
+position = Vector2(459, 175)
+playerName = "P1"
 
-[node name="Goal" parent="." instance=ExtResource("2_hq62u")]
-position = Vector2(49, 347)
+[node name="Player2" parent="." instance=ExtResource("1_5ut0j")]
+position = Vector2(211, 245)
+playerName = "P2"
+left_input_name = "player2_left"
+right_input_name = "player2_right"
+up_input_name = "player2_up"

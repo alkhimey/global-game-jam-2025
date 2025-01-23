@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var playerName: String
+
 @export var left_input_name: String = "player1_left"
 @export var right_input_name: String = "player1_right"
 @export var up_input_name: String = "player1_up"
@@ -11,6 +13,10 @@ extends CharacterBody2D
 @export var gravity_scale : float = 1 #אם נרצה לעשות אקסטרא עם הכוח משיכה יהיה את זה לכיף
 @export var jump_velocity = -400.0
 @export var gravity : float = 1000
+
+func _ready() -> void:
+	var topTextLabel = $MarginContainer/Label
+	topTextLabel.text = playerName
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
