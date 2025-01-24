@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/chants-001.ogg-3e0e5e317d574d823ec7d650eb0df2
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=150.0
 beat_count=0
 bar_beats=4
