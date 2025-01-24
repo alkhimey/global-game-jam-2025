@@ -183,7 +183,7 @@ func curse() -> String:
 
 
 func on_goal_reset():
-	position = initial_position
+	#position = initial_position
 	chat_bubble.hide()
 
 

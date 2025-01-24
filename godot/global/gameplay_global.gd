@@ -16,7 +16,7 @@ var wins2: int = 0
 # Can a player currently goal - used inbetween goal and reset
 var can_goal = true
 # Game's score limit
-var score_limit = 3
+var score_limit = 15
 # Player Colors
 var player_colors: Array = [Color.BLUE, Color.RED]
 
@@ -44,7 +44,7 @@ func _ready():
 
 func on_goal(playerId: int):
 	# Making sure a player can't goal and move inbetween goal and reset
-	can_goal = false
+	#can_goal = false
 
 	# Add a point to the scoring player
 	if playerId == 1:
@@ -69,7 +69,7 @@ func on_goal(playerId: int):
 # Reset player positions after a goal
 func on_goal_reset():
 	print("reset!!")
-	can_goal = true
+	#can_goal = true
 
 
 # When the match timer reaches 0

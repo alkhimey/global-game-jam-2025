@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2u15aabd5xsw"]
+[gd_scene load_steps=7 format=3 uid="uid://d2u15aabd5xsw"]
 
 [ext_resource type="Script" path="res://scenes/prototype/goal.gd" id="1_ylmaa"]
 [ext_resource type="Texture2D" uid="uid://cppm1dowdimm5" path="res://Assets/1223553210972-removebg-preview.png" id="2_38p8w"]
@@ -6,6 +6,16 @@
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_k0o8v"]
 a = Vector2(-31, 2)
 b = Vector2(28, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1iytq"]
+a = Vector2(-31, 2)
+b = Vector2(28, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0a8k"]
+radius = 4.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77eea"]
+radius = 4.5
 
 [node name="Goal" type="Node2D"]
 script = ExtResource("1_ylmaa")
@@ -15,9 +25,29 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_38p8w")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, -97)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, -97)
 shape = SubResource("SegmentShape2D_k0o8v")
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+position = Vector2(-2, -85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker"]
+scale = Vector2(-1, -1)
+shape = SubResource("SegmentShape2D_1iytq")
+one_way_collision = true
+
+[node name="LeftBlocker" type="StaticBody2D" parent="."]
+position = Vector2(-33, -97)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBlocker"]
+shape = SubResource("CircleShape2D_k0a8k")
+
+[node name="RightBlocker" type="StaticBody2D" parent="."]
+position = Vector2(28, -98)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBlocker"]
+shape = SubResource("CircleShape2D_77eea")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
