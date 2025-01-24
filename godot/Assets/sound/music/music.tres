@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://m5cid6ed1msk"]
+
+[ext_resource type="AudioStream" uid="uid://dso8l8rw0o8sm" path="res://Assets/sound/music/intro.ogg" id="1_atk5g"]
+[ext_resource type="AudioStream" uid="uid://bgm8duevf53nw" path="res://Assets/sound/music/drums.tres" id="2_xirtt"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Intro"
+clip_0/stream = ExtResource("1_atk5g")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Drums"
+clip_1/stream = ExtResource("2_xirtt")
+clip_1/auto_advance = 0
