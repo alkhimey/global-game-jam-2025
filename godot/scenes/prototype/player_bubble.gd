@@ -111,26 +111,11 @@ func apply_forces(input_axis, delta):
 	#print(velocity, totalAcceleration)
 	
 func jump():
-	
-	#debug
-	var debug = $DebugLabel
-	#debug.hidden = false
-	var debugText = ""
-	
-	debugText += "F " if is_on_floor() else "X "
-	
 	if is_on_floor():
 		lastFloorTimeMs = Time.get_ticks_msec()
 		lastFloorTimeValid = true
-	
-	debugText += "I " if Input.is_action_just_pressed(up_input_name) else "X "
 
-	debugText += "V " if lastFloorTimeValid else "X "
-	debugText += "V " if lastJumpRequestTimeValid else "X "
-
-	
 	if Input.is_action_just_pressed(up_input_name):
-		print("Pressed ", Time.get_ticks_msec() )
 		lastJumpRequestTimeMs = Time.get_ticks_msec()
 		lastJumpRequestTimeValid = true
 		
@@ -138,18 +123,14 @@ func jump():
 		Time.get_ticks_msec() - lastFloorTimeMs < jumpRequestTimeoutMs and \
 		lastJumpRequestTimeValid and \
 		Time.get_ticks_msec() - lastJumpRequestTimeMs < jumpRequestTimeoutMs:
-		print("Jumped ", Time.get_ticks_msec()  )
 		velocity.y = jumpSpeed
 		lastJumpRequestTimeValid = false
 		lastFloorTimeValid = false
-		
-	
+
 	if Time.get_ticks_msec() - lastJumpRequestTimeMs > jumpRequestTimeoutMs:
 		lastJumpRequestTimeValid = false
 	if Time.get_ticks_msec() - lastFloorTimeMs > jumpRequestTimeoutMs:
 		lastFloorTimeValid = false
-	
-	debug.text = debugText
 
 func display_text(_playerid: int):
 	if _playerid == playerId:
