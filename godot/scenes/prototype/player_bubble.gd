@@ -227,29 +227,28 @@ func _process(delta):
 	chat_bubble.position = position + chat_offset
 	
 
+
 func trail_effect():
-	var particles = get_node("GPUParticles2D") 
+	var particles = get_node("GPUParticles2D")
+	
 	var particles_textures = [
-		preload("res://Assets/ggj-bubble-blue-64.png"),
-		preload("res://Assets/ggj-bubble-red-64.png")
-		]
+		preload("res://Assets/ggj-bubble-blue-64.png"), preload("res://Assets/ggj-bubble-red-64.png")]
+		
 	var _material = particles.process_material 
 	if playerId == 1:
 		particles.texture =  particles_textures[0]
 	else:
-		particles.texture =  particles_textures[1]
-	var _scale_factor = 1 + velocity.length() / 60000	  # Make the particles smaller
-	_material.scale = Vector2(_scale_factor ,_scale_factor)
-	
-
-	var trail = get_node("GPUParticles2D")# Directly access the node
+		particles.texture =  particles_textures[1]	 
+		
+	_material.scale = Vector2(0.6 ,0.6) # Make the particles smaller
 	
 	if velocity.length() > 440:  # Activate trail when moving
 		particles.emitting = true
 	else:
 		particles.emitting = false
 	
-		
+
+	
 func player_scale_via_speed():
 	if velocity.length() > 420:
 		var tween := create_tween()
