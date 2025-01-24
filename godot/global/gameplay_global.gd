@@ -72,6 +72,8 @@ func on_timer_end():
 # When the game ends either when the match timer reaches 0 
 # or one of the players reaches the score limit
 func on_game_end():
+	can_goal = false
+
 	if score1 > score2:
 		player_win.emit(1)
 		return

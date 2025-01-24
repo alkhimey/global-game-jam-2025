@@ -31,7 +31,10 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	jump()
 
-	var input_axis = Input.get_axis(left_input_name, right_input_name)
+	var input_axis = 0
+	if GameplayGlobal.can_goal:
+		input_axis = Input.get_axis(left_input_name, right_input_name)
+		
 	handle_acceleration(input_axis, delta)
 	apply_friction(input_axis, delta)
 	apply_air_friction(input_axis, delta)
