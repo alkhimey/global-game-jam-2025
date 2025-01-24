@@ -20,6 +20,7 @@ var skin_color: int
 @onready var body_node = $Body
 @onready var head_node = $Head
 @onready var hand_node = $Hands
+@onready var eyes_node = $Head/Eyes
 @onready var head_sign_node = $Hands/HeadSign
 @onready var body_sign_node = $Hands/BodySign
 
@@ -45,14 +46,19 @@ func start_tween():
 func change_player(_playerId: int):
 
 	sign_type = randi_range(0,2)
+	head_node.texture = head_sprites[1]
+
 	match sign_type:
 		0:
 			pass
 		1:
 			body_sign_node.visible = true
+			head_node.texture = head_sprites[0]
 		2:
 			head_sign_node.visible = true
 
+	body_node.texture = body_sprites.pick_random()
+	eyes_node.texture = eyes_sprites.pick_random()
 	playerId = _playerId
 	position.x = starting_side[_playerId]
 
