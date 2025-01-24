@@ -1,17 +1,17 @@
-keys,en,de
-credits,Credits here,Credits hier
-new_game,New Game,Neues Spiel
-continue,Continue,Fortfahren
-settings,Game Settings,Einstellungen
-leave_game,Leave game,Spiel verlassen
-return_to_main,Return to main menu,Zum Hauptmenü
-return_to_menu,Back to menu,Zurück
-settings_volume_master_enabled,Master Enabled,Lautstärke an
-settings_volume_master,Master Volume,Lautstärke (Allgemein)
-settings_volume_music_enabled,Music enabled,Musik an
-settings_volume_music,Music Volume,Musik Lautstärke
-settings_volume_sound_enabled,Sound enabled,Sound an
-settings_volume_sound,Sound Volume,Sound Lautstärke
-settings_language,Game Language,Spielsprache
-game_paused,Game paused,Spiel pausiert
-resume_game,Resume game,Weiterspielen
+keys,en,de,iw,ar
+credits,Credits here,Credits hier,קרדיטים,الاعتمادات
+new_game,New Game,Neues Spiel,התחל משחק,لعبة جديدة
+continue,Continue,Fortfahren,המשך,مواصلة اللعب
+settings,Game Settings,Einstellungen,הגדרות,التعاريف
+leave_game,Leave game,Spiel verlassen,יציאה,مخرج
+return_to_main,Return to main menu,Zum Hauptmenü,חזרה לתפריט,العودة إلى القائمة
+return_to_menu,Back to menu,Zurück,צא לתפריט,الخروج إلى القائمة
+settings_volume_master_enabled,Master Enabled,Lautstärke an,שמע,صوت
+settings_volume_master,Master Volume,Lautstärke (Allgemein),עוצמת שמע,مقدار
+settings_volume_music_enabled,Music enabled,Musik an,מוזיקה,موسيقى
+settings_volume_music,Music Volume,Musik Lautstärke,עוצמת מוזיקה,حجم الموسيقى
+settings_volume_sound_enabled,Sound enabled,Sound an,צלילים,يبدو
+settings_volume_sound,Sound Volume,Sound Lautstärke,עוצמת צלילים,أصوات الحجم
+settings_language,Game Language,Spielsprache,שפת משחק,لغة اللعبة
+game_paused,Game paused,Spiel pausiert,המשחק מושהה,تم إيقاف اللعبة مؤقتًا
+resume_game,Resume game,Weiterspielen,המשך משחק,مواصلة اللعب
