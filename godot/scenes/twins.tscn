@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr2x7gjxgqrfk"]
+
+[ext_resource type="Texture2D" uid="uid://c3pr6bbab36we" path="res://Assets/TwinsRainbox.png" id="1_dxxfx"]
+[ext_resource type="Texture2D" uid="uid://tbadodcjvmms" path="res://Assets/Twins.png" id="2_3ixp4"]
+[ext_resource type="Texture2D" uid="uid://xyrriug81sd4" path="res://Assets/TwinsFaces.png" id="3_3p0tr"]
+
+[node name="Twins" type="Node2D"]
+
+[node name="Rainbow" type="Sprite2D" parent="."]
+texture = ExtResource("1_dxxfx")
+
+[node name="Clouds" type="Sprite2D" parent="."]
+texture = ExtResource("2_3ixp4")
+
+[node name="Face" type="Sprite2D" parent="."]
+texture = ExtResource("3_3p0tr")
