@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://kyyx88g1fu7t"
+path="res://.godot/imported/CursesS (8).wav-8f937993378908024888dd2bac9d703e.sample"
+
+[deps]
+
+source_file="res://Assets/sound/curses/S/CursesS (8).wav"
+dest_files=["res://.godot/imported/CursesS (8).wav-8f937993378908024888dd2bac9d703e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

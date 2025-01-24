@@ -1,0 +1,21 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=9 format=3 uid="uid://clucflhh2m6jj"]
+
+[ext_resource type="AudioStream" uid="uid://dodsi7vf346vi" path="res://Assets/sound/curses/L/CursesL (1).wav" id="1_censs"]
+[ext_resource type="AudioStream" uid="uid://ct1x4be3qu321" path="res://Assets/sound/curses/L/CursesL (2).wav" id="2_rkmot"]
+[ext_resource type="AudioStream" uid="uid://do3t1kxkhndad" path="res://Assets/sound/curses/L/CursesL (3).wav" id="3_5yqjt"]
+[ext_resource type="AudioStream" uid="uid://cnd7e5npmyakn" path="res://Assets/sound/curses/L/CursesL (4).wav" id="4_41i30"]
+[ext_resource type="AudioStream" uid="uid://ckc5tvkdkh608" path="res://Assets/sound/curses/L/CursesL (5).wav" id="5_3aa2y"]
+[ext_resource type="AudioStream" uid="uid://c3n01gobc7s53" path="res://Assets/sound/curses/L/CursesL (6).wav" id="6_qnbq7"]
+[ext_resource type="AudioStream" uid="uid://d0b50mci0b3dd" path="res://Assets/sound/curses/L/CursesL (7).wav" id="7_8p6ey"]
+[ext_resource type="AudioStream" uid="uid://ci2uti3yy6ngt" path="res://Assets/sound/curses/L/CursesL (8).wav" id="8_miqf5"]
+
+[resource]
+streams_count = 8
+stream_0/stream = ExtResource("1_censs")
+stream_1/stream = ExtResource("2_rkmot")
+stream_2/stream = ExtResource("3_5yqjt")
+stream_3/stream = ExtResource("4_41i30")
+stream_4/stream = ExtResource("5_3aa2y")
+stream_5/stream = ExtResource("6_qnbq7")
+stream_6/stream = ExtResource("7_8p6ey")
+stream_7/stream = ExtResource("8_miqf5")
