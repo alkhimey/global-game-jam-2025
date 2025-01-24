@@ -1,7 +1,5 @@
 extends Node
 
-signal on_value_change(key, value)
-
 const SECTION = "user"
 const SETTINGS_FILE = "user://settings.cfg"
 

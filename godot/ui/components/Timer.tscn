@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0wpn1xbj610y"]
+[gd_scene load_steps=5 format=3 uid="uid://b0wpn1xbj610y"]
 
-[ext_resource type="Script" path="res://ui/components/timer_label.gd" id="1_06p5w"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="1_dk5av"]
-[ext_resource type="Script" path="res://ui/components/timer.gd" id="1_omjln"]
 [ext_resource type="FontFile" uid="uid://bwmlj1qoe2xk3" path="res://fonts/ARCADECLASSIC.TTF" id="2_heodp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6etf"]
@@ -21,8 +19,3 @@ grow_vertical = 2
 theme = ExtResource("1_dk5av")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n6etf")
 label_settings = SubResource("LabelSettings_sr0x2")
-script = ExtResource("1_06p5w")
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-script = ExtResource("1_omjln")
