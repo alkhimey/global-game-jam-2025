@@ -16,7 +16,7 @@ extends CharacterBody2D
 @export var down_input_name: String = "player1_down"
 
 # List of curses for the player
-@export var curses: Array = ["@!%#$*", "@!#(*!*)", "$!*@!*!$"]
+@export var curses: Array = ["@!%#$*", "%!#(*!*)", "$!*@!*!$"]
 # Starting position on reset
 @export var initial_position: Vector2 = Vector2(0,0)
 # Position offset for chat bubble

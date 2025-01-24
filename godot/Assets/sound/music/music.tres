@@ -1,7 +1,7 @@
 [gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://m5cid6ed1msk"]
 
 [ext_resource type="AudioStream" uid="uid://dso8l8rw0o8sm" path="res://Assets/sound/music/intro.ogg" id="1_atk5g"]
-[ext_resource type="AudioStream" uid="uid://bo34tns2wx8kb" path="res://Assets/sound/music/drums.tres" id="2_xirtt"]
+[ext_resource type="AudioStream" uid="uid://bgm8duevf53nw" path="res://Assets/sound/music/drums.tres" id="2_xirtt"]
 
 [resource]
 clip_count = 2

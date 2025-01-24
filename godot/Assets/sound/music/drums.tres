@@ -1,4 +1,4 @@
-[gd_resource type="AudioStreamSynchronized" load_steps=6 format=3 uid="uid://bo34tns2wx8kb"]
+[gd_resource type="AudioStreamSynchronized" load_steps=6 format=3 uid="uid://bgm8duevf53nw"]
 
 [ext_resource type="AudioStream" uid="uid://bst2oxwpcml35" path="res://Assets/sound/music/chants-001.ogg" id="2_kwfhe"]
 [ext_resource type="AudioStream" uid="uid://c5bwsa5dtmaan" path="res://Assets/sound/music/drums.ogg" id="2_osxpy"]
