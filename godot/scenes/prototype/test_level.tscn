@@ -27,8 +27,9 @@ position = Vector2(0, 50)
 shape = SubResource("WorldBoundaryShape2D_k01xm")
 
 [node name="Player1" parent="." instance=ExtResource("1_gg1j7")]
-position = Vector2(197, 263)
+position = Vector2(197, 265)
 playerId = 1
+initial_position = Vector2(197, 265)
 
 [node name="Player2" parent="." instance=ExtResource("1_gg1j7")]
 position = Vector2(655, 265)
@@ -36,6 +37,7 @@ playerId = 2
 left_input_name = "player2_left"
 right_input_name = "player2_right"
 up_input_name = "player2_up"
+initial_position = Vector2(655, 265)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

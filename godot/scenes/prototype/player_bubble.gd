@@ -3,9 +3,16 @@ extends CharacterBody2D
 @export var playerId: int
 @export var chat_bubble: Label
 
+# Name for left input
 @export var left_input_name: String = "player1_left"
+# Name for right input
 @export var right_input_name: String = "player1_right"
+# Name for up input
 @export var up_input_name: String = "player1_up"
+# List of curses for the player
+@export var curses: Array = ["@!%#$*", "@!#(*!*)", "$!*@!*!$"]
+# Starting position on reset
+@export var initial_position: Vector2 = Vector2(0,0)
 
 
 @export var speed : float = 250
@@ -16,7 +23,7 @@ extends CharacterBody2D
 @export var gravity : float = 1000
 
 func _ready() -> void:
-	pass
+	GameplayGlobal.goal_reset.connect(on_goal_reset)
 	
 	# display_text()
 
@@ -100,6 +107,13 @@ func display_text():
 		
 		
 func curse() -> String: 
-	return ["@!%#$*", "@!#(*!*)", "$!*@!*!$"].pick_random()
+	if not curses.is_empty():
+		return curses.pick_random()
+	
+	return "-------"
+
+
+func on_goal_reset():
+	position = initial_position
 	
 	

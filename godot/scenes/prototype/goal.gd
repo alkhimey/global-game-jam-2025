@@ -6,7 +6,10 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 
-func _on_body_entered(body: Node2D): 
+func _on_body_entered(body: Node2D):
+	if not GameplayGlobal.can_goal:
+		return
+
 	var player := body as CharacterBody2D
 	
 	if not player: 
