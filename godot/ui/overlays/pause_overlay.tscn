@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://jyv4g54adkmo"]
+[gd_scene load_steps=5 format=3 uid="uid://jyv4g54adkmo"]
 
 [ext_resource type="Script" path="res://ui/overlays/pause_overlay.gd" id="1_q2yda"]
 [ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_n78uc"]
+[ext_resource type="Script" path="res://ui/components/button_sfx.gd" id="3_a0sga"]
+[ext_resource type="Script" path="res://ui/components/sfx_player.gd" id="4_x7h71"]
 
 [node name="PauseOverlay" type="CenterContainer"]
 anchors_preset = 15
@@ -32,6 +34,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "return_to_menu"
+script = ExtResource("3_a0sga")
 
 [node name="MenuContainer" type="VBoxContainer" parent="VBoxContainer3"]
 unique_name_in_owner = true
@@ -42,13 +45,20 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 layout_mode = 2
 text = "resume_game"
+script = ExtResource("3_a0sga")
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer3/MenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "settings"
+script = ExtResource("3_a0sga")
 
 [node name="ExitButton" type="Button" parent="VBoxContainer3/MenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "leave_game"
+script = ExtResource("3_a0sga")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_x7h71")

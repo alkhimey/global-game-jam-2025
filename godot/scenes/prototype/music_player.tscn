@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh4yh3ql8rtl1"]
+
+[ext_resource type="AudioStream" uid="uid://m5cid6ed1msk" path="res://Assets/sound/music/music.tres" id="1_iu8bc"]
+[ext_resource type="AudioStream" uid="uid://slvg3g2xj5mt" path="res://Assets/sound/ambience/CrowdAmbience.wav" id="2_mi7fm"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_iu8bc")
+bus = &"Music"
+
+[node name="CrowdAmbiencePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mi7fm")
+bus = &"Crowd"
