@@ -28,7 +28,7 @@ extends CharacterBody2D
 const meterToPixel = 100 # 480 pixels = 4.8meter = 1 second of free fall from top to bottom
 const pixelToMeter = 1.0 / meterToPixel
 const massKG = 5
-const gravityAcceleration = 9.8
+const gravityAcceleration = 0.8
 const restingVelocityYThreshold = 1.0 # If velocity.x is below it, set velocity.x to 0
 const restingVelocityXThreshold = 50.0 # If velocity.x is below it, set velocity.x to 0
 
@@ -38,10 +38,10 @@ const restingVelocityXThreshold = 50.0 # If velocity.x is below it, set velocity
 @export var airDragCoeff : float = 0.47 
 
 # Input acceleration when touching the floor
-@export var inputAccelerationAir : float = 10
+@export var inputAccelerationAir : float = 7
 
 # Input acceleration when not touching the floor
-@export var inputAccelerationFloor : float = 18
+@export var inputAccelerationFloor : float = 9
 
 # If speed.x is above this value, input acceleration will not be applied.
 const inputAccelerationMaxSpeed = 2.5 
@@ -49,10 +49,10 @@ const inputAccelerationMaxSpeed = 2.5
 @export var coeffOfRestitutionWithFloor : float = 0.2
 
 # Speed boost upwards when pressing up. m/s
-const jumpSpeed : float = -600
+const jumpSpeed : float = -350
 
 # Speed boost downwards when pressing down midair. m/2
-const downSpeed : float = 800
+const downSpeed : float = 300
 
 var collidedWithFloorLastPass : bool = false
 
@@ -206,7 +206,7 @@ func _process(delta):
 func trail_effect():
 	var particles = get_node("GPUParticles2D") 
 	var _material = particles.process_material 
-	var _scale_factor = 1 + velocity.length() / 600  
+	var _scale_factor = 1 + velocity.length() / 60000  
 	_material.scale = Vector2(_scale_factor ,_scale_factor)  # Make the particles smaller
 	var trail = get_node("GPUParticles2D")# Directly access the node
 	
@@ -215,7 +215,7 @@ func trail_effect():
 		scale = Vector2(_scale_factor,_scale_factor)
 	else:
 		trail.emitting = false
-		scale = Vector2(4,4)
+		scale = Vector2(1,1)
 		
 		
 		

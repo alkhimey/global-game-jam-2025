@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dak20sxfrsnsk" path="res://ui/overlays/gameplay_overlay.tscn" id="2_0w7mu"]
 [ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_ejleg"]
-[ext_resource type="PackedScene" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
+[ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -76,6 +76,11 @@ offset_right = 854.0
 offset_bottom = 479.0
 grow_horizontal = 0
 
+[node name="Goal" parent="." instance=ExtResource("3_25nnm")]
+position = Vector2(411, 329)
+scale = Vector2(1.3, 1.3)
+playerId = 1
+
 [node name="Player1" parent="." instance=ExtResource("1_gg1j7")]
 position = Vector2(197, 265)
 playerId = 1
@@ -89,11 +94,6 @@ right_input_name = "player2_right"
 up_input_name = "player2_up"
 down_input_name = "player2_down"
 initial_position = Vector2(655, 265)
-
-[node name="Goal" parent="." instance=ExtResource("3_25nnm")]
-position = Vector2(411, 329)
-scale = Vector2(1.3, 1.3)
-playerId = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
