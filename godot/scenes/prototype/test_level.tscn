@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=12 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_ejleg"]
 [ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
+[ext_resource type="PackedScene" uid="uid://dh4yh3ql8rtl1" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -131,3 +132,6 @@ size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[tornado freq=3.0][rainbow val=0.8]Goal!!![tornado]"
+
+[node name="MusicPlayer" parent="." instance=ExtResource("7_n4jgj")]
+autoplay = true

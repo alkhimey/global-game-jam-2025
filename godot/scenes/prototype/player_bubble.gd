@@ -177,7 +177,7 @@ func jump():
 		lastFloorTimeMs = Time.get_ticks_msec()
 		lastFloorTimeValid = true
 
-	# Jump is temporarily disabled
+	# Jump is temporarily disabled - only speed boost up
 	#if Input.is_action_just_pressed(up_input_name):
 		#lastJumpRequestTimeMs = Time.get_ticks_msec()
 		#lastJumpRequestTimeValid = true
