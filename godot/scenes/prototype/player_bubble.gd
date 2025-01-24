@@ -23,6 +23,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	jump()
+
 	var input_axis = Input.get_axis(left_input_name, right_input_name)
 	handle_acceleration(input_axis, delta)
 	apply_friction(input_axis, delta)
@@ -30,8 +31,10 @@ func _physics_process(delta: float) -> void:
 	var prevVelocity = velocity
 
 	move_and_slide()
+
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+
 		if collision.get_collider().get_class() == "CharacterBody2D" and playerId == 1:
 			var selfVelInNormalDir = prevVelocity.project(collision.get_normal())
 			var selfVelCrossNormalDir = prevVelocity - selfVelInNormalDir
@@ -39,10 +42,13 @@ func _physics_process(delta: float) -> void:
 			var otherPlayer: CharacterBody2D = collision.get_collider()
 			var otherVelInNormalDir = otherPlayer.velocity.project(-1.0 * collision.get_normal())
 			var otherVelCrossNormalDir = otherPlayer.velocity - otherVelInNormalDir			
+
 			velocity = otherVelInNormalDir + selfVelCrossNormalDir
 			otherPlayer.velocity = otherVelCrossNormalDir + selfVelInNormalDir
+
 		elif collision.get_collider().name == "Floor":
 			lose_speed_at_collision()
+
 			if prevVelocity.length() > 100:
 				velocity = prevVelocity.bounce(collision.get_normal()) 
 
@@ -55,7 +61,7 @@ func apply_air_friction(input_axis, delta):
 	velocity.x = move_toward(velocity.x, 0, 300 * delta)	
 	velocity.y = move_toward(velocity.y, 0, 300 * delta)	
 
-func lose_speed_at_collision():		
+func lose_speed_at_collision():
 	if velocity.y - 30.0 <= 0.0:
 		velocity.y = 0.0
 	else:
@@ -73,6 +79,7 @@ func jump():
 	if is_on_floor():
 		if Input.is_action_just_pressed(up_input_name):
 			velocity.y = jump_velocity
+
 	else: #חצי קפיצה בשיחרור המקש
 		if Input.is_action_just_released(up_input_name) and velocity.y < jump_velocity / 2:
 				velocity.y = jump_velocity / 2
@@ -86,7 +93,8 @@ func display_text():
 	var write_speed := 3
 	var tween := create_tween()
 	var duration := chat_bubble.text.length() / write_speed
-	tween.tween_property(chat_bubble, "visible_ratio", 1.0, duration)\
+
+	tween.tween_property(chat_bubble, "visible_ratio", 1.0, duration) \
 		.from(0.0)
 		
 		

@@ -1,7 +1,10 @@
 extends Control
 
+# Timer to update the timer label
 @export var textUpdateTimer: Timer
+# Match timer
 @export var LevelTime: Timer
+# Timer label
 @export var timerLabel: Label
 
 # Countdown time in seconds
@@ -50,3 +53,4 @@ func _on_level_timer_timeout() -> void:
 	print("Level time is done")
 	timerLabel.text = "Time's up!"
 	textUpdateTimer.stop()
+	GameplayGlobal.timer_end.emit()
