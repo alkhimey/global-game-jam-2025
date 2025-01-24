@@ -1,9 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://c40nnil1g3r1y"]
+[gd_scene load_steps=8 format=3 uid="uid://7xrepgvl1f58"]
 
 [ext_resource type="Texture2D" uid="uid://bq5vjvnseokv0" path="res://Assets/BirdWing2.png" id="1_jnc8h"]
 [ext_resource type="Texture2D" uid="uid://bv2tvscgnjwtq" path="res://Assets/BirdWing1.png" id="2_w1qd8"]
 [ext_resource type="Texture2D" uid="uid://ban420s1sbhxt" path="res://Assets/BirdBody.png" id="3_b0snr"]
 [ext_resource type="Texture2D" uid="uid://bschl4ruon8si" path="res://Assets/BirdString.png" id="4_odthy"]
+
+[sub_resource type="Animation" id="Animation_2wce6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wing2:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_vrwjy"]
 resource_name = "default"
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_2wce6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wing2:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3j1yi"]
