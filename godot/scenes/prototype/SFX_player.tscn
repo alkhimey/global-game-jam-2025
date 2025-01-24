@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8qd34sx7hn7r"]
+[gd_scene load_steps=4 format=3 uid="uid://g7tiurii878c"]
 
 [ext_resource type="Script" path="res://scenes/prototype/sfx_player.gd" id="1_s1qxj"]
 [ext_resource type="AudioStream" uid="uid://bj8hyjkfe2ix2" path="res://Assets/sound/sfx/crowd/goal.tres" id="3_r3y0a"]

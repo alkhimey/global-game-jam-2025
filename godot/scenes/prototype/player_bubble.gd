@@ -45,13 +45,13 @@ const restingVelocityXThreshold = 50.0 # If velocity.x is below it, set velocity
 @export var airDragCoeff : float = 0.47 
 
 # Input acceleration when touching the floor
-@export var inputAccelerationAir : float = 10
+@export var inputAccelerationAir : float = 13
 
 # Input acceleration when not touching the floor
-@export var inputAccelerationFloor : float = 9
+@export var inputAccelerationFloor : float = 13
 
 # If speed.x is above this value, input acceleration will not be applied.
-const inputAccelerationMaxSpeed = 2.5 
+const inputAccelerationMaxSpeed = 10 
 
 @export var coeffOfRestitutionWithFloor : float = 0.2
 
@@ -166,7 +166,8 @@ func apply_forces(input_axis, delta):
 	var airResistanceF = -1.0 * velocityMeters * velocityMeters.length() * airDragCoeff	
 	
 	var inputF = Vector2.ZERO
-	if input_axis != 0 and abs(velocityMeters.x) < inputAccelerationMaxSpeed:
+	if (input_axis != 1 and velocityMeters.x > -1.0 *inputAccelerationMaxSpeed) or \
+	(input_axis != -1 and velocityMeters.x < 1.0 * inputAccelerationMaxSpeed):
 		var inputAcceleration = inputAccelerationFloor if is_on_floor() else inputAccelerationAir
 		inputF.x = inputAcceleration * massKG * input_axis
 	
