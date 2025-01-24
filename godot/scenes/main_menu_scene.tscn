@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dv2y18ye8j7o0"]
+[gd_scene load_steps=20 format=3 uid="uid://dv2y18ye8j7o0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu_scene.gd" id="1_1foie"]
 [ext_resource type="PackedScene" uid="uid://rxarikcb81yp" path="res://scenes/prototype/test_level.tscn" id="2_yvyk1"]
@@ -16,6 +16,42 @@
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="14_ilda6"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="15_lnfqx"]
 
+[sub_resource type="Animation" id="Animation_3r0ps"]
+resource_name = "bigCloudIntro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BigCloud:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(428, 536), Vector2(428, 442)]
+}
+
+[sub_resource type="Animation" id="Animation_h06ay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BigCloud:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(428, 441)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a3oxd"]
+_data = {
+"RESET": SubResource("Animation_h06ay"),
+"bigCloudIntro": SubResource("Animation_3r0ps")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_2ikbh"]
 font_size = 8
 font_color = Color(1, 1, 1, 0.486275)
@@ -24,6 +60,13 @@ font_color = Color(1, 1, 1, 0.486275)
 script = ExtResource("1_1foie")
 game_scene = ExtResource("2_yvyk1")
 settings_scene = ExtResource("3_dgs4d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BGContainer")
+libraries = {
+"": SubResource("AnimationLibrary_a3oxd")
+}
+autoplay = "bigCloudIntro"
 
 [node name="BGContainer" type="Node2D" parent="."]
 
