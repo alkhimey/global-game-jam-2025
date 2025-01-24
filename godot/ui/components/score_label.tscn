@@ -6,6 +6,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_i6oa6"]
 font = ExtResource("2_mlay2")
+font_size = 32
 
 [node name="ScoreLabel" type="Label"]
 anchors_preset = 15

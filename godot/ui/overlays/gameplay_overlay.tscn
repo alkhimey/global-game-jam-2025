@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dak20sxfrsnsk"]
+
+[ext_resource type="PackedScene" uid="uid://dn500v2d7cuu5" path="res://ui/components/score_label.tscn" id="1_xuvx6"]
+[ext_resource type="PackedScene" uid="uid://b0wpn1xbj610y" path="res://ui/components/timer.tscn" id="2_prh4y"]
+
+[node name="GameplayOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" parent="." instance=ExtResource("1_xuvx6")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 17.0
+grow_vertical = 1
+
+[node name="TimerLabel" parent="." instance=ExtResource("2_prh4y")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 97.0
+offset_bottom = 33.0
+grow_horizontal = 1
+grow_vertical = 1
