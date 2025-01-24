@@ -13,6 +13,8 @@ extends CharacterBody2D
 @export var curses: Array = ["@!%#$*", "@!#(*!*)", "$!*@!*!$"]
 # Starting position on reset
 @export var initial_position: Vector2 = Vector2(0,0)
+# Position offset for chat bubble
+@export var chat_offset: Vector2 = Vector2(0,0)
 
 #speed of typing animation
 @export var write_speed := 8
@@ -125,5 +127,9 @@ func curse() -> String:
 func on_goal_reset():
 	position = initial_position
 	chat_bubble.hide()
+
+
+func _process(delta):
+	chat_bubble.position = position + chat_offset
 	
 	

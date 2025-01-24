@@ -4,6 +4,12 @@ extends Node
 var score1: int = 0
 # Player 2 score
 var score2: int = 0
+
+# Player 1 wins
+var wins1: int = 0
+# Player 2 wins
+var wins2: int = 0
+
 # Current match time (currently managed on gameplay_overlay.gd)
 # var time: int = 0
 
@@ -93,3 +99,8 @@ func _on_player_win(playerId: int):
 		return
 		
 	print("Game over: P" + str(playerId) +" won")
+
+	if playerId == 1:
+		wins1 += 1
+	elif playerId == 2:
+		wins2 += 1
