@@ -61,3 +61,8 @@ playerId = 1
 position = Vector2(806, 364)
 scale = Vector2(-1, 1)
 playerId = 2
+
+[node name="Gaol!" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
