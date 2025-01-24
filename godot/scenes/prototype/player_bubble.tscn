@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgmgv5446mwlk"]
+[gd_scene load_steps=11 format=3 uid="uid://bgmgv5446mwlk"]
 
 [ext_resource type="Script" path="res://scenes/prototype/player_bubble.gd" id="1_4cd2k"]
 [ext_resource type="Shader" path="res://scenes/prototype/circle.gdshader" id="2_2rcnu"]
@@ -11,6 +11,20 @@ radius = 8.01561
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ee86c"]
 shader = ExtResource("2_2rcnu")
+
+[sub_resource type="Curve" id="Curve_64w4x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e5ofm"]
+curve = SubResource("Curve_64w4x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15skt"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_e5ofm")
 
 [node name="PlayerBubble" type="CharacterBody2D" node_paths=PackedStringArray("chat_bubble")]
 scale = Vector2(4, 4)
@@ -36,6 +50,12 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_15skt")
+texture = ExtResource("3_bgnhu")
+lifetime = 0.5
 
 [node name="Bubble" type="Sprite2D" parent="."]
 texture = ExtResource("3_bgnhu")
