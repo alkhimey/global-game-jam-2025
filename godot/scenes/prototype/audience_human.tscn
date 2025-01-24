@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b37hirgcr57sc"]
+
+[ext_resource type="Script" path="res://scenes/prototype/audience_human.gd" id="1_dhd2a"]
+[ext_resource type="Texture2D" uid="uid://dyt3qsppco64f" path="res://Assets/audience_head.png" id="1_om0aq"]
+[ext_resource type="Texture2D" uid="uid://fljeh1gl84jp" path="res://Assets/audience_body.png" id="2_ij58r"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ggvyt"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_06177"]
+
+[node name="AudienceHuman" type="Node2D"]
+scale = Vector2(30, 30)
+script = ExtResource("1_dhd2a")
+skin_colors = null
+jump_offset = Vector2(0, 10)
+normal_speed = 0.4
+excite_speed = 0.2
+goal_speed = 0.1
+
+[node name="Head" type="MeshInstance2D" parent="."]
+position = Vector2(0, -1)
+mesh = SubResource("QuadMesh_ggvyt")
+texture = ExtResource("1_om0aq")
+
+[node name="Body" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_06177")
+texture = ExtResource("2_ij58r")
