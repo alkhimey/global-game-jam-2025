@@ -53,6 +53,29 @@ visible = false
 [node name="GameoverOverlay" parent="CanvasLayer" instance=ExtResource("5_ykg2k")]
 visible = false
 
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Goal!" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 148.0
+offset_top = 88.0
+offset_right = 148.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[tornado freq=3.0][rainbow val=0.8]Goal!!![tornado]"
+
 [node name="Goal" parent="." instance=ExtResource("3_25nnm")]
 position = Vector2(48, 355)
 playerId = 1
@@ -61,8 +84,3 @@ playerId = 1
 position = Vector2(806, 364)
 scale = Vector2(-1, 1)
 playerId = 2
-
-[node name="Gaol!" type="RichTextLabel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-bbcode_enabled = true
