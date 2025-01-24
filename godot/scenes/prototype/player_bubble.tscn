@@ -15,8 +15,9 @@ shader = ExtResource("2_2rcnu")
 [node name="PlayerBubble" type="CharacterBody2D" node_paths=PackedStringArray("chat_bubble")]
 scale = Vector2(4, 4)
 script = ExtResource("1_4cd2k")
-chat_bubble = NodePath("ChatBubbleLabel")
+chat_bubble = NodePath("CanvasLayer/ChatBubbleLabel")
 curses = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$", "!&%$%#$*$%#%"]
+chat_offset = Vector2(-71, -70)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0waut")
@@ -42,12 +43,13 @@ texture = ExtResource("3_bgnhu")
 [node name="Face" type="Sprite2D" parent="."]
 texture = ExtResource("4_is5sc")
 
-[node name="ChatBubbleLabel" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChatBubbleLabel" type="Label" parent="CanvasLayer"]
 visible = false
-offset_left = -11.75
-offset_top = -23.0
-offset_right = 97.25
-offset_bottom = 2.0
-scale = Vector2(0.237149, 0.308081)
+offset_left = -47.0
+offset_top = -92.0
+offset_right = 62.0
+offset_bottom = -67.0
 theme = ExtResource("5_ymk3n")
 text = "default"
