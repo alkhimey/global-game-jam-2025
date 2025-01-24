@@ -3,6 +3,9 @@ extends CharacterBody2D
 @export var playerId: int
 @export var chat_bubble: Label
 
+@export var image1: Sprite2D
+@export var image2: Sprite2D
+
 # Name for left input
 @export var left_input_name: String = "player1_left"
 # Name for right input
@@ -61,6 +64,10 @@ var lastFloorTimeMs: int = 0
 var lastFloorTimeValid: bool = false
 
 func _ready() -> void:
+	image1.visible = playerId == 1
+	image2.visible = playerId == 2
+	
+			
 	GameplayGlobal.goal_reset.connect(on_goal_reset)
 	GameplayGlobal.goal.connect(display_text)
 	# display_text()
