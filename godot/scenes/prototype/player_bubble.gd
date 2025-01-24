@@ -27,22 +27,23 @@ func _physics_process(delta: float) -> void:
 	apply_friction(input_axis, delta)
 	apply_air_friction(input_axis, delta)
 	var prevVelocity = velocity
+
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if collision.get_collider().name == "Floor":
+		if collision.get_collider().get_class() == "CharacterBody2D" and playerName == "P1":
+			var selfVelInNormalDir = prevVelocity.project(collision.get_normal())
+			var selfVelCrossNormalDir = prevVelocity - selfVelInNormalDir
+			
+			var otherPlayer: CharacterBody2D = collision.get_collider()
+			var otherVelInNormalDir = otherPlayer.velocity.project(-1.0 * collision.get_normal())
+			var otherVelCrossNormalDir = otherPlayer.velocity - otherVelInNormalDir			
+			velocity = otherVelInNormalDir + selfVelCrossNormalDir
+			otherPlayer.velocity = otherVelCrossNormalDir + selfVelInNormalDir
+		elif collision.get_collider().name == "Floor":
 			lose_speed_at_collision()
 			if prevVelocity.length() > 100:
 				velocity = prevVelocity.bounce(collision.get_normal()) 
-		print("I collided with ", collision.get_normal())
-
-	#var collision_info = move_and_collide(velocity * delta)
-	#if collision_info:
-		#if collision_info.get_collider().name == "Floor":
-			#if velocity.length() < 100:
-				#velocity = Vector2.ZERO
-			#else:
-				#velocity = velocity.bounce(collision_info.get_normal()) 
 
 func apply_friction(input_axis, delta):
 	if input_axis == 0 and is_on_floor():
@@ -63,11 +64,9 @@ func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * gravity_scale * delta
 		
-func handle_acceleration(Input_axis, delta):
-	if Input_axis != 0:
-		velocity.x = move_toward(velocity.x, Input_axis * speed, speed * acceleration * delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed * acceleration * delta)
+func handle_acceleration(input_axis, delta):
+	if input_axis != 0:
+		velocity.x = move_toward(velocity.x, input_axis * speed, acceleration * delta)
 		
 func jump():
 	if is_on_floor():
