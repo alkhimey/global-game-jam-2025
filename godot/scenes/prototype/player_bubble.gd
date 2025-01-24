@@ -7,8 +7,8 @@ extends CharacterBody2D
 @export var up_input_name: String = "player1_up"
 
 
-@export var speed : float = 200.0
-@export var acceleration : float = 1200
+@export var speed : float = 250
+@export var acceleration : float = 800
 @export var friction : float = 1000
 @export var gravity_scale : float = 1 #אם נרצה לעשות אקסטרא עם הכוח משיכה יהיה את זה לכיף
 @export var jump_velocity = -400.0
@@ -36,9 +36,11 @@ func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * gravity_scale * delta
 		
-func handle_acceleration(input_axis, delta):
-	if input_axis != 0:
-		velocity.x = move_toward(velocity.x, input_axis * speed , acceleration * delta)
+func handle_acceleration(Input_axis, delta):
+	if Input_axis != 0:
+		velocity.x = move_toward(velocity.x, Input_axis * speed, speed * acceleration * delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed * acceleration * delta)
 		
 func jump():
 	if is_on_floor():
