@@ -1,6 +1,18 @@
 extends Node2D
 
 @onready var pause_overlay = %PauseOverlay
+@onready var gameover_overlay = %GameoverOverlay
+
+
+func _ready():
+	GameplayGlobal.player_win.connect(on_game_over)
+
+
+func on_game_over(_playerId: int):
+	print("show gameover")
+	get_viewport().set_input_as_handled()
+	gameover_overlay.grab_button_focus()
+	gameover_overlay.visible = true
 
 
 func _input(event: InputEvent) -> void:
