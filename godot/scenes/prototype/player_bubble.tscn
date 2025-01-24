@@ -16,6 +16,7 @@ shader = ExtResource("2_2rcnu")
 scale = Vector2(4, 4)
 script = ExtResource("1_4cd2k")
 chat_bubble = NodePath("ChatBubbleLabel")
+curses = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$", "!&%$%#$*$%#%"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0waut")
