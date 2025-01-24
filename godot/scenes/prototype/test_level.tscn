@@ -1,13 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=19 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
 [ext_resource type="PackedScene" uid="uid://dak20sxfrsnsk" path="res://ui/overlays/gameplay_overlay.tscn" id="2_0w7mu"]
+[ext_resource type="PackedScene" path="res://scenes/sun.tscn" id="2_2ff6t"]
 [ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_ejleg"]
+[ext_resource type="PackedScene" path="res://scenes/twins.tscn" id="3_mfu3e"]
+[ext_resource type="PackedScene" path="res://scenes/cloud1.tscn" id="4_r2a02"]
+[ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="5_x6g50"]
 [ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
-[ext_resource type="PackedScene" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
-[ext_resource type="PackedScene" uid="uid://g7tiurii878c" path="res://scenes/prototype/SFX_player.tscn" id="8_sx80j"]
+[ext_resource type="PackedScene" path="res://scenes/cloud3.tscn" id="6_vx1kp"]
+[ext_resource type="PackedScene" uid="uid://dh4yh3ql8rtl1" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
+[ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
+[ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -21,8 +27,43 @@ normal = Vector2(0, 1)
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_sti86")
 
+[node name="BGContainer" type="Node2D" parent="."]
+
+[node name="BG" type="ColorRect" parent="BGContainer"]
+offset_right = 854.0
+offset_bottom = 480.0
+color = Color(0.835294, 0.968627, 1, 1)
+
+[node name="Sun" parent="BGContainer" instance=ExtResource("2_2ff6t")]
+position = Vector2(672, 106)
+scale = Vector2(0.35, 0.35)
+
+[node name="Twins" parent="BGContainer" instance=ExtResource("3_mfu3e")]
+position = Vector2(117, 130)
+scale = Vector2(0.35, 0.35)
+
+[node name="Cloud1" parent="BGContainer" instance=ExtResource("4_r2a02")]
+position = Vector2(102, 333)
+scale = Vector2(0.35, 0.35)
+
+[node name="Cloud2" parent="BGContainer" instance=ExtResource("5_x6g50")]
+position = Vector2(565, 289)
+scale = Vector2(0.35, 0.35)
+
+[node name="Cloud3" parent="BGContainer" instance=ExtResource("6_vx1kp")]
+position = Vector2(715, 147)
+scale = Vector2(0.35, 0.35)
+
+[node name="Cloud4" parent="BGContainer" instance=ExtResource("7_smwqh")]
+position = Vector2(766, 342)
+scale = Vector2(0.35, 0.35)
+
+[node name="BigCloud" parent="BGContainer" instance=ExtResource("8_rkbee")]
+position = Vector2(428, 441)
+scale = Vector2(0.35, 0.35)
+
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(0, 440)
+position = Vector2(0, 460)
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_bhtvs")
@@ -32,8 +73,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_right = 854.0
-offset_bottom = 40.0
+offset_bottom = 20.0
 grow_horizontal = 2
+color = Color(0, 0, 0, 0.156863)
 
 [node name="Cieling" type="StaticBody2D" parent="."]
 
@@ -51,42 +93,44 @@ offset_right = 854.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 0.156863)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="LeftWallShape" type="CollisionShape2D" parent="Walls"]
-position = Vector2(110, 0)
+position = Vector2(20, 0)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_064jb")
 
 [node name="RightWsllShape" type="CollisionShape2D" parent="Walls"]
-position = Vector2(743, 0)
+position = Vector2(833, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_lnddl")
 
 [node name="LeftColorRect" type="ColorRect" parent="Walls"]
-offset_right = 110.0
+offset_right = 20.0
 offset_bottom = 480.0
+color = Color(0, 0, 0, 0.156863)
 
 [node name="RightColorRect" type="ColorRect" parent="Walls"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 744.0
+offset_left = 833.0
 offset_top = -1.0
-offset_right = 854.0
+offset_right = 853.0
 offset_bottom = 479.0
 grow_horizontal = 0
+color = Color(0, 0, 0, 0.156863)
 
 [node name="Goal" parent="." instance=ExtResource("3_25nnm")]
-position = Vector2(411, 329)
-scale = Vector2(1.3, 1.3)
+position = Vector2(418, 180)
+scale = Vector2(0.4, 0.4)
 playerId = 1
 
 [node name="Player1" parent="." instance=ExtResource("1_gg1j7")]
 position = Vector2(197, 265)
 playerId = 1
-curses = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$"]
 initial_position = Vector2(197, 265)
 
 [node name="Player2" parent="." instance=ExtResource("1_gg1j7")]
@@ -96,7 +140,6 @@ left_input_name = "player2_left"
 right_input_name = "player2_right"
 up_input_name = "player2_up"
 down_input_name = "player2_down"
-curses = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$"]
 initial_position = Vector2(655, 265)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -137,5 +180,3 @@ bbcode_enabled = true
 text = "[tornado freq=3.0][rainbow val=0.8]Goal!!![tornado]"
 
 [node name="MusicPlayer" parent="." instance=ExtResource("7_n4jgj")]
-
-[node name="SfxPlayer" parent="." instance=ExtResource("8_sx80j")]
