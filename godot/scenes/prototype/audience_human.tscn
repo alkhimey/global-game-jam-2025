@@ -1,27 +1,146 @@
-[gd_scene load_steps=6 format=3 uid="uid://b37hirgcr57sc"]
+[gd_scene load_steps=23 format=3 uid="uid://b37hirgcr57sc"]
 
 [ext_resource type="Script" path="res://scenes/prototype/audience_human.gd" id="1_dhd2a"]
-[ext_resource type="Texture2D" uid="uid://dyt3qsppco64f" path="res://Assets/audience_head.png" id="1_om0aq"]
-[ext_resource type="Texture2D" uid="uid://fljeh1gl84jp" path="res://Assets/audience_body.png" id="2_ij58r"]
+[ext_resource type="Texture2D" uid="uid://bhq02d36be3xe" path="res://Assets/audience/audience_head1.png" id="2_vl0wv"]
+[ext_resource type="Texture2D" uid="uid://c1e8mtxd5i8ne" path="res://Assets/audience/audience_eyes_2.png" id="3_cqrw3"]
+[ext_resource type="Texture2D" uid="uid://dalung6mmksa6" path="res://Assets/audience/audience_body1.png" id="3_mkk7n"]
+[ext_resource type="Texture2D" uid="uid://c06ot5h3vi7p" path="res://Assets/audience/audience_body2.png" id="3_r5dw1"]
+[ext_resource type="Texture2D" uid="uid://5qpjyt56k80u" path="res://Assets/audience/audience_eyes_3.png" id="4_3whhj"]
+[ext_resource type="Texture2D" uid="uid://bwyk44crx2sor" path="res://Assets/audience/audience_eyes_1.png" id="4_7aosx"]
+[ext_resource type="Texture2D" uid="uid://b0kneibd00cfk" path="res://Assets/audience/audience_eyes_4.png" id="5_tevgj"]
+[ext_resource type="Texture2D" uid="uid://duoimcadrsbs1" path="res://Assets/audience/audience_eyes_5.png" id="6_mytpn"]
+[ext_resource type="Texture2D" uid="uid://c4uf3klbm2sam" path="res://Assets/audience/audience_hands.png" id="9_phwni"]
+[ext_resource type="Texture2D" uid="uid://q8pe1ywajh1b" path="res://Assets/audience/audience_head2.png" id="10_n37pk"]
+[ext_resource type="Texture2D" uid="uid://byc041alw0565" path="res://Assets/audience/audience_sign_head.png" id="10_vhfpb"]
+[ext_resource type="Texture2D" uid="uid://ddqb3he1kef3h" path="res://Assets/audience/audience_sign_body.png" id="11_wiief"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ggvyt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_06177"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_tud78"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_oehk7"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_8a5i8"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkoni"]
+
+[sub_resource type="Animation" id="Animation_qc5w2"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_ww12a"]
+resource_name = "RESET"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.06, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.08, -0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Eyes:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -0.8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hands:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.0333333, -0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lbxi5"]
+_data = {
+"RESET": SubResource("Animation_ww12a"),
+"new_animation": SubResource("Animation_qc5w2")
+}
+
 [node name="AudienceHuman" type="Node2D"]
 scale = Vector2(30, 30)
 script = ExtResource("1_dhd2a")
-skin_colors = null
+speed = null
+starting_side = null
+starting_height = null
+body_sprites = [ExtResource("3_mkk7n"), ExtResource("3_r5dw1")]
+eyes_sprites = [ExtResource("4_7aosx"), ExtResource("3_cqrw3"), ExtResource("4_3whhj"), ExtResource("5_tevgj"), ExtResource("6_mytpn")]
+head_sprites = [ExtResource("2_vl0wv"), ExtResource("10_n37pk")]
 jump_offset = Vector2(0, 10)
 normal_speed = 0.4
 excite_speed = 0.2
 goal_speed = 0.1
 
 [node name="Head" type="MeshInstance2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0.06, -0.5)
+rotation = -3.14159
 mesh = SubResource("QuadMesh_ggvyt")
-texture = ExtResource("1_om0aq")
+texture = ExtResource("2_vl0wv")
 
 [node name="Body" type="MeshInstance2D" parent="."]
+position = Vector2(0.08, -0.5)
+rotation = 3.14159
 mesh = SubResource("QuadMesh_06177")
-texture = ExtResource("2_ij58r")
+texture = ExtResource("3_mkk7n")
+
+[node name="Eyes" type="MeshInstance2D" parent="."]
+position = Vector2(0, -0.8)
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+mesh = SubResource("QuadMesh_tud78")
+texture = ExtResource("4_7aosx")
+
+[node name="Hands" type="MeshInstance2D" parent="."]
+position = Vector2(0.0333333, -0.5)
+rotation = 3.14159
+mesh = SubResource("QuadMesh_oehk7")
+texture = ExtResource("9_phwni")
+
+[node name="HeadSign" type="MeshInstance2D" parent="Hands"]
+visible = false
+position = Vector2(-0.0666667, 0.4)
+scale = Vector2(1.3, 1.3)
+mesh = SubResource("QuadMesh_8a5i8")
+texture = ExtResource("10_vhfpb")
+
+[node name="BodySign" type="MeshInstance2D" parent="Hands"]
+visible = false
+position = Vector2(0.0666666, -0.333333)
+rotation = 3.14159
+mesh = SubResource("QuadMesh_kkoni")
+texture = ExtResource("11_wiief")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lbxi5")
+}
