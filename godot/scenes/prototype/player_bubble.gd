@@ -98,6 +98,7 @@ func _physics_process(delta: float) -> void:
 	var prevVelocity = velocity
 
 	move_and_slide()
+	player_scale_via_speed()
 	trail_effect()
 		
 	# BUG: multiple collisions can be with the other player. Need to use move_and_collide.
@@ -242,13 +243,21 @@ func trail_effect():
 	
 
 	var trail = get_node("GPUParticles2D")# Directly access the node
-	if velocity.length() > 400:  # Activate trail when moving
-		trail.emitting = true
+	
+	if velocity.length() > 440:  # Activate trail when moving
+		particles.emitting = true
 	else:
-		trail.emitting = false
+		particles.emitting = false
 	
 		
-		
+func player_scale_via_speed():
+	if velocity.length() > 420:
+		var tween := create_tween()
+		var _scale_factor = (1 + velocity.length() )/ 900
+		tween.tween_property(self, "scale", Vector2(_scale_factor, _scale_factor), 0.3)
+	else:
+		var tween := create_tween()
+		tween.tween_property(self, "scale", Vector2(1, 1), 0.3)
 		
 
 		
