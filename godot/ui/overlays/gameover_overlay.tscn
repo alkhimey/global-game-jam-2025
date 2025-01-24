@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3ir7wqeljqxq"]
+
+[ext_resource type="Script" path="res://ui/overlays/gameover_overlay.gd" id="1_cxolk"]
+[ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_3uveh"]
+
+[node name="GameoverOverlay" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cxolk")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "game_end"
+horizontal_alignment = 1
+
+[node name="SettingsContainer" type="VBoxContainer" parent="VBoxContainer3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="GameSettings" parent="VBoxContainer3/SettingsContainer" instance=ExtResource("2_3uveh")]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer3/SettingsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "return_to_menu"
+
+[node name="MenuContainer" type="VBoxContainer" parent="VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NewButton" type="Button" parent="VBoxContainer3/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "new_game"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer3/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "settings"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer3/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "leave_game"
