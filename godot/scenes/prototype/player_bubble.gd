@@ -98,6 +98,7 @@ func _physics_process(delta: float) -> void:
 	var prevVelocity = velocity
 
 	move_and_slide()
+	player_scale_via_speed()
 	trail_effect()
 		
 	# BUG: multiple collisions can be with the other player. Need to use move_and_collide.
@@ -228,19 +229,35 @@ func _process(delta):
 
 func trail_effect():
 	var particles = get_node("GPUParticles2D") 
+	var particles_textures = [
+		preload("res://Assets/ggj-bubble-blue-64.png"),
+		preload("res://Assets/ggj-bubble-red-64.png")
+		]
 	var _material = particles.process_material 
-	var _scale_factor = 1 + velocity.length() / 60000  
-	_material.scale = Vector2(_scale_factor ,_scale_factor)  # Make the particles smaller
+	if playerId == 1:
+		particles.texture =  particles_textures[0]
+	else:
+		particles.texture =  particles_textures[1]
+	var _scale_factor = 1 + velocity.length() / 60000	  # Make the particles smaller
+	_material.scale = Vector2(_scale_factor ,_scale_factor)
+	
+
 	var trail = get_node("GPUParticles2D")# Directly access the node
 	
-	if velocity.length() > 700:  # Activate trail when moving
-		trail.emitting = true
-		scale = Vector2(_scale_factor,_scale_factor)
+	if velocity.length() > 440:  # Activate trail when moving
+		particles.emitting = true
 	else:
-		trail.emitting = false
-		scale = Vector2(1,1)
+		particles.emitting = false
+	
 		
-		
+func player_scale_via_speed():
+	if velocity.length() > 420:
+		var tween := create_tween()
+		var _scale_factor = (1 + velocity.length() )/ 900
+		tween.tween_property(self, "scale", Vector2(_scale_factor, _scale_factor), 0.3)
+	else:
+		var tween := create_tween()
+		tween.tween_property(self, "scale", Vector2(1, 1), 0.3)
 		
 
 		
