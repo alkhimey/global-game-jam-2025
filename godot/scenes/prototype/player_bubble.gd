@@ -36,6 +36,13 @@ const jumpSpeed : float = -600 # m/s
 
 var collidedWithFloorLastPass : bool = false
 
+const jumpRequestTimeoutMs = 300
+var lastJumpRequestTimeMs: int = 0
+var lastJumpRequestTimeValid: bool = false
+
+var lastFloorTimeMs: int = 0
+var lastFloorTimeValid: bool = false
+
 func _ready() -> void:
 	GameplayGlobal.goal_reset.connect(on_goal_reset)
 	GameplayGlobal.goal.connect(display_text)
@@ -47,9 +54,7 @@ func _physics_process(delta: float) -> void:
 	if GameplayGlobal.can_goal:
 		input_axis = Input.get_axis(left_input_name, right_input_name)
 
-	apply_forces(input_axis, delta)
-	jump()
-	
+	apply_forces(input_axis, delta)	
 	var prevVelocity = velocity
 
 	move_and_slide()
@@ -77,6 +82,8 @@ func _physics_process(delta: float) -> void:
 				#velocity.x = 0.0
 			if abs(velocity.y) < restingVelocityYThreshold * meterToPixel:
 				velocity.y = 0.0
+	jump()
+
 	collidedWithFloorLastPass = collidedWithFloorThisPass
 
 func apply_forces(input_axis, delta):
@@ -101,14 +108,48 @@ func apply_forces(input_axis, delta):
 	var totalAcceleration = totalForce / massKG
 	
 	velocity += totalAcceleration * delta * meterToPixel
-	print(velocity, totalAcceleration)
+	#print(velocity, totalAcceleration)
 	
 func jump():
+	
+	#debug
+	var debug = $DebugLabel
+	#debug.hidden = false
+	var debugText = ""
+	
+	debugText += "F " if is_on_floor() else "X "
+	
 	if is_on_floor():
-		if Input.is_action_just_pressed(up_input_name):
-			velocity.y = jumpSpeed
-				
+		lastFloorTimeMs = Time.get_ticks_msec()
+		lastFloorTimeValid = true
+	
+	debugText += "I " if Input.is_action_just_pressed(up_input_name) else "X "
 
+	debugText += "V " if lastFloorTimeValid else "X "
+	debugText += "V " if lastJumpRequestTimeValid else "X "
+
+	
+	if Input.is_action_just_pressed(up_input_name):
+		print("Pressed ", Time.get_ticks_msec() )
+		lastJumpRequestTimeMs = Time.get_ticks_msec()
+		lastJumpRequestTimeValid = true
+		
+	if lastFloorTimeValid and \
+		Time.get_ticks_msec() - lastFloorTimeMs < jumpRequestTimeoutMs and \
+		lastJumpRequestTimeValid and \
+		Time.get_ticks_msec() - lastJumpRequestTimeMs < jumpRequestTimeoutMs:
+		print("Jumped ", Time.get_ticks_msec()  )
+		velocity.y = jumpSpeed
+		lastJumpRequestTimeValid = false
+		lastFloorTimeValid = false
+		
+	
+	if Time.get_ticks_msec() - lastJumpRequestTimeMs > jumpRequestTimeoutMs:
+		lastJumpRequestTimeValid = false
+	if Time.get_ticks_msec() - lastFloorTimeMs > jumpRequestTimeoutMs:
+		lastFloorTimeValid = false
+	
+	debug.text = debugText
 
 func display_text(_playerid: int):
 	if _playerid == playerId:
