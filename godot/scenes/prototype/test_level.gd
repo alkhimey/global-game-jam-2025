@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var pause_overlay = %PauseOverlay
-@onready var gameover_overlay = %GameoverOverlay
+@onready var gameover_overlay = $CanvasLayer/GameoverOverlay
 
 
 func _ready():

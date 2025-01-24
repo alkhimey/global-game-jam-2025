@@ -9,6 +9,9 @@ extends CharacterBody2D
 @export var right_input_name: String = "player1_right"
 # Name for up input
 @export var up_input_name: String = "player1_up"
+# Name for down input
+@export var down_input_name: String = "player1_down"
+
 # List of curses for the player
 @export var curses: Array = ["@!%#$*", "@!#(*!*)", "$!*@!*!$"]
 # Starting position on reset
@@ -19,12 +22,43 @@ extends CharacterBody2D
 #speed of typing animation
 @export var write_speed := 8
 
-@export var speed : float = 250
-@export var acceleration : float = 800
-@export var friction : float = 1000
-@export var gravity_scale : float = 1 #אם נרצה לעשות אקסטרא עם הכוח משיכה יהיה את זה לכיף
-@export var jump_velocity = -400.0
-@export var gravity : float = 1000
+const meterToPixel = 100 # 480 pixels = 4.8meter = 1 second of free fall from top to bottom
+const pixelToMeter = 1.0 / meterToPixel
+const massKG = 5
+const gravityAcceleration = 9.8
+const restingVelocityYThreshold = 1.0 # If velocity.x is below it, set velocity.x to 0
+const restingVelocityXThreshold = 50.0 # If velocity.x is below it, set velocity.x to 0
+
+@export var frictionCoeff : float = 1.7
+
+# Applies on the gound and in all direction
+@export var airDragCoeff : float = 0.47 
+
+# Input acceleration when touching the floor
+@export var inputAccelerationAir : float = 10
+
+# Input acceleration when not touching the floor
+@export var inputAccelerationFloor : float = 18
+
+# If speed.x is above this value, input acceleration will not be applied.
+const inputAccelerationMaxSpeed = 2.5 
+
+@export var coeffOfRestitutionWithFloor : float = 0.2
+
+# Speed boost upwards when pressing up. m/s
+const jumpSpeed : float = -600
+
+# Speed boost downwards when pressing down midair. m/2
+const downSpeed : float = 800
+
+var collidedWithFloorLastPass : bool = false
+
+const jumpRequestTimeoutMs = 300
+var lastJumpRequestTimeMs: int = 0
+var lastJumpRequestTimeValid: bool = false
+
+var lastFloorTimeMs: int = 0
+var lastFloorTimeValid: bool = false
 
 func _ready() -> void:
 	GameplayGlobal.goal_reset.connect(on_goal_reset)
@@ -32,79 +66,103 @@ func _ready() -> void:
 	# display_text()
 
 func _physics_process(delta: float) -> void:
-	apply_gravity(delta)
-	jump()
-
+	var collidedWithFloorThisPass = false
 	var input_axis = 0
 	if GameplayGlobal.can_goal:
 		input_axis = Input.get_axis(left_input_name, right_input_name)
-		
-	handle_acceleration(input_axis, delta)
-	apply_friction(input_axis, delta)
-	apply_air_friction(input_axis, delta)
+
+	apply_forces(input_axis, delta)	
 	var prevVelocity = velocity
 
 	move_and_slide()
 
+	# BUG: multiple collisions can be with the other player. Need to use move_and_collide.
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 
-		if collision.get_collider().get_class() == "CharacterBody2D" and playerId == 1:
+		if collision.get_collider().get_class() == "CharacterBody2D":			
 			var selfVelInNormalDir = prevVelocity.project(collision.get_normal())
 			var selfVelCrossNormalDir = prevVelocity - selfVelInNormalDir
 			
 			var otherPlayer: CharacterBody2D = collision.get_collider()
 			var otherVelInNormalDir = otherPlayer.velocity.project(-1.0 * collision.get_normal())
 			var otherVelCrossNormalDir = otherPlayer.velocity - otherVelInNormalDir			
-
 			velocity = otherVelInNormalDir + selfVelCrossNormalDir
 			otherPlayer.velocity = otherVelCrossNormalDir + selfVelInNormalDir
 
+
 		elif collision.get_collider().name == "Floor":
-			lose_speed_at_collision()
+			velocity = prevVelocity.bounce(collision.get_normal()) 
+			if collidedWithFloorLastPass == false:
+				velocity = velocity * (1 - coeffOfRestitutionWithFloor)
+			collidedWithFloorThisPass = true
+			#if abs(velocity.x) < restingVelocityXThreshold * meterToPixel:
+				#velocity.x = 0.0
+			if abs(velocity.y) < restingVelocityYThreshold * meterToPixel:
+				velocity.y = 0.0
+		else:
+			velocity = prevVelocity.bounce(collision.get_normal()) 
+	jump()
+	if Input.is_action_just_pressed(down_input_name):
+		velocity.y = downSpeed
+		
+	# This is instead of the jump.
+	if Input.is_action_just_pressed(up_input_name):
+		velocity.y = 1.5 * -downSpeed
 
-			if prevVelocity.length() > 100:
-				velocity = prevVelocity.bounce(collision.get_normal()) 
+	collidedWithFloorLastPass = collidedWithFloorThisPass
 
-func apply_friction(input_axis, delta):
-	if input_axis == 0 and is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
-
-func apply_air_friction(input_axis, delta):
-	# Approximation - air friction
-	velocity.x = move_toward(velocity.x, 0, 300 * delta)	
-	velocity.y = move_toward(velocity.y, 0, 300 * delta)	
-
-func lose_speed_at_collision():
-	if velocity.y - 30.0 <= 0.0:
-		velocity.y = 0.0
-	else:
-		velocity.y = velocity.y - 30.0
-
-func apply_gravity(delta):
+func apply_forces(input_axis, delta):
+	var velocityMeters = velocity * pixelToMeter
+	
+	var gravityF = Vector2.ZERO
 	if not is_on_floor():
-		velocity.y += gravity * gravity_scale * delta
-		
-func handle_acceleration(input_axis, delta):
-	if input_axis != 0:
-		velocity.x = move_toward(velocity.x, input_axis * speed, acceleration * delta)
-		
+		gravityF.y += gravityAcceleration * massKG
+	
+	var frictionF = Vector2.ZERO
+	if input_axis == 0 and is_on_floor():
+		frictionF.x = -1.0 * velocityMeters.x * frictionCoeff
+	
+	var airResistanceF = -1.0 * velocityMeters * velocityMeters.length() * airDragCoeff	
+	
+	var inputF = Vector2.ZERO
+	if input_axis != 0 and abs(velocityMeters.x) < inputAccelerationMaxSpeed:
+		var inputAcceleration = inputAccelerationFloor if is_on_floor() else inputAccelerationAir
+		inputF.x = inputAcceleration * massKG * input_axis
+	
+	var totalForce = gravityF + inputF + frictionF + airResistanceF 
+	var totalAcceleration = totalForce / massKG
+	
+	velocity += totalAcceleration * delta * meterToPixel
+	#print(velocity, totalAcceleration)
+	
 func jump():
 	if is_on_floor():
-		if Input.is_action_just_pressed(up_input_name):
-			velocity.y = jump_velocity
+		lastFloorTimeMs = Time.get_ticks_msec()
+		lastFloorTimeValid = true
 
-	else: #חצי קפיצה בשיחרור המקש
-		if Input.is_action_just_released(up_input_name) and velocity.y < jump_velocity / 2:
-				velocity.y = jump_velocity / 2
-				
+	# Jump is temporarily disabled
+	#if Input.is_action_just_pressed(up_input_name):
+		#lastJumpRequestTimeMs = Time.get_ticks_msec()
+		#lastJumpRequestTimeValid = true
+		
+	if lastFloorTimeValid and \
+		Time.get_ticks_msec() - lastFloorTimeMs < jumpRequestTimeoutMs and \
+		lastJumpRequestTimeValid and \
+		Time.get_ticks_msec() - lastJumpRequestTimeMs < jumpRequestTimeoutMs:
+		velocity.y += jumpSpeed
+		lastJumpRequestTimeValid = false
+		lastFloorTimeValid = false
 
+	if Time.get_ticks_msec() - lastJumpRequestTimeMs > jumpRequestTimeoutMs:
+		lastJumpRequestTimeValid = false
+	if Time.get_ticks_msec() - lastFloorTimeMs > jumpRequestTimeoutMs:
+		lastFloorTimeValid = false
 
 func display_text(_playerid: int):
 	if _playerid == playerId:
 		return
-		
-		
+
 	chat_bubble.show()
 	chat_bubble.text = curse()
 	
