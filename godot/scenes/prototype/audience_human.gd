@@ -5,10 +5,13 @@ var initial_width: float
 var playerId: int
 var sign_type: int
 var skin_color: int
+var seat: int
 
 @export var speed: float = 5
 @export var starting_side: Array = [-20, -10, 864]
-@export var starting_height: Array = [226, 186, 276]
+@export var starting_height: Array = [105, 186, 272, 366, 456]
+@export var player1_width: Array = [26, 85]
+@export var player2_width: Array = [770, 827]
 @export var body_sprites: Array = []
 @export var eyes_sprites: Array = []
 @export var head_sprites: Array = []
@@ -20,14 +23,15 @@ var skin_color: int
 @onready var body_node = $Body
 @onready var head_node = $Head
 @onready var hand_node = $Hands
+@onready var eyes_node = $Head/Eyes
 @onready var head_sign_node = $Hands/HeadSign
 @onready var body_sign_node = $Hands/BodySign
+@onready var animation_player = $AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameplayGlobal.goal.connect(on_goal)
-	position.y = starting_height.pick_random()
 	# change_speed(1)
 
 
@@ -38,21 +42,31 @@ func _process(_delta: float) -> void:
 
 func start_tween():
 	var tween = create_tween()
+	animation_player.play("walk")
 
 	tween.tween_property(self, "position:x", initial_width, speed).set_trans(Tween.TRANS_QUART)
+
+	await tween.finished
+
+	animation_player.play("idle")
 
 
 func change_player(_playerId: int):
 
 	sign_type = randi_range(0,2)
+	head_node.texture = head_sprites[1]
+
 	match sign_type:
 		0:
 			pass
 		1:
 			body_sign_node.visible = true
+			head_node.texture = head_sprites[0]
 		2:
 			head_sign_node.visible = true
 
+	body_node.texture = body_sprites.pick_random()
+	eyes_node.texture = eyes_sprites.pick_random()
 	playerId = _playerId
 	position.x = starting_side[_playerId]
 
@@ -63,11 +77,14 @@ func change_player(_playerId: int):
 	head_sign_node.modulate = shirt_color
 	body_sign_node.modulate = shirt_color
 
+	position.y = starting_height[seat / 2]
+	position.x = starting_side[playerId]
+
 	match playerId:
 		1:
-			initial_width = randf_range(0., 854. / 2.)
+			initial_width = player1_width[seat / 5]
 		2:
-			initial_width = randf_range(854. / 2., 854.)
+			initial_width = player2_width[seat / 5]
 
 	if playerId > 0:
 		start_tween()
