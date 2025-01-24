@@ -139,3 +139,4 @@ text = "[tornado freq=3.0][rainbow val=0.8]Goal!!![tornado]"
 [node name="MusicPlayer" parent="." instance=ExtResource("7_n4jgj")]
 
 [node name="SfxPlayer" parent="." instance=ExtResource("8_sx80j")]
+bus = &"Master"
