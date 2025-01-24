@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var label: Label = $Label
 
 
-
 @export var left_input_name: String = "player1_left"
 @export var right_input_name: String = "player1_right"
 @export var up_input_name: String = "player1_up"
@@ -26,13 +25,39 @@ func _physics_process(delta: float) -> void:
 	var input_axis = Input.get_axis(left_input_name, right_input_name)
 	handle_acceleration(input_axis, delta)
 	apply_friction(input_axis, delta)
+	apply_air_friction(input_axis, delta)
+	var prevVelocity = velocity
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().name == "Floor":
+			lose_speed_at_collision()
+			if prevVelocity.length() > 100:
+				velocity = prevVelocity.bounce(collision.get_normal()) 
+		print("I collided with ", collision.get_normal())
 
+	#var collision_info = move_and_collide(velocity * delta)
+	#if collision_info:
+		#if collision_info.get_collider().name == "Floor":
+			#if velocity.length() < 100:
+				#velocity = Vector2.ZERO
+			#else:
+				#velocity = velocity.bounce(collision_info.get_normal()) 
 
 func apply_friction(input_axis, delta):
 	if input_axis == 0 and is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
-		
+
+func apply_air_friction(input_axis, delta):
+	# Approximation - air friction
+	velocity.x = move_toward(velocity.x, 0, 300 * delta)	
+	velocity.y = move_toward(velocity.y, 0, 300 * delta)	
+
+func lose_speed_at_collision():		
+	if velocity.y - 30.0 <= 0.0:
+		velocity.y = 0.0
+	else:
+		velocity.y = velocity.y - 30.0
 
 func apply_gravity(delta):
 	if not is_on_floor():
@@ -49,11 +74,6 @@ func jump():
 		if Input.is_action_just_pressed(up_input_name):
 			velocity.y = jump_velocity
 			label.show()
-	else: #חצי קפיצה בשיחרור המקש
-		if Input.is_action_just_released(up_input_name) and velocity.y < jump_velocity / 2:
-				velocity.y = jump_velocity / 2
-				
-
 
 func display_text():
 	var write_speed := 3
