@@ -19,12 +19,22 @@ extends CharacterBody2D
 #speed of typing animation
 @export var write_speed := 8
 
-@export var speed : float = 250
-@export var acceleration : float = 800
-@export var friction : float = 1000
-@export var gravity_scale : float = 1 #אם נרצה לעשות אקסטרא עם הכוח משיכה יהיה את זה לכיף
-@export var jump_velocity = -400.0
-@export var gravity : float = 1000
+const meterToPixel = 100 # 480 pixels = 4.8meter = 1 second of free fall from top to bottom
+const pixelToMeter = 1.0 / meterToPixel
+const massKG = 5
+const gravityAcceleration = 9.8
+const restingVelocityYThreshold = 1.0
+const restingVelocityXThreshold = 50.0
+
+@export var frictionCoeff : float = 0.5
+@export var airDragCoeff : float = 0.47
+@export var inputAccelerationAir : float = 5
+@export var inputAccelerationFloor : float = 13
+
+@export var coeffOfRestitutionWithFloor : float = 0.3
+const jumpSpeed : float = -600 # m/s
+
+var collidedWithFloorLastPass : bool = false
 
 func _ready() -> void:
 	GameplayGlobal.goal_reset.connect(on_goal_reset)
@@ -32,16 +42,14 @@ func _ready() -> void:
 	# display_text()
 
 func _physics_process(delta: float) -> void:
-	apply_gravity(delta)
-	jump()
-
+	var collidedWithFloorThisPass = false
 	var input_axis = 0
 	if GameplayGlobal.can_goal:
 		input_axis = Input.get_axis(left_input_name, right_input_name)
-		
-	handle_acceleration(input_axis, delta)
-	apply_friction(input_axis, delta)
-	apply_air_friction(input_axis, delta)
+
+	apply_forces(input_axis, delta)
+	jump()
+	
 	var prevVelocity = velocity
 
 	move_and_slide()
@@ -60,43 +68,45 @@ func _physics_process(delta: float) -> void:
 			velocity = otherVelInNormalDir + selfVelCrossNormalDir
 			otherPlayer.velocity = otherVelCrossNormalDir + selfVelInNormalDir
 
-		elif collision.get_collider().name == "Floor":
-			lose_speed_at_collision()
+		if collision.get_collider().name == "Floor":
+			velocity = prevVelocity.bounce(collision.get_normal()) 
+			if collidedWithFloorLastPass == false:
+				velocity = velocity * (1 - coeffOfRestitutionWithFloor)
+			collidedWithFloorThisPass = true
+			#if abs(velocity.x) < restingVelocityXThreshold * meterToPixel:
+				#velocity.x = 0.0
+			if abs(velocity.y) < restingVelocityYThreshold * meterToPixel:
+				velocity.y = 0.0
+	collidedWithFloorLastPass = collidedWithFloorThisPass
 
-			if prevVelocity.length() > 100:
-				velocity = prevVelocity.bounce(collision.get_normal()) 
-
-func apply_friction(input_axis, delta):
-	if input_axis == 0 and is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
-
-func apply_air_friction(input_axis, delta):
-	# Approximation - air friction
-	velocity.x = move_toward(velocity.x, 0, 300 * delta)	
-	velocity.y = move_toward(velocity.y, 0, 300 * delta)	
-
-func lose_speed_at_collision():
-	if velocity.y - 30.0 <= 0.0:
-		velocity.y = 0.0
-	else:
-		velocity.y = velocity.y - 30.0
-
-func apply_gravity(delta):
+func apply_forces(input_axis, delta):
+	var velocityMeters = velocity * pixelToMeter
+	
+	var gravityF = Vector2.ZERO
 	if not is_on_floor():
-		velocity.y += gravity * gravity_scale * delta
-		
-func handle_acceleration(input_axis, delta):
+		gravityF.y += gravityAcceleration * massKG
+	
+	var frictionF = Vector2.ZERO
+	if input_axis == 0 and is_on_floor():
+		frictionF.x = -1.0 * velocityMeters.x * frictionCoeff
+	
+	var airResistanceF = -1.0 * velocityMeters * velocityMeters.length() * airDragCoeff	
+	
+	var inputF = Vector2.ZERO
 	if input_axis != 0:
-		velocity.x = move_toward(velocity.x, input_axis * speed, acceleration * delta)
-		
+		var inputAcceleration = inputAccelerationFloor if is_on_floor() else inputAccelerationAir
+		inputF.x = inputAcceleration * massKG * input_axis
+	
+	var totalForce = gravityF + inputF + frictionF + airResistanceF 
+	var totalAcceleration = totalForce / massKG
+	
+	velocity += totalAcceleration * delta * meterToPixel
+	print(velocity, totalAcceleration)
+	
 func jump():
 	if is_on_floor():
 		if Input.is_action_just_pressed(up_input_name):
-			velocity.y = jump_velocity
-
-	else: #חצי קפיצה בשיחרור המקש
-		if Input.is_action_just_released(up_input_name) and velocity.y < jump_velocity / 2:
-				velocity.y = jump_velocity / 2
+			velocity.y = jumpSpeed
 				
 
 
