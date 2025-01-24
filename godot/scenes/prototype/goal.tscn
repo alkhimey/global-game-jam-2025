@@ -1,51 +1,53 @@
 [gd_scene load_steps=9 format=3 uid="uid://3j4dnutfuks4"]
 
 [ext_resource type="Script" path="res://scenes/prototype/goal.gd" id="1_ylmaa"]
-[ext_resource type="PackedScene" path="res://scenes/bird.tscn" id="2_oi512"]
-[ext_resource type="PackedScene" path="res://scenes/basket_back.tscn" id="3_53x68"]
-[ext_resource type="PackedScene" path="res://scenes/basket_front.tscn" id="4_gqlth"]
+[ext_resource type="PackedScene" uid="uid://7xrepgvl1f58" path="res://scenes/bird.tscn" id="2_oi512"]
+[ext_resource type="PackedScene" uid="uid://dm5hhaj1s5oq0" path="res://scenes/basket_back.tscn" id="3_53x68"]
+[ext_resource type="PackedScene" uid="uid://dgvceeydnqcat" path="res://scenes/basket_front.tscn" id="4_gqlth"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_k0o8v"]
-a = Vector2(-156.667, 6.66667)
-b = Vector2(152.5, 4.16667)
+a = Vector2(-144.167, 8.33333)
+b = Vector2(8.33333, 8.33333)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1iytq"]
-a = Vector2(-142.5, 7.5)
-b = Vector2(155.833, 6.66666)
+a = Vector2(-102.5, 16.6667)
+b = Vector2(90, 15.8334)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rln6m"]
-height = 45.0
+height = 35.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayk4s"]
 radius = 12.5
-height = 46.6667
+height = 39.9999
 
 [node name="Goal" type="Node2D"]
 scale = Vector2(1.2, 1.2)
 script = ExtResource("1_ylmaa")
 
 [node name="BirdLeft" parent="." instance=ExtResource("2_oi512")]
-position = Vector2(-349.167, -110)
-scale = Vector2(-1, 1)
+position = Vector2(-240.833, -104.167)
+scale = Vector2(-0.8, 0.8)
 
 [node name="BirdRight" parent="." instance=ExtResource("2_oi512")]
-position = Vector2(292.5, -122.5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(189.167, -118.333)
+scale = Vector2(0.7, 0.7)
 
 [node name="BasketBack" parent="." instance=ExtResource("3_53x68")]
+position = Vector2(-0.833333, -31.6667)
 
 [node name="BasketFront" parent="." instance=ExtResource("4_gqlth")]
 z_index = 10
 position = Vector2(-0.833333, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-0.833333, 5)
+position = Vector2(-0.833333, -6.66667)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(68.3333, -0.833334)
 shape = SubResource("SegmentShape2D_k0o8v")
 
 [node name="Blocker" type="StaticBody2D" parent="."]
-position = Vector2(-1.66667, 39.1667)
+position = Vector2(-1.66667, 35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker"]
 position = Vector2(0, 1.58946e-06)
@@ -54,13 +56,13 @@ shape = SubResource("SegmentShape2D_1iytq")
 one_way_collision = true
 
 [node name="LeftBlocker" type="StaticBody2D" parent="."]
-position = Vector2(-170.833, 1.66666)
+position = Vector2(-87.5, -15.8333)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBlocker"]
 shape = SubResource("CapsuleShape2D_rln6m")
 
 [node name="RightBlocker" type="StaticBody2D" parent="."]
-position = Vector2(168.333, -17.5)
+position = Vector2(81.6667, -19.1667)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBlocker"]
 position = Vector2(0, 14.1667)

@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var playerId: int
+@export var arrow: Sprite2D
+
 
 func _ready() -> void:
 	pass
@@ -14,4 +16,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return 
 		
 	if player.velocity.y > 0:
-		GameplayGlobal.goal.emit(player.playerId)
+		GameplayGlobal.goal.emit(player.playerId)	
+		arrow.hide()
+	
