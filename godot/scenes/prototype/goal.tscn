@@ -1,18 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2u15aabd5xsw"]
 
-[ext_resource type="Texture2D" uid="uid://dukepi23gli7m" path="res://Assets/Goal.png" id="1_lcbyo"]
 [ext_resource type="Script" path="res://scenes/prototype/goal.gd" id="1_ylmaa"]
+[ext_resource type="Texture2D" uid="uid://cppm1dowdimm5" path="res://Assets/1223553210972-removebg-preview.png" id="2_38p8w"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_na246"]
-size = Vector2(8, 91)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_k0o8v"]
+a = Vector2(-31, 2)
+b = Vector2(28, 0)
 
-[node name="Goal" type="Area2D"]
+[node name="Goal" type="Node2D"]
 script = ExtResource("1_ylmaa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(6, 6)
-texture = ExtResource("1_lcbyo")
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_38p8w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 2.5)
-shape = SubResource("RectangleShape2D_na246")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -97)
+shape = SubResource("SegmentShape2D_k0o8v")
+one_way_collision = true

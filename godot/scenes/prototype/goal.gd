@@ -1,10 +1,10 @@
-extends Area2D
+extends Node2D
 
 @export var playerId: int
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
-
+	pass # TODO: fix
+	#	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D):
 	if not GameplayGlobal.can_goal:
