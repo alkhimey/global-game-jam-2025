@@ -91,7 +91,7 @@ func _physics_process(delta: float) -> void:
 			otherPlayer.velocity = otherVelCrossNormalDir + selfVelInNormalDir
 
 
-		if collision.get_collider().name == "Floor":
+		elif collision.get_collider().name == "Floor":
 			velocity = prevVelocity.bounce(collision.get_normal()) 
 			if collidedWithFloorLastPass == false:
 				velocity = velocity * (1 - coeffOfRestitutionWithFloor)
@@ -100,10 +100,15 @@ func _physics_process(delta: float) -> void:
 				#velocity.x = 0.0
 			if abs(velocity.y) < restingVelocityYThreshold * meterToPixel:
 				velocity.y = 0.0
+		else:
+			velocity = prevVelocity.bounce(collision.get_normal()) 
 	jump()
 	if Input.is_action_just_pressed(down_input_name):
-		print("down")
-		velocity.y += downSpeed
+		velocity.y = downSpeed
+		
+	# This is instead of the jump.
+	if Input.is_action_just_pressed(up_input_name):
+		velocity.y = 1.5 * -downSpeed
 
 	collidedWithFloorLastPass = collidedWithFloorThisPass
 
@@ -136,9 +141,10 @@ func jump():
 		lastFloorTimeMs = Time.get_ticks_msec()
 		lastFloorTimeValid = true
 
-	if Input.is_action_just_pressed(up_input_name):
-		lastJumpRequestTimeMs = Time.get_ticks_msec()
-		lastJumpRequestTimeValid = true
+	# Jump is temporarily disabled
+	#if Input.is_action_just_pressed(up_input_name):
+		#lastJumpRequestTimeMs = Time.get_ticks_msec()
+		#lastJumpRequestTimeValid = true
 		
 	if lastFloorTimeValid and \
 		Time.get_ticks_msec() - lastFloorTimeMs < jumpRequestTimeoutMs and \
