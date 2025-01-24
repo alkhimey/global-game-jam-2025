@@ -114,6 +114,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 1.5 * -downSpeed
 
 	collidedWithFloorLastPass = collidedWithFloorThisPass
+	
+	print(velocity.length())
 
 func apply_forces(input_axis, delta):
 	var velocityMeters = velocity * pixelToMeter
@@ -195,8 +197,20 @@ func _process(delta):
 	
 
 func trail_effect():
-	var trail = get_node("GPUParticles2D")  # Directly access the node
+	var particles = get_node("GPUParticles2D") 
+	var _material = particles.process_material 
+	var _scale_factor = 1 + velocity.length() / 600  
+	_material.scale = Vector2(_scale_factor ,_scale_factor)  # Make the particles smaller
+	var trail = get_node("GPUParticles2D")# Directly access the node
+	
 	if velocity.length() > 700:  # Activate trail when moving
 		trail.emitting = true
+		scale = Vector2(_scale_factor,_scale_factor)
 	else:
 		trail.emitting = false
+		scale = Vector2(4,4)
+		
+		
+		
+
+		
