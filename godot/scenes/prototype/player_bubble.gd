@@ -75,7 +75,10 @@ func _physics_process(delta: float) -> void:
 	var prevVelocity = velocity
 
 	move_and_slide()
-
+	trail_effect()
+	
+		
+		
 	# BUG: multiple collisions can be with the other player. Need to use move_and_collide.
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -190,4 +193,10 @@ func on_goal_reset():
 func _process(delta):
 	chat_bubble.position = position + chat_offset
 	
-	
+
+func trail_effect():
+	var trail = get_node("GPUParticles2D")  # Directly access the node
+	if velocity.length() > 700:  # Activate trail when moving
+		trail.emitting = true
+	else:
+		trail.emitting = false
