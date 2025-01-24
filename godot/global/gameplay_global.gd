@@ -15,9 +15,12 @@ var wins2: int = 0
 
 # Can a player currently goal - used inbetween goal and reset
 var can_goal = true
-
 # Game's score limit
-const score_limit = 3
+var score_limit = 3
+# Player Colors
+var player_colors: Array = [Color.BLUE, Color.RED]
+
+
 # Time to wait inbetween goal and reset in seconds
 const goal_timeout = 2.0
 
