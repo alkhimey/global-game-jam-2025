@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgmgv5446mwlk"]
+[gd_scene load_steps=9 format=3 uid="uid://bgmgv5446mwlk"]
 
 [ext_resource type="Script" path="res://scenes/prototype/player_bubble.gd" id="1_4cd2k"]
 [ext_resource type="Shader" path="res://scenes/prototype/circle.gdshader" id="2_2rcnu"]
-[ext_resource type="Texture2D" uid="uid://ocd3i468gdem" path="res://Assets/Player_sprite.png" id="3_bgnhu"]
+[ext_resource type="Texture2D" uid="uid://bnawc7h0eyrip" path="res://Assets/ggj-bubble-blue-64.png" id="3_adpoi"]
 [ext_resource type="Texture2D" uid="uid://dbht1davmdqwd" path="res://Assets/playar_face_sprite.png" id="4_is5sc"]
+[ext_resource type="Texture2D" uid="uid://cqpx2eqmcgwes" path="res://Assets/ggj-bubble-red-64.png" id="4_sxmpf"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="5_ymk3n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0waut"]
@@ -12,10 +13,12 @@ radius = 8.01561
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ee86c"]
 shader = ExtResource("2_2rcnu")
 
-[node name="PlayerBubble" type="CharacterBody2D" node_paths=PackedStringArray("chat_bubble")]
+[node name="PlayerBubble" type="CharacterBody2D" node_paths=PackedStringArray("chat_bubble", "image1", "image2")]
 scale = Vector2(4, 4)
 script = ExtResource("1_4cd2k")
 chat_bubble = NodePath("CanvasLayer/ChatBubbleLabel")
+image1 = NodePath("Bubble")
+image2 = NodePath("Bubble2")
 curses = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$", "!&%$%#$*$%#%"]
 chat_offset = Vector2(-71, -70)
 
@@ -38,7 +41,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Bubble" type="Sprite2D" parent="."]
-texture = ExtResource("3_bgnhu")
+texture = ExtResource("3_adpoi")
+
+[node name="Bubble2" type="Sprite2D" parent="."]
+texture = ExtResource("4_sxmpf")
 
 [node name="Face" type="Sprite2D" parent="."]
 texture = ExtResource("4_is5sc")
