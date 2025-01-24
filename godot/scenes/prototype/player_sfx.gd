@@ -4,6 +4,7 @@ extends AudioStreamPlayer2D
 @export var jump_stream: AudioStream
 @export var curse_stream_l: AudioStream
 @export var curse_stream_s: AudioStream
+@export var bounce_stream: AudioStream
 
 
 # Called when the node enters the scene tree for the first time.

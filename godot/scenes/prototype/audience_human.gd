@@ -15,6 +15,8 @@ var seat: int
 @export var body_sprites: Array = []
 @export var eyes_sprites: Array = []
 @export var head_sprites: Array = []
+@export var wing_sprites: Array = []
+@export var halo_sprites: Array = []
 @export var jump_offset: Vector2 = Vector2(0, 3)
 @export var normal_speed: float = 5
 @export var excite_speed: float = 0.5
@@ -24,6 +26,9 @@ var seat: int
 @onready var head_node = $Head
 @onready var hand_node = $Hands
 @onready var eyes_node = $Head/Eyes
+@onready var wing_node_L = $Body/Wings/WingL
+@onready var wing_node_R = $Body/Wings/WingR
+@onready var halo_node = $Head/Halo
 @onready var head_sign_node = $Hands/HeadSign
 @onready var body_sign_node = $Hands/BodySign
 @onready var animation_player = $AnimationPlayer
@@ -67,6 +72,12 @@ func change_player(_playerId: int):
 
 	body_node.texture = body_sprites.pick_random()
 	eyes_node.texture = eyes_sprites.pick_random()
+	halo_node.texture = halo_sprites.pick_random()
+	
+	var wing_texture = wing_sprites.pick_random()
+	wing_node_L.texture = wing_texture
+	wing_node_R.texture = wing_texture
+
 	playerId = _playerId
 	position.x = starting_side[_playerId]
 
