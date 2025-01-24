@@ -45,7 +45,7 @@ const restingVelocityXThreshold = 50.0 # If velocity.x is below it, set velocity
 @export var airDragCoeff : float = 0.47 
 
 # Input acceleration when touching the floor
-@export var inputAccelerationAir : float = 7
+@export var inputAccelerationAir : float = 10
 
 # Input acceleration when not touching the floor
 @export var inputAccelerationFloor : float = 9
@@ -55,11 +55,14 @@ const inputAccelerationMaxSpeed = 2.5
 
 @export var coeffOfRestitutionWithFloor : float = 0.2
 
-# Speed boost upwards when pressing up. m/s
-const jumpSpeed : float = -350
 
-# Speed boost downwards when pressing down midair. m/2
-const downSpeed : float = 300
+const jumpSpeed : float = -350.0
+
+# Speed boost downwards when pressing down midairww
+const downSpeed : float = 0.0#300
+const upSpeed : float = -500.0
+
+const onGoalDownSpeed : float = 1000.0
 
 # Above this horizontal velocity, the bubble will start to point towards the movement.
 const velocityXMinForRotation : float = 0.3
@@ -133,7 +136,7 @@ func _physics_process(delta: float) -> void:
 		
 	# This is instead of the jump.
 	if Input.is_action_just_pressed(up_input_name):
-		velocity.y = 1.5 * -downSpeed
+		velocity.y = upSpeed
 
 	collidedWithFloorLastPass = collidedWithFloorThisPass
 	
@@ -197,6 +200,8 @@ func jump():
 
 func display_text(_playerid: int):
 	if _playerid == playerId:
+		velocity = Vector2(0.0,onGoalDownSpeed)
+		# TODO goalParticalSystem 
 		return
 
 	chat_bubble.show()
