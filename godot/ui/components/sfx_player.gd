@@ -2,6 +2,12 @@ extends AudioStreamPlayer
 
 @export var hover_sound: AudioStream
 @export var click_sound: AudioStream
+@export var pause_sound: AudioStream
+
+
+func play_pause():
+	stream = pause_sound
+	play()
 
 
 func play_hover():
