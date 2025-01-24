@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
-fade_duration = 2.0
+fade_duration = 0.2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
