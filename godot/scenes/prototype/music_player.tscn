@@ -5,8 +5,10 @@
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_iu8bc")
+autoplay = true
 bus = &"Music"
 
 [node name="CrowdAmbiencePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mi7fm")
+autoplay = true
 bus = &"Crowd"

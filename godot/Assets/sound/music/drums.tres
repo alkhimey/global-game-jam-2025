@@ -1,11 +1,21 @@
-[gd_resource type="AudioStreamSynchronized" load_steps=3 format=3 uid="uid://bgm8duevf53nw"]
+[gd_resource type="AudioStreamSynchronized" load_steps=6 format=3 uid="uid://bo34tns2wx8kb"]
 
-[ext_resource type="AudioStream" uid="uid://dod45igo7w5if" path="res://Assets/sound/music/chants.tres" id="2_lak2s"]
+[ext_resource type="AudioStream" uid="uid://bst2oxwpcml35" path="res://Assets/sound/music/chants-001.ogg" id="2_kwfhe"]
 [ext_resource type="AudioStream" uid="uid://c5bwsa5dtmaan" path="res://Assets/sound/music/drums.ogg" id="2_osxpy"]
+[ext_resource type="AudioStream" uid="uid://cqeu2cjku0mri" path="res://Assets/sound/music/chants-002.ogg" id="3_tet3p"]
+[ext_resource type="AudioStream" uid="uid://cfiav7tf27b38" path="res://Assets/sound/music/chants-003.ogg" id="4_x3mhd"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_8ietu"]
+shuffle = true
+fade_time = 0.0
+stream_count = 3
+stream_0 = ExtResource("2_kwfhe")
+stream_1 = ExtResource("3_tet3p")
+stream_2 = ExtResource("4_x3mhd")
 
 [resource]
 stream_count = 2
 stream_0/stream = ExtResource("2_osxpy")
 stream_0/volume = 0.0
-stream_1/stream = ExtResource("2_lak2s")
+stream_1/stream = SubResource("AudioStreamPlaylist_8ietu")
 stream_1/volume = 0.0
