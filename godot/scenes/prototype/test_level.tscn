@@ -20,7 +20,7 @@ normal = Vector2(0, 1)
 script = ExtResource("1_sti86")
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(0, 400)
+position = Vector2(0, 440)
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_bhtvs")
@@ -29,15 +29,14 @@ shape = SubResource("WorldBoundaryShape2D_bhtvs")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 872.0
+offset_right = 854.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="Cieling" type="StaticBody2D" parent="."]
-position = Vector2(0, 50)
 
 [node name="CielingShape" type="CollisionShape2D" parent="Cieling"]
+position = Vector2(0, 50)
 shape = SubResource("WorldBoundaryShape2D_k01xm")
 
 [node name="ColorRect" type="ColorRect" parent="Cieling"]
@@ -46,27 +45,45 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -13.0
-offset_right = 897.0
+offset_right = 854.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Walls" type="RigidBody2D" parent="."]
+[node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="LeftWallShape" type="CollisionShape2D" parent="Walls"]
+position = Vector2(110, 0)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_064jb")
 
 [node name="RightWsllShape" type="CollisionShape2D" parent="Walls"]
-position = Vector2(854, 0)
-rotation = 4.71239
+position = Vector2(743, 0)
+rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_lnddl")
+
+[node name="LeftColorRect" type="ColorRect" parent="Walls"]
+offset_right = 110.0
+offset_bottom = 480.0
+
+[node name="RightColorRect" type="ColorRect" parent="Walls"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 744.0
+offset_top = -1.0
+offset_right = 854.0
+offset_bottom = 479.0
+grow_horizontal = 0
 
 [node name="Player1" parent="." instance=ExtResource("1_gg1j7")]
 position = Vector2(197, 265)
 playerId = 1
 initial_position = Vector2(197, 265)
+
+[node name="Goal" parent="." instance=ExtResource("3_25nnm")]
+position = Vector2(410, 309)
+playerId = 1
 
 [node name="Player2" parent="." instance=ExtResource("1_gg1j7")]
 position = Vector2(655, 265)
@@ -98,6 +115,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Goal!" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -112,14 +130,3 @@ size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[tornado freq=3.0][rainbow val=0.8]Goal!!![tornado]"
-
-[node name="Goal" parent="." instance=ExtResource("3_25nnm")]
-position = Vector2(45, 225)
-scale = Vector2(1e-05, 1e-05)
-playerId = 1
-
-[node name="Goal2" parent="." instance=ExtResource("3_25nnm")]
-position = Vector2(47, 234)
-rotation = 3.14159
-scale = Vector2(-0.6, 0.6)
-playerId = 2

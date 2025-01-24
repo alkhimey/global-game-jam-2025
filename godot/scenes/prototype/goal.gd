@@ -1,19 +1,17 @@
-extends Area2D
+extends Node2D
 
 @export var playerId: int
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
+	pass
 
-
-func _on_body_entered(body: Node2D):
+func _on_area_2d_body_entered(body: Node2D) -> void:	
 	if not GameplayGlobal.can_goal:
 		return
 
 	var player := body as CharacterBody2D
-	
 	if not player: 
 		return 
 		
-	if playerId != player.playerId: 
+	if player.velocity.y > 0:
 		GameplayGlobal.goal.emit(player.playerId)
