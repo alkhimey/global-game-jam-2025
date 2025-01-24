@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://cagli65wctvc"]
+
+[ext_resource type="Script" path="res://scenes/prototype/player_sfx.gd" id="1_yngac"]
+[ext_resource type="AudioStream" uid="uid://lnjbbf0v70an" path="res://Assets/sound/sfx/jump/jump.tres" id="2_airwm"]
+[ext_resource type="AudioStream" uid="uid://clucflhh2m6jj" path="res://Assets/sound/curses/L/CursesL.tres" id="3_0ruyu"]
+[ext_resource type="AudioStream" uid="uid://dtk50qemllaw3" path="res://Assets/sound/curses/S/CursesS.tres" id="4_jcv5s"]
+
+[node name="PlayerSfx" type="AudioStreamPlayer2D"]
+max_polyphony = 3
+bus = &"Sound"
+script = ExtResource("1_yngac")
+jump_stream = ExtResource("2_airwm")
+curse_stream_l = ExtResource("3_0ruyu")
+curse_stream_s = ExtResource("4_jcv5s")
