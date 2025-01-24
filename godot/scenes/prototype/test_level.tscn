@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://rxarikcb81yp"]
+
+[ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
+[ext_resource type="PackedScene" uid="uid://dak20sxfrsnsk" path="res://ui/overlays/gameplay_overlay.tscn" id="2_0w7mu"]
+[ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k01xm"]
+normal = Vector2(0, 1)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 400)
+
+[node name="FloorShape" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_bhtvs")
+
+[node name="Cieling" type="StaticBody2D" parent="."]
+
+[node name="CielingShape" type="CollisionShape2D" parent="Cieling"]
+position = Vector2(0, 50)
+shape = SubResource("WorldBoundaryShape2D_k01xm")
+
+[node name="Player1" parent="." instance=ExtResource("1_gg1j7")]
+position = Vector2(197, 263)
+playerId = 1
+
+[node name="Player2" parent="." instance=ExtResource("1_gg1j7")]
+position = Vector2(655, 265)
+playerId = 2
+left_input_name = "player2_left"
+right_input_name = "player2_right"
+up_input_name = "player2_up"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameplayOverlay" parent="CanvasLayer" instance=ExtResource("2_0w7mu")]
+mouse_filter = 2
+
+[node name="Goal" parent="." instance=ExtResource("3_25nnm")]
+position = Vector2(47, 355)
+playerId = 1
+
+[node name="Goal2" parent="." instance=ExtResource("3_25nnm")]
+position = Vector2(823, 364)
+playerId = 2

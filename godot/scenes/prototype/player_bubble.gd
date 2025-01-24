@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
-@export var playerName: String
-@onready var label: Label = $Label
-
+@export var playerId: int
+@export var chat_bubble: Label
 
 @export var left_input_name: String = "player1_left"
 @export var right_input_name: String = "player1_right"
@@ -17,7 +16,9 @@ extends CharacterBody2D
 @export var gravity : float = 1000
 
 func _ready() -> void:
-	display_text() ##use when player lost a round, connet  pla <3
+	pass
+	
+	# display_text()
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -72,11 +73,25 @@ func jump():
 	if is_on_floor():
 		if Input.is_action_just_pressed(up_input_name):
 			velocity.y = jump_velocity
-			label.show()
+	else: #חצי קפיצה בשיחרור המקש
+		if Input.is_action_just_released(up_input_name) and velocity.y < jump_velocity / 2:
+				velocity.y = jump_velocity / 2
+				
+
 
 func display_text():
+	chat_bubble.show()
+	chat_bubble.text = curse()
+	
 	var write_speed := 3
 	var tween := create_tween()
-	var duration := label.text.length() / write_speed
-	tween.tween_property(label, "visible_ratio", 1.0, duration)\
+	var duration := chat_bubble.text.length() / write_speed
+	tween.tween_property(chat_bubble, "visible_ratio", 1.0, duration)\
 		.from(0.0)
+		
+		
+		
+func curse() -> String: 
+	return ["@!%#$*", "@!#(*!*)", "$!*@!*!$"].pick_random()
+	
+	

@@ -1,18 +1,16 @@
 extends Area2D
 
-@export var is_player_1: bool = true
-
+@export var playerId: int
 
 func _ready() -> void:
-	area_entered.connect(_on_area_endterd)
+	body_entered.connect(_on_body_entered)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _on_area_endterd(area: Area2D):
-	print("Goal")
-
-	#add_score_func
-	GameplayGlobal.goal.emit(is_player_1)
+func _on_body_entered(body: Node2D): 
+	var player := body as CharacterBody2D
+	
+	if not player: 
+		return 
+		
+	if playerId != player.playerId: 
+		GameplayGlobal.goal.emit(player.playerId)

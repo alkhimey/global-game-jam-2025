@@ -8,4 +8,3 @@ func _ready() -> void:
 
 func on_timeout():
 	GameplayGlobal.timer.emit()
-
