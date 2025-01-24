@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b37hirgcr57sc"]
+[gd_scene load_steps=35 format=3 uid="uid://b37hirgcr57sc"]
 
 [ext_resource type="Script" path="res://scenes/prototype/audience_human.gd" id="1_dhd2a"]
 [ext_resource type="Texture2D" uid="uid://bhq02d36be3xe" path="res://Assets/audience/audience_head1.png" id="2_vl0wv"]
@@ -12,13 +12,26 @@
 [ext_resource type="Texture2D" uid="uid://c4uf3klbm2sam" path="res://Assets/audience/audience_hands.png" id="9_phwni"]
 [ext_resource type="Texture2D" uid="uid://q8pe1ywajh1b" path="res://Assets/audience/audience_head2.png" id="10_n37pk"]
 [ext_resource type="Texture2D" uid="uid://byc041alw0565" path="res://Assets/audience/audience_sign_head.png" id="10_vhfpb"]
+[ext_resource type="Texture2D" uid="uid://cqbe3tgnhk7a0" path="res://Assets/audience/audience_wing1.png" id="11_76osv"]
 [ext_resource type="Texture2D" uid="uid://ddqb3he1kef3h" path="res://Assets/audience/audience_sign_body.png" id="11_wiief"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_06177"]
+[ext_resource type="Texture2D" uid="uid://qa4jd8hjb8ju" path="res://Assets/audience/audience_wing2.png" id="12_a61ty"]
+[ext_resource type="Texture2D" uid="uid://bvc8pjyeedmnq" path="res://Assets/audience/audience_wing3.png" id="13_ngtke"]
+[ext_resource type="Texture2D" uid="uid://dqdl0sktxmn7u" path="res://Assets/audience/audience_wing4.png" id="14_04wna"]
+[ext_resource type="Texture2D" uid="uid://db1t3c5405vxs" path="res://Assets/audience/audience_halo1.png" id="15_hlxhb"]
+[ext_resource type="Texture2D" uid="uid://dya2ptn1u3hps" path="res://Assets/audience/audience_halo2.png" id="16_nwe7s"]
+[ext_resource type="Texture2D" uid="uid://2qrmuvanfxf7" path="res://Assets/audience/audience_halo3.png" id="17_rnw15"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ggvyt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_tud78"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_cmxc4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_06177"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vbeti"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_1wp1p"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_oehk7"]
 
@@ -205,16 +218,12 @@ script = ExtResource("1_dhd2a")
 body_sprites = [ExtResource("3_mkk7n"), ExtResource("3_r5dw1")]
 eyes_sprites = [ExtResource("4_7aosx"), ExtResource("3_cqrw3"), ExtResource("4_3whhj"), ExtResource("5_tevgj"), ExtResource("6_mytpn")]
 head_sprites = [ExtResource("2_vl0wv"), ExtResource("10_n37pk")]
+wing_sprites = [ExtResource("11_76osv"), ExtResource("12_a61ty"), ExtResource("13_ngtke"), ExtResource("14_04wna")]
+halo_sprites = [ExtResource("15_hlxhb"), ExtResource("16_nwe7s"), ExtResource("17_rnw15")]
 jump_offset = Vector2(0, 10)
 normal_speed = 0.4
 excite_speed = 0.2
 goal_speed = 0.1
-
-[node name="Body" type="MeshInstance2D" parent="."]
-position = Vector2(0.08, -0.5)
-rotation = 3.14159
-mesh = SubResource("QuadMesh_06177")
-texture = ExtResource("3_mkk7n")
 
 [node name="Head" type="MeshInstance2D" parent="."]
 position = Vector2(0.06, -0.5)
@@ -227,6 +236,30 @@ position = Vector2(0.04, 0.25)
 scale = Vector2(0.3, 0.3)
 mesh = SubResource("QuadMesh_tud78")
 texture = ExtResource("4_7aosx")
+
+[node name="Halo" type="MeshInstance2D" parent="Head"]
+position = Vector2(0.05, 0.55)
+mesh = SubResource("QuadMesh_cmxc4")
+texture = ExtResource("17_rnw15")
+
+[node name="Body" type="MeshInstance2D" parent="."]
+position = Vector2(0.08, -0.5)
+rotation = 3.14159
+mesh = SubResource("QuadMesh_06177")
+texture = ExtResource("3_mkk7n")
+
+[node name="Wings" type="Node2D" parent="Body"]
+z_index = -1
+
+[node name="WingL" type="MeshInstance2D" parent="Body/Wings"]
+position = Vector2(0.15, 0)
+mesh = SubResource("QuadMesh_vbeti")
+texture = ExtResource("11_76osv")
+
+[node name="WingR" type="MeshInstance2D" parent="Body/Wings"]
+scale = Vector2(-1, 1)
+mesh = SubResource("QuadMesh_1wp1p")
+texture = ExtResource("11_76osv")
 
 [node name="Hands" type="MeshInstance2D" parent="."]
 position = Vector2(0.0333333, -0.5)
@@ -242,6 +275,7 @@ mesh = SubResource("QuadMesh_8a5i8")
 texture = ExtResource("10_vhfpb")
 
 [node name="BodySign" type="MeshInstance2D" parent="Hands"]
+visible = false
 position = Vector2(0.0666666, -0.333333)
 rotation = 3.14159
 scale = Vector2(1.1, 1.1)
