@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=11 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
 [ext_resource type="PackedScene" uid="uid://dak20sxfrsnsk" path="res://ui/overlays/gameplay_overlay.tscn" id="2_0w7mu"]
-[ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
+[ext_resource type="PackedScene" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_ejleg"]
 [ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
 
@@ -11,6 +11,10 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k01xm"]
 normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_064jb"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnddl"]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_sti86")
@@ -31,10 +35,33 @@ offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="Cieling" type="StaticBody2D" parent="."]
+position = Vector2(0, 50)
 
 [node name="CielingShape" type="CollisionShape2D" parent="Cieling"]
-position = Vector2(0, 50)
 shape = SubResource("WorldBoundaryShape2D_k01xm")
+
+[node name="ColorRect" type="ColorRect" parent="Cieling"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -13.0
+offset_right = 897.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Walls" type="RigidBody2D" parent="."]
+
+[node name="LeftWallShape" type="CollisionShape2D" parent="Walls"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_064jb")
+
+[node name="RightWsllShape" type="CollisionShape2D" parent="Walls"]
+position = Vector2(854, 0)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_lnddl")
 
 [node name="Player1" parent="." instance=ExtResource("1_gg1j7")]
 position = Vector2(197, 265)
@@ -47,6 +74,7 @@ playerId = 2
 left_input_name = "player2_left"
 right_input_name = "player2_right"
 up_input_name = "player2_up"
+down_input_name = "player2_down"
 initial_position = Vector2(655, 265)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

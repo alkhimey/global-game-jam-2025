@@ -9,6 +9,9 @@ extends CharacterBody2D
 @export var right_input_name: String = "player1_right"
 # Name for up input
 @export var up_input_name: String = "player1_up"
+# Name for down input
+@export var down_input_name: String = "player1_down"
+
 # List of curses for the player
 @export var curses: Array = ["@!%#$*", "@!#(*!*)", "$!*@!*!$"]
 # Starting position on reset
@@ -23,16 +26,30 @@ const meterToPixel = 100 # 480 pixels = 4.8meter = 1 second of free fall from to
 const pixelToMeter = 1.0 / meterToPixel
 const massKG = 5
 const gravityAcceleration = 9.8
-const restingVelocityYThreshold = 1.0
-const restingVelocityXThreshold = 50.0
+const restingVelocityYThreshold = 1.0 # If velocity.x is below it, set velocity.x to 0
+const restingVelocityXThreshold = 50.0 # If velocity.x is below it, set velocity.x to 0
 
-@export var frictionCoeff : float = 0.5
-@export var airDragCoeff : float = 0.47
-@export var inputAccelerationAir : float = 5
-@export var inputAccelerationFloor : float = 13
+@export var frictionCoeff : float = 1.7
 
-@export var coeffOfRestitutionWithFloor : float = 0.3
-const jumpSpeed : float = -600 # m/s
+# Applies on the gound and in all direction
+@export var airDragCoeff : float = 0.47 
+
+# Input acceleration when touching the floor
+@export var inputAccelerationAir : float = 10
+
+# Input acceleration when not touching the floor
+@export var inputAccelerationFloor : float = 18
+
+# If speed.x is above this value, input acceleration will not be applied.
+const inputAccelerationMaxSpeed = 2.5 
+
+@export var coeffOfRestitutionWithFloor : float = 0.2
+
+# Speed boost upwards when pressing up. m/s
+const jumpSpeed : float = -600
+
+# Speed boost downwards when pressing down midair. m/2
+const downSpeed : float = 800
 
 var collidedWithFloorLastPass : bool = false
 
@@ -59,19 +76,20 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	# BUG: multiple collisions can be with the other player. Need to use move_and_collide.
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 
-		if collision.get_collider().get_class() == "CharacterBody2D" and playerId == 1:
+		if collision.get_collider().get_class() == "CharacterBody2D":			
 			var selfVelInNormalDir = prevVelocity.project(collision.get_normal())
 			var selfVelCrossNormalDir = prevVelocity - selfVelInNormalDir
 			
 			var otherPlayer: CharacterBody2D = collision.get_collider()
 			var otherVelInNormalDir = otherPlayer.velocity.project(-1.0 * collision.get_normal())
 			var otherVelCrossNormalDir = otherPlayer.velocity - otherVelInNormalDir			
-
 			velocity = otherVelInNormalDir + selfVelCrossNormalDir
 			otherPlayer.velocity = otherVelCrossNormalDir + selfVelInNormalDir
+
 
 		if collision.get_collider().name == "Floor":
 			velocity = prevVelocity.bounce(collision.get_normal()) 
@@ -83,6 +101,9 @@ func _physics_process(delta: float) -> void:
 			if abs(velocity.y) < restingVelocityYThreshold * meterToPixel:
 				velocity.y = 0.0
 	jump()
+	if Input.is_action_just_pressed(down_input_name):
+		print("down")
+		velocity.y += downSpeed
 
 	collidedWithFloorLastPass = collidedWithFloorThisPass
 
@@ -100,7 +121,7 @@ func apply_forces(input_axis, delta):
 	var airResistanceF = -1.0 * velocityMeters * velocityMeters.length() * airDragCoeff	
 	
 	var inputF = Vector2.ZERO
-	if input_axis != 0:
+	if input_axis != 0 and abs(velocityMeters.x) < inputAccelerationMaxSpeed:
 		var inputAcceleration = inputAccelerationFloor if is_on_floor() else inputAccelerationAir
 		inputF.x = inputAcceleration * massKG * input_axis
 	
@@ -123,7 +144,7 @@ func jump():
 		Time.get_ticks_msec() - lastFloorTimeMs < jumpRequestTimeoutMs and \
 		lastJumpRequestTimeValid and \
 		Time.get_ticks_msec() - lastJumpRequestTimeMs < jumpRequestTimeoutMs:
-		velocity.y = jumpSpeed
+		velocity.y += jumpSpeed
 		lastJumpRequestTimeValid = false
 		lastFloorTimeValid = false
 
@@ -135,8 +156,7 @@ func jump():
 func display_text(_playerid: int):
 	if _playerid == playerId:
 		return
-		
-		
+
 	chat_bubble.show()
 	chat_bubble.text = curse()
 	
