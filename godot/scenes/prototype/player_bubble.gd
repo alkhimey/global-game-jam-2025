@@ -22,6 +22,13 @@ extends CharacterBody2D
 # Position offset for chat bubble
 @export var chat_offset: Vector2 = Vector2(0,0)
 
+
+#
+# IMPORTANT: in all constants, unless specified otherwise the values are
+# units of meters,seconds, m/s, m/s^2 etc. 
+# Use meterToPixel and pixelToMeter.
+#
+
 #speed of typing animation
 @export var write_speed := 8
 
@@ -54,6 +61,15 @@ const jumpSpeed : float = -350
 # Speed boost downwards when pressing down midair. m/2
 const downSpeed : float = 300
 
+# Above this horizontal velocity, the bubble will start to point towards the movement.
+const velocityXMinForRotation : float = 0.3
+
+# Above this horizontal velocity, the bubble will not rotate more to point to the direction of movement.
+const velocityXMaxForRotation : float = 1.0
+
+# Maximal rotation angle by which the sprite will be tilted due to toration
+const maxAngleDueToRotation = deg_to_rad(45)
+
 var collidedWithFloorLastPass : bool = false
 
 const jumpRequestTimeoutMs = 300
@@ -83,8 +99,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	trail_effect()
-	
-		
 		
 	# BUG: multiple collisions can be with the other player. Need to use move_and_collide.
 	for i in get_slide_collision_count():
@@ -122,7 +136,17 @@ func _physics_process(delta: float) -> void:
 
 	collidedWithFloorLastPass = collidedWithFloorThisPass
 	
-	print(velocity.length())
+	# Rotate bubble direction according to velocity
+	
+	var rot = sign(velocity.x) * remap(
+		clamp(abs(velocity.x) * pixelToMeter, velocityXMinForRotation, velocityXMaxForRotation),
+		velocityXMinForRotation, 
+		velocityXMaxForRotation,
+		0.0,
+		maxAngleDueToRotation
+	)
+	image1.rotation = rot
+	image2.rotation = rot
 
 func apply_forces(input_axis, delta):
 	var velocityMeters = velocity * pixelToMeter
@@ -146,7 +170,6 @@ func apply_forces(input_axis, delta):
 	var totalAcceleration = totalForce / massKG
 	
 	velocity += totalAcceleration * delta * meterToPixel
-	#print(velocity, totalAcceleration)
 	
 func jump():
 	if is_on_floor():
