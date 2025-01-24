@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=8 format=3 uid="uid://bj8hyjkfe2ix2"]
+
+[ext_resource type="AudioStream" uid="uid://b0d3j11e3xirg" path="res://Assets/sound/sfx/crowd/GoalGeneral.wav" id="1_iobeb"]
+[ext_resource type="AudioStream" uid="uid://gc61a7tbm112" path="res://Assets/sound/sfx/crowd/GoalFans1.wav" id="2_ebnua"]
+[ext_resource type="AudioStream" uid="uid://bi2g2hd7ydal8" path="res://Assets/sound/sfx/crowd/GoalFans2.wav" id="3_o82i3"]
+[ext_resource type="AudioStream" uid="uid://doq1xge6afi6n" path="res://Assets/sound/sfx/crowd/GoalFans3.wav" id="4_a6iek"]
+[ext_resource type="AudioStream" uid="uid://cngg3d23b55rl" path="res://Assets/sound/sfx/crowd/GoalFans4.wav" id="5_6tk1p"]
+[ext_resource type="AudioStream" uid="uid://c01frpyisi8vv" path="res://Assets/sound/sfx/crowd/GoalFans5.wav" id="6_d7twh"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nsplt"]
+streams_count = 5
+stream_0/stream = ExtResource("2_ebnua")
+stream_1/stream = ExtResource("3_o82i3")
+stream_2/stream = ExtResource("4_a6iek")
+stream_3/stream = ExtResource("5_6tk1p")
+stream_4/stream = ExtResource("6_d7twh")
+
+[resource]
+stream_count = 2
+stream_0/stream = ExtResource("1_iobeb")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamRandomizer_nsplt")
+stream_1/volume = 0.0
