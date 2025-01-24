@@ -41,6 +41,7 @@ func summon_audience(amount: int, player_num: int):
 
 			if not seats[player_num - 1][audience_node.seat]:
 				seats[player_num - 1][audience_node.seat] = true
+				audience_count[player_num - 1] += 1
 				break
 
 		audience_node.change_player(player_num)
