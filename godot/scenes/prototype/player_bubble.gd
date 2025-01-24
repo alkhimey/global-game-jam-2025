@@ -205,17 +205,25 @@ func _process(delta):
 
 func trail_effect():
 	var particles = get_node("GPUParticles2D") 
+	var particles_textures = [
+		preload("res://Assets/ggj-bubble-blue-64.png"),
+		preload("res://Assets/ggj-bubble-red-64.png")
+		]
 	var _material = particles.process_material 
-	var _scale_factor = 1 + velocity.length() / 60000  
-	_material.scale = Vector2(_scale_factor ,_scale_factor)  # Make the particles smaller
-	var trail = get_node("GPUParticles2D")# Directly access the node
+	if playerId == 1:
+		particles.texture =  particles_textures[0]
+	else:
+		particles.texture =  particles_textures[1]
+	var _scale_factor = 1 + velocity.length() / 60000	  # Make the particles smaller
+	_material.scale = Vector2(_scale_factor ,_scale_factor)
 	
-	if velocity.length() > 700:  # Activate trail when moving
+
+	var trail = get_node("GPUParticles2D")# Directly access the node
+	if velocity.length() > 400:  # Activate trail when moving
 		trail.emitting = true
-		scale = Vector2(_scale_factor,_scale_factor)
 	else:
 		trail.emitting = false
-		scale = Vector2(1,1)
+	
 		
 		
 		
