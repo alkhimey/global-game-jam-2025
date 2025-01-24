@@ -14,6 +14,8 @@ extends CharacterBody2D
 # Starting position on reset
 @export var initial_position: Vector2 = Vector2(0,0)
 
+#speed of typing animation
+@export var write_speed := 8
 
 @export var speed : float = 250
 @export var acceleration : float = 800
@@ -24,7 +26,7 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	GameplayGlobal.goal_reset.connect(on_goal_reset)
-	
+	GameplayGlobal.goal.connect(display_text)
 	# display_text()
 
 func _physics_process(delta: float) -> void:
@@ -96,11 +98,15 @@ func jump():
 				
 
 
-func display_text():
+func display_text(_playerid: int):
+	if _playerid == playerId:
+		return
+		
+		
 	chat_bubble.show()
 	chat_bubble.text = curse()
 	
-	var write_speed := 3
+	
 	var tween := create_tween()
 	var duration := chat_bubble.text.length() / write_speed
 
@@ -118,5 +124,6 @@ func curse() -> String:
 
 func on_goal_reset():
 	position = initial_position
+	chat_bubble.hide()
 	
 	
