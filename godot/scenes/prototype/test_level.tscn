@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=8 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
+[ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
 [ext_resource type="PackedScene" uid="uid://dak20sxfrsnsk" path="res://ui/overlays/gameplay_overlay.tscn" id="2_0w7mu"]
 [ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
+[ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_ejleg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -10,6 +12,7 @@
 normal = Vector2(0, 1)
 
 [node name="TestLevel" type="Node2D"]
+script = ExtResource("1_sti86")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 400)
@@ -39,10 +42,16 @@ up_input_name = "player2_up"
 [node name="GameplayOverlay" parent="CanvasLayer" instance=ExtResource("2_0w7mu")]
 mouse_filter = 2
 
+[node name="PauseOverlay" parent="CanvasLayer" instance=ExtResource("3_ejleg")]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
 [node name="Goal" parent="." instance=ExtResource("3_25nnm")]
-position = Vector2(47, 355)
+position = Vector2(48, 355)
 playerId = 1
 
 [node name="Goal2" parent="." instance=ExtResource("3_25nnm")]
-position = Vector2(823, 364)
+position = Vector2(806, 364)
+scale = Vector2(-1, 1)
 playerId = 2
