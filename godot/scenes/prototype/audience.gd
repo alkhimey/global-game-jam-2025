@@ -2,18 +2,19 @@ extends Node2D
 
 @export var audience_scene: PackedScene
 @export var inbetween_seconds: float = 0.1
-@export var max_audience: int = 10
+@export var max_audience: int = 7
 
 var audience_count = [0, 0]
 
-var seats = [[false, false, false, false, false, false, false, false, false, false], 
-			[false, false, false, false, false, false, false, false, false, false]]
+var seats = [[true, true, true, true, true, true, true], 
+			[true, true, true, true, true, true, true]]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameplayGlobal.player_win.connect(on_win)
 	GameplayGlobal.goal.connect(on_goal)
-
+	
+	# Test for summoning audience
 	# summon_audience(4, 1)
 	# summon_audience(4, 2)
 
@@ -37,10 +38,10 @@ func summon_audience(amount: int, player_num: int):
 		add_child(audience_node)
 
 		while 1 == 1:
-			audience_node.seat = randi_range(0, seats[player_num - 1].size() - 1)
+			audience_node.seat = randi_range(0, max_audience - 1)
 
-			if not seats[player_num - 1][audience_node.seat]:
-				seats[player_num - 1][audience_node.seat] = true
+			if seats[player_num - 1][audience_node.seat] == true:
+				seats[player_num - 1][audience_node.seat] = false
 				audience_count[player_num - 1] += 1
 				break
 

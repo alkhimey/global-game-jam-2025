@@ -1,53 +1,117 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2u15aabd5xsw"]
+[gd_scene load_steps=16 format=3 uid="uid://3j4dnutfuks4"]
 
 [ext_resource type="Script" path="res://scenes/prototype/goal.gd" id="1_ylmaa"]
-[ext_resource type="Texture2D" uid="uid://cppm1dowdimm5" path="res://Assets/1223553210972-removebg-preview.png" id="2_38p8w"]
+[ext_resource type="Texture2D" uid="uid://dr0l2ejualy8w" path="res://Assets/particles/2.png" id="2_204i2"]
+[ext_resource type="PackedScene" uid="uid://7xrepgvl1f58" path="res://scenes/bird.tscn" id="2_oi512"]
+[ext_resource type="PackedScene" path="res://scenes/basket_back.tscn" id="3_53x68"]
+[ext_resource type="PackedScene" path="res://scenes/basket_front.tscn" id="4_gqlth"]
+[ext_resource type="Shader" path="res://scenes/prototype/arrowRainbow.gdshader" id="6_lhnmg"]
+[ext_resource type="Texture2D" uid="uid://3led6eknjaj0" path="res://Assets/Arrow.png" id="7_lv3im"]
+
+[sub_resource type="Curve" id="Curve_16mtm"]
+_data = [Vector2(0, 1), 0.0, -0.737421, 0, 0, Vector2(0.993333, 0), -1.27747, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_tepkj"]
+curve = SubResource("Curve_16mtm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5f3mr"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 107.8
+angle_min = -31.0
+angle_max = 38.7
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_tepkj")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_k0o8v"]
-a = Vector2(-31, 2)
-b = Vector2(28, 0)
+a = Vector2(-144.167, 8.33333)
+b = Vector2(8.33333, 8.33333)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1iytq"]
-a = Vector2(-31, 2)
-b = Vector2(28, 0)
+a = Vector2(-102.5, 16.6667)
+b = Vector2(90, 15.8334)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k0a8k"]
-radius = 4.5
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rln6m"]
+radius = 7.50001
+height = 35.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_77eea"]
-radius = 4.5
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayk4s"]
+radius = 9.16663
+height = 39.9999
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iimpy"]
+shader = ExtResource("6_lhnmg")
+shader_parameter/strength = 0.7
+shader_parameter/speed = 1.0
+shader_parameter/angle = 90.0
 
 [node name="Goal" type="Node2D"]
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_ylmaa")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-2.5, -15.8333)
+scale = Vector2(1, 0.266667)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_5f3mr")
+texture = ExtResource("2_204i2")
+lifetime = 2.0
+speed_scale = 1.2
+explosiveness = 0.2
+randomness = 0.4
+
+[node name="BirdLeft" parent="." instance=ExtResource("2_oi512")]
+position = Vector2(-240.833, -104.167)
+scale = Vector2(-0.8, 0.8)
+
+[node name="BirdRight" parent="." instance=ExtResource("2_oi512")]
+position = Vector2(189.167, -118.333)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_38p8w")
+
+[node name="BasketBack" parent="." instance=ExtResource("3_53x68")]
+position = Vector2(-0.833333, -31.6667)
+
+[node name="BasketFront" parent="." instance=ExtResource("4_gqlth")]
+z_index = 10
+position = Vector2(-0.833333, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-1, -97)
+position = Vector2(-0.833333, -6.66667)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(68.3333, -0.833334)
 shape = SubResource("SegmentShape2D_k0o8v")
 
 [node name="Blocker" type="StaticBody2D" parent="."]
-position = Vector2(-2, -85)
+position = Vector2(-1.66667, 35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker"]
+position = Vector2(0, 1.58946e-06)
 scale = Vector2(-1, -1)
 shape = SubResource("SegmentShape2D_1iytq")
 one_way_collision = true
 
 [node name="LeftBlocker" type="StaticBody2D" parent="."]
-position = Vector2(-33, -97)
+position = Vector2(-87.5, -15.8333)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBlocker"]
-shape = SubResource("CircleShape2D_k0a8k")
+position = Vector2(-2.49999, -3.33786e-05)
+shape = SubResource("CapsuleShape2D_rln6m")
 
 [node name="RightBlocker" type="StaticBody2D" parent="."]
-position = Vector2(28, -98)
+position = Vector2(81.6667, -19.1667)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBlocker"]
-shape = SubResource("CircleShape2D_77eea")
+position = Vector2(4.99996, 14.1667)
+shape = SubResource("CapsuleShape2D_ayk4s")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+z_index = 9
+material = SubResource("ShaderMaterial_iimpy")
+position = Vector2(-5, -21.6667)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_lv3im")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

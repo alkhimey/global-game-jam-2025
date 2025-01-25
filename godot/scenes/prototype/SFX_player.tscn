@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://g7tiurii878c"]
+
+[ext_resource type="Script" path="res://scenes/prototype/sfx_player.gd" id="1_s1qxj"]
+[ext_resource type="AudioStream" uid="uid://bj8hyjkfe2ix2" path="res://Assets/sound/sfx/crowd/goal.tres" id="3_r3y0a"]
+[ext_resource type="AudioStream" uid="uid://v7tposbibeam" path="res://Assets/sound/sfx/StartMatch.wav" id="5_t8r6w"]
+
+[node name="SfxPlayer" type="AudioStreamPlayer"]
+bus = &"Sound"
+script = ExtResource("1_s1qxj")
+goal_stream = ExtResource("3_r3y0a")
+start_stream = ExtResource("5_t8r6w")

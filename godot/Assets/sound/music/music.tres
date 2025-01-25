@@ -11,4 +11,5 @@ clip_0/auto_advance = 1
 clip_0/next_clip = 1
 clip_1/name = &"Drums"
 clip_1/stream = ExtResource("2_xirtt")
-clip_1/auto_advance = 0
+clip_1/auto_advance = 1
+clip_1/next_clip = 1

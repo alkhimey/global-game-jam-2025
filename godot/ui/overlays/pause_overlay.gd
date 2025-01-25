@@ -8,6 +8,7 @@ signal game_exited
 @onready var settings_container := %SettingsContainer
 @onready var menu_container := %MenuContainer
 @onready var back_button := %BackButton
+@onready var sfx_player := %SFX
 
 func _ready() -> void:
 	resume_button.pressed.connect(_resume)
@@ -17,6 +18,7 @@ func _ready() -> void:
 	
 func grab_button_focus() -> void:
 	resume_button.grab_focus()
+	sfx_player.play_pause()
 	
 func _resume() -> void:
 	get_tree().paused = false

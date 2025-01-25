@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm5hhaj1s5oq0"]
+
+[ext_resource type="Texture2D" uid="uid://bip12h27milr3" path="res://Assets/BasketBack.png" id="1_32du0"]
+
+[node name="BasketBack" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_32du0")

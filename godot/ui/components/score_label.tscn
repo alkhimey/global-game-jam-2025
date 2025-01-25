@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn500v2d7cuu5"]
+[gd_scene load_steps=5 format=3 uid="uid://dn500v2d7cuu5"]
 
 [ext_resource type="Script" path="res://ui/components/score_label.gd" id="1_0dcyl"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="1_xl1ow"]
@@ -7,17 +7,15 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37bk6"]
 bg_color = Color(0, 0, 0, 0.313726)
 
-[sub_resource type="LabelSettings" id="LabelSettings_i6oa6"]
-font = ExtResource("2_mlay2")
-font_size = 32
-
-[node name="ScoreLabel" type="Label"]
+[node name="ScoreLabel" type="RichTextLabel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_xl1ow")
+theme_override_fonts/normal_font = ExtResource("2_mlay2")
+theme_override_font_sizes/normal_font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_37bk6")
-label_settings = SubResource("LabelSettings_i6oa6")
+bbcode_enabled = true
 script = ExtResource("1_0dcyl")
