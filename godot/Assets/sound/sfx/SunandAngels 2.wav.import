@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://waln3cql0udh"
+path="res://.godot/imported/SunandAngels 2.wav-f3699d4f87aa2f74e6c26bc72a2a695b.sample"
+
+[deps]
+
+source_file="res://Assets/sound/sfx/SunandAngels 2.wav"
+dest_files=["res://.godot/imported/SunandAngels 2.wav-f3699d4f87aa2f74e6c26bc72a2a695b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
