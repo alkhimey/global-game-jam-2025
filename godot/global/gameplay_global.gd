@@ -36,6 +36,7 @@ signal player_win(playerId:int)
 signal timer_end()
 signal end_countdown()
 signal game_reset()
+signal scence_reset()
 signal key_pressed()
 
 
@@ -118,6 +119,7 @@ func _on_player_win(playerId: int):
 	await key_pressed
 
 	game_reset.emit()
+	scence_reset.emit()
 
 
 func on_game_reset():

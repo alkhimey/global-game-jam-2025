@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/overlays/gameplay_overlay.gd" id="1_ksrd8"]
 [ext_resource type="PackedScene" uid="uid://dn500v2d7cuu5" path="res://ui/components/score_label.tscn" id="1_xuvx6"]
-[ext_resource type="Theme" path="res://ui/overlays/gameplay_overlay.tres" id="2_bksk7"]
+[ext_resource type="Theme" uid="uid://ck8hby85lnafy" path="res://ui/overlays/gameplay_overlay.tres" id="2_bksk7"]
 [ext_resource type="PackedScene" uid="uid://b0wpn1xbj610y" path="res://ui/components/Timer.tscn" id="2_prh4y"]
 [ext_resource type="FontFile" uid="uid://bwmlj1qoe2xk3" path="res://fonts/ARCADECLASSIC.TTF" id="5_2q71j"]
 

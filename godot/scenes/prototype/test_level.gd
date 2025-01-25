@@ -13,7 +13,7 @@ var nextGoalPositionWhenTimeLeft: Array
 
 func _ready():
 	GameplayGlobal.player_win.connect(on_game_over)
-
+	GameplayGlobal.scence_reset.connect(_on_scence_restart)
 	GameplayGlobal.game_reset.emit()
 
 	levelTimer = $CanvasLayer/GameplayOverlay/LevelTimer
@@ -51,3 +51,10 @@ func _input(event: InputEvent) -> void:
 		get_tree().paused = true
 		pause_overlay.grab_button_focus()
 		pause_overlay.visible = true
+		
+func _on_scence_restart():
+	print("Game resetting...")  # Debugging
+	if get_tree():
+		get_tree().reload_current_scene()
+	else:
+		print("Error: get_tree() is null")
