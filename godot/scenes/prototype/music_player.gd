@@ -3,7 +3,7 @@ extends AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	finished.connect(on_music_finished)
+	GameplayGlobal.game_reset.connect(on_new_game)
 
-func on_music_finished():
-	stream_paused = false
+func on_new_game():
+	seek(0)
