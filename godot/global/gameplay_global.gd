@@ -106,7 +106,6 @@ func on_game_end():
 func _on_player_win(playerId: int):
 	if playerId == 0:
 		print("Game over: tie")
-		return
 		
 	print("Game over: P" + str(playerId) +" won")
 
