@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="5_x6g50"]
 [ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
 [ext_resource type="PackedScene" path="res://scenes/cloud3.tscn" id="6_vx1kp"]
-[ext_resource type="PackedScene" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
+[ext_resource type="PackedScene" uid="uid://dh4yh3ql8rtl1" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
 [ext_resource type="PackedScene" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
@@ -89,7 +89,8 @@ shape = SubResource("WorldBoundaryShape2D_bhtvs")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_right = 854.0
+offset_left = 19.0
+offset_right = 833.0
 offset_bottom = 20.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 0.156863)
@@ -106,7 +107,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_right = 854.0
+offset_left = 20.0
+offset_right = 834.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
