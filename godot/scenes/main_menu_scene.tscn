@@ -1,16 +1,17 @@
-[gd_scene load_steps=30 format=3 uid="uid://dv2y18ye8j7o0"]
+[gd_scene load_steps=31 format=3 uid="uid://dv2y18ye8j7o0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu_scene.gd" id="1_1foie"]
 [ext_resource type="PackedScene" uid="uid://rxarikcb81yp" path="res://scenes/prototype/test_level.tscn" id="2_yvyk1"]
 [ext_resource type="PackedScene" uid="uid://g4qhvbvdm62w" path="res://scenes/game_settings_scene.tscn" id="3_dgs4d"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="3_kf1us"]
-[ext_resource type="PackedScene" uid="uid://cmfbdr2uho0ey" path="res://scenes/angel_1.tscn" id="4_2dli4"]
-[ext_resource type="PackedScene" uid="uid://fx43jxejnrty" path="res://scenes/angel_2.tscn" id="5_6c5w5"]
+[ext_resource type="PackedScene" path="res://scenes/angel_1.tscn" id="4_2dli4"]
+[ext_resource type="AudioStream" uid="uid://waln3cql0udh" path="res://Assets/sound/sfx/SunandAngels 2.wav" id="4_b61h4"]
+[ext_resource type="PackedScene" path="res://scenes/angel_2.tscn" id="5_6c5w5"]
 [ext_resource type="Script" path="res://ui/components/button_sfx.gd" id="5_aejgw"]
-[ext_resource type="PackedScene" uid="uid://x62o8kjuofwy" path="res://scenes/angel_3.tscn" id="6_ssv4w"]
+[ext_resource type="PackedScene" path="res://scenes/angel_3.tscn" id="6_ssv4w"]
 [ext_resource type="Script" path="res://ui/components/sfx_player.gd" id="7_pgd0i"]
 [ext_resource type="AudioStream" uid="uid://dkdf2u1ak5gik" path="res://Assets/sound/sfx/menu/MenuHover.wav" id="8_jpy55"]
-[ext_resource type="PackedScene" uid="uid://dfs2qwsf0kuix" path="res://scenes/sun.tscn" id="9_82qti"]
+[ext_resource type="PackedScene" uid="uid://dljjgbb38olsj" path="res://scenes/sun.tscn" id="9_82qti"]
 [ext_resource type="AudioStream" uid="uid://dhf37sf4r87ro" path="res://Assets/sound/sfx/menu/MenuSelect.wav" id="9_jxcgy"]
 [ext_resource type="PackedScene" uid="uid://dr2x7gjxgqrfk" path="res://scenes/twins.tscn" id="10_6g3dc"]
 [ext_resource type="Texture2D" uid="uid://cx13pwgrm4b8l" path="res://Assets/Names1.png" id="11_0xsp2"]
@@ -310,6 +311,21 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector2(1027, -148), Vector2(782, 25)]
 }
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../IntroSFX")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_b61h4")
+}],
+"times": PackedFloat32Array(8.2)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3oxd"]
 _data = {
@@ -457,3 +473,7 @@ hover_sound = ExtResource("8_jpy55")
 new_hover_sound = ExtResource("15_8ygmo")
 click_sound = ExtResource("9_jxcgy")
 pause_sound = ExtResource("17_xrjb5")
+
+[node name="IntroSFX" type="AudioStreamPlayer" parent="."]
+volume_db = 10.0
+bus = &"Sound"
