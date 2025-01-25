@@ -154,7 +154,7 @@ func on_goal(_playerId: int):
 		# change_speed(3)
 		# start_tween()
 	else:
-		await get_tree().create_timer(randf_range(curse_offset_range[0], curse_offset_range[1])).timeout
+		await get_tree().create_timer(randf_range(curse_offset_range[1], curse_offset_range[1.8])).timeout
 
 		chat_bubble.show()
 		chat_bubble.text = curse()
