@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://3j4dnutfuks4"]
+[gd_scene load_steps=10 format=3 uid="uid://3j4dnutfuks4"]
 
 [ext_resource type="Script" path="res://scenes/prototype/goal.gd" id="1_ylmaa"]
-[ext_resource type="PackedScene" uid="uid://7xrepgvl1f58" path="res://scenes/bird.tscn" id="2_oi512"]
-[ext_resource type="PackedScene" uid="uid://dm5hhaj1s5oq0" path="res://scenes/basket_back.tscn" id="3_53x68"]
-[ext_resource type="PackedScene" uid="uid://dgvceeydnqcat" path="res://scenes/basket_front.tscn" id="4_gqlth"]
+[ext_resource type="PackedScene" path="res://scenes/bird.tscn" id="2_oi512"]
+[ext_resource type="PackedScene" path="res://scenes/basket_back.tscn" id="3_53x68"]
+[ext_resource type="PackedScene" path="res://scenes/basket_front.tscn" id="4_gqlth"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5f3mr"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 107.8
+gravity = Vector3(0, 98, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_k0o8v"]
 a = Vector2(-144.167, 8.33333)
@@ -14,15 +20,25 @@ a = Vector2(-102.5, 16.6667)
 b = Vector2(90, 15.8334)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rln6m"]
+radius = 7.50001
 height = 35.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayk4s"]
-radius = 12.5
+radius = 9.16663
 height = 39.9999
 
 [node name="Goal" type="Node2D"]
 scale = Vector2(1.2, 1.2)
 script = ExtResource("1_ylmaa")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-2.5, -15.8333)
+scale = Vector2(1, 0.266667)
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_5f3mr")
+lifetime = 3.0
+explosiveness = 0.2
+randomness = 0.4
 
 [node name="BirdLeft" parent="." instance=ExtResource("2_oi512")]
 position = Vector2(-240.833, -104.167)
@@ -59,13 +75,14 @@ one_way_collision = true
 position = Vector2(-87.5, -15.8333)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBlocker"]
+position = Vector2(-2.49999, -3.33786e-05)
 shape = SubResource("CapsuleShape2D_rln6m")
 
 [node name="RightBlocker" type="StaticBody2D" parent="."]
 position = Vector2(81.6667, -19.1667)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBlocker"]
-position = Vector2(0, 14.1667)
+position = Vector2(4.99996, 14.1667)
 shape = SubResource("CapsuleShape2D_ayk4s")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
