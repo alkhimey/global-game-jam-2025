@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b37hirgcr57sc"]
+[gd_scene load_steps=36 format=3 uid="uid://b37hirgcr57sc"]
 
 [ext_resource type="Script" path="res://scenes/prototype/audience_human.gd" id="1_dhd2a"]
 [ext_resource type="Texture2D" uid="uid://bhq02d36be3xe" path="res://Assets/audience/audience_head1.png" id="2_vl0wv"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://db1t3c5405vxs" path="res://Assets/audience/audience_halo1.png" id="15_hlxhb"]
 [ext_resource type="Texture2D" uid="uid://dya2ptn1u3hps" path="res://Assets/audience/audience_halo2.png" id="16_nwe7s"]
 [ext_resource type="Texture2D" uid="uid://2qrmuvanfxf7" path="res://Assets/audience/audience_halo3.png" id="17_rnw15"]
+[ext_resource type="PackedScene" uid="uid://bwmepubyekgek" path="res://scenes/prototype/chat_bubble_label.tscn" id="21_l01cp"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ggvyt"]
 
@@ -213,17 +214,13 @@ _data = {
 }
 
 [node name="AudienceHuman" type="Node2D"]
-scale = Vector2(30, 30)
+scale = Vector2(60, 60)
 script = ExtResource("1_dhd2a")
 body_sprites = [ExtResource("3_mkk7n"), ExtResource("3_r5dw1")]
 eyes_sprites = [ExtResource("4_7aosx"), ExtResource("3_cqrw3"), ExtResource("4_3whhj"), ExtResource("5_tevgj"), ExtResource("6_mytpn")]
 head_sprites = [ExtResource("2_vl0wv"), ExtResource("10_n37pk")]
 wing_sprites = [ExtResource("11_76osv"), ExtResource("12_a61ty"), ExtResource("13_ngtke"), ExtResource("14_04wna")]
 halo_sprites = [ExtResource("15_hlxhb"), ExtResource("16_nwe7s"), ExtResource("17_rnw15")]
-jump_offset = Vector2(0, 10)
-normal_speed = 0.4
-excite_speed = 0.2
-goal_speed = 0.1
 
 [node name="Head" type="MeshInstance2D" parent="."]
 position = Vector2(0.06, -0.5)
@@ -286,3 +283,13 @@ texture = ExtResource("11_wiief")
 libraries = {
 "": SubResource("AnimationLibrary_lbxi5")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChatBubbleLabel" parent="CanvasLayer" instance=ExtResource("21_l01cp")]
+visible = true
+offset_left = -25.0
+offset_top = -96.0
+offset_right = 84.0
+offset_bottom = -71.0
+scale = Vector2(0.5, 0.5)

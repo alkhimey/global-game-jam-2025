@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=23 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
@@ -11,9 +11,10 @@
 [ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="5_x6g50"]
 [ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
 [ext_resource type="PackedScene" path="res://scenes/cloud3.tscn" id="6_vx1kp"]
-[ext_resource type="PackedScene" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
+[ext_resource type="PackedScene" uid="uid://dh4yh3ql8rtl1" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
+[ext_resource type="PackedScene" uid="uid://bs24g6fax1ua2" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
 [ext_resource type="Texture2D" uid="uid://3led6eknjaj0" path="res://Assets/Arrow.png" id="10_3l0qp"]
 [ext_resource type="Shader" path="res://scenes/prototype/arrowRainbow.gdshader" id="10_y7h0s"]
 
@@ -38,6 +39,7 @@ script = ExtResource("1_sti86")
 [node name="BGContainer" type="Node2D" parent="."]
 
 [node name="BG" type="ColorRect" parent="BGContainer"]
+visible = false
 offset_right = 854.0
 offset_bottom = 480.0
 color = Color(0.835294, 0.968627, 1, 1)
@@ -51,24 +53,31 @@ position = Vector2(117, 130)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud1" parent="BGContainer" instance=ExtResource("4_r2a02")]
+z_index = -1
 position = Vector2(102, 333)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud2" parent="BGContainer" instance=ExtResource("5_x6g50")]
+z_index = -1
 position = Vector2(565, 289)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud3" parent="BGContainer" instance=ExtResource("6_vx1kp")]
-position = Vector2(715, 147)
+z_index = -1
+position = Vector2(770, 147)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud4" parent="BGContainer" instance=ExtResource("7_smwqh")]
+z_index = -1
 position = Vector2(766, 342)
 scale = Vector2(0.35, 0.35)
 
 [node name="BigCloud" parent="BGContainer" instance=ExtResource("8_rkbee")]
+z_index = -1
 position = Vector2(428, 441)
 scale = Vector2(0.35, 0.35)
+
+[node name="Audience" parent="BGContainer" instance=ExtResource("9_1uvb7")]
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 460)
@@ -170,13 +179,6 @@ visible = false
 
 [node name="GameoverOverlay" parent="CanvasLayer" instance=ExtResource("5_ykg2k")]
 visible = false
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Goal!" type="RichTextLabel" parent="CanvasLayer"]
 visible = false
