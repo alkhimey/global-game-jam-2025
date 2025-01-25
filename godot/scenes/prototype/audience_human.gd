@@ -16,7 +16,7 @@ var seat: int
 # @export var starting_height: Array = [105, 186, 272, 366, 456]
 @export var seats: Array = [Vector2(50, 152), Vector2(167, 152), Vector2(64, 318), Vector2(129, 317), #Left side
  							Vector2(239, 455), Vector2(311, 443), Vector2(377, 440), Vector2(456, 437), Vector2(523, 444), Vector2(592, 455), #Middle
-							Vector2(710, 368), Vector2(772, 368), Vector2(774, 272), Vector2(774, 193),] #Right side
+							Vector2(710, 368), Vector2(772, 368), Vector2(774, 272), Vector2(774, 193)] #Right side
 
 # @export var player2_seats: Array = [770, 827]
 @export var body_sprites: Array = []
@@ -67,9 +67,9 @@ func start_tween():
 
 	match seat:
 		4, 5, 6, 7, 8, 9:
-			tween.tween_property(self, "position:x", seat_target, walk_speed).set_trans(Tween.TRANS_QUART)
-		_:
 			tween.tween_property(self, "position:y", seat_target, walk_speed).set_trans(Tween.TRANS_QUART)
+		_:
+			tween.tween_property(self, "position:x", seat_target, walk_speed).set_trans(Tween.TRANS_QUART)
 
 	# await tween.finished
 
@@ -131,14 +131,17 @@ func change_player(_playerId: int):
 
 	match seat:
 		4, 5, 6, 7, 8, 9:
-			position.y = seats[seat].y
-			@warning_ignore("integer_division")
-			position.x = starting_side[(seat / 7) - 1]
-			seat_target = seats[seat].x + randf_range(-x_offset, x_offset)
-		_:
 			position.x = seats[seat].x + randf_range(-x_offset, x_offset)
 			position.y = starting_side[2]
 			seat_target = seats[seat].y
+		_:
+			position.y = seats[seat].y
+			if seat <= 3:
+				position.x = starting_side[0]
+			else:
+				position.x = starting_side[1]
+			seat_target = seats[seat].x + randf_range(-x_offset, x_offset)
+
 
 	start_tween()
 
