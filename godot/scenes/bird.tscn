@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7xrepgvl1f58"]
+[gd_scene load_steps=9 format=3 uid="uid://7xrepgvl1f58"]
 
 [ext_resource type="Texture2D" uid="uid://bq5vjvnseokv0" path="res://Assets/BirdWing2.png" id="1_jnc8h"]
 [ext_resource type="Texture2D" uid="uid://bv2tvscgnjwtq" path="res://Assets/BirdWing1.png" id="2_w1qd8"]
@@ -6,18 +6,55 @@
 [ext_resource type="Texture2D" uid="uid://bschl4ruon8si" path="res://Assets/BirdString.png" id="4_odthy"]
 
 [sub_resource type="Animation" id="Animation_2wce6"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Wing2:offset")
+tracks/0/path = NodePath("WingLeft:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(40, -40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WingLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WingRight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-78, -32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WingRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_vrwjy"]
@@ -26,7 +63,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Wing2:offset")
+tracks/0/path = NodePath("WingLeft:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,26 +73,78 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_cml0h"]
+resource_name = "wings_flap"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WingLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(40, -40), Vector2(41, -31)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WingLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.232129]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WingRight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-78, -32), Vector2(-66, -13)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WingRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.279253]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3j1yi"]
 _data = {
 "RESET": SubResource("Animation_2wce6"),
-"default": SubResource("Animation_vrwjy")
+"default": SubResource("Animation_vrwjy"),
+"wings_flap": SubResource("Animation_cml0h")
 }
 
 [node name="Bird" type="Node2D"]
 
-[node name="Wing2" type="Sprite2D" parent="."]
+[node name="WingLeft" type="Sprite2D" parent="."]
 position = Vector2(40, -40)
 texture = ExtResource("1_jnc8h")
 
-[node name="Wing1" type="Sprite2D" parent="."]
+[node name="WingRight" type="Sprite2D" parent="."]
 position = Vector2(-78, -32)
 texture = ExtResource("2_w1qd8")
 
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("3_b0snr")
-
-[node name="String" type="Sprite2D" parent="."]
 
 [node name="BirdString" type="Sprite2D" parent="."]
 position = Vector2(-113, 41)
@@ -65,4 +154,4 @@ texture = ExtResource("4_odthy")
 libraries = {
 "": SubResource("AnimationLibrary_3j1yi")
 }
-autoplay = "default"
+autoplay = "wings_flap"
