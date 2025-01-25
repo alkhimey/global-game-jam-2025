@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b37hirgcr57sc"]
+[gd_scene load_steps=40 format=3 uid="uid://q6oipm1jvq0e"]
 
 [ext_resource type="Script" path="res://scenes/prototype/audience_human.gd" id="1_dhd2a"]
 [ext_resource type="AudioStream" uid="uid://clucflhh2m6jj" path="res://Assets/sound/curses/L/CursesL.tres" id="2_u2m12"]
@@ -29,6 +29,12 @@
 [sub_resource type="QuadMesh" id="QuadMesh_tud78"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_cmxc4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_06177"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vbeti"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_1wp1p"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_oehk7"]
 
@@ -296,12 +302,6 @@ _data = {
 "walk_headsign": SubResource("Animation_nt1la")
 }
 
-[sub_resource type="QuadMesh" id="QuadMesh_06177"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_vbeti"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_1wp1p"]
-
 [node name="AudienceHuman" type="Node2D" node_paths=PackedStringArray("chat_bubble")]
 scale = Vector2(50, 50)
 script = ExtResource("1_dhd2a")
@@ -330,6 +330,25 @@ texture = ExtResource("4_7aosx")
 position = Vector2(0.05, 0.55)
 mesh = SubResource("QuadMesh_cmxc4")
 texture = ExtResource("17_rnw15")
+
+[node name="Body" type="MeshInstance2D" parent="."]
+position = Vector2(0.08, -0.5)
+rotation = 3.14159
+mesh = SubResource("QuadMesh_06177")
+texture = ExtResource("3_mkk7n")
+
+[node name="Wings" type="Node2D" parent="Body"]
+z_index = -1
+
+[node name="WingL" type="MeshInstance2D" parent="Body/Wings"]
+position = Vector2(0.15, 0)
+mesh = SubResource("QuadMesh_vbeti")
+texture = ExtResource("11_76osv")
+
+[node name="WingR" type="MeshInstance2D" parent="Body/Wings"]
+scale = Vector2(-1, 1)
+mesh = SubResource("QuadMesh_1wp1p")
+texture = ExtResource("11_76osv")
 
 [node name="Hands" type="MeshInstance2D" parent="."]
 position = Vector2(0.0333333, -0.5)
@@ -365,25 +384,6 @@ offset_top = -96.0
 offset_right = 84.0
 offset_bottom = -71.0
 scale = Vector2(0.5, 0.5)
-
-[node name="Body" type="MeshInstance2D" parent="."]
-position = Vector2(0.08, -0.5)
-rotation = 3.14159
-mesh = SubResource("QuadMesh_06177")
-texture = ExtResource("3_mkk7n")
-
-[node name="Wings" type="Node2D" parent="Body"]
-z_index = -1
-
-[node name="WingL" type="MeshInstance2D" parent="Body/Wings"]
-position = Vector2(0.15, 0)
-mesh = SubResource("QuadMesh_vbeti")
-texture = ExtResource("11_76osv")
-
-[node name="WingR" type="MeshInstance2D" parent="Body/Wings"]
-scale = Vector2(-1, 1)
-mesh = SubResource("QuadMesh_1wp1p")
-texture = ExtResource("11_76osv")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = 7.0

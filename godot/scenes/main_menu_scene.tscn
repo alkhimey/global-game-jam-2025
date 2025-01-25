@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dv2y18ye8j7o0"]
+[gd_scene load_steps=38 format=3 uid="uid://dv2y18ye8j7o0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu_scene.gd" id="1_1foie"]
 [ext_resource type="PackedScene" uid="uid://rxarikcb81yp" path="res://scenes/prototype/test_level.tscn" id="2_yvyk1"]
@@ -27,6 +27,8 @@
 [ext_resource type="AudioStream" uid="uid://dc7ex0skdkjke" path="res://Assets/sound/sfx/menu/MenuHover-01.wav" id="15_8ygmo"]
 [ext_resource type="PackedScene" uid="uid://dvp33aubvn4l8" path="res://scenes/big_cloud.tscn" id="15_lnfqx"]
 [ext_resource type="AudioStream" uid="uid://cvfeygsyosnh3" path="res://Assets/sound/sfx/menu/Pause.wav" id="17_xrjb5"]
+[ext_resource type="Texture2D" uid="uid://b4myvhh3tfh4t" path="res://Assets/menu/logo.png" id="19_834d6"]
+[ext_resource type="Texture2D" uid="uid://cgi5hi6ud0okq" path="res://Assets/menu/cloud-play-background.png" id="19_ambjl"]
 
 [sub_resource type="Animation" id="Animation_h06ay"]
 length = 40.0
@@ -161,6 +163,18 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1027, -148)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Logo:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(427, -92)]
 }
 
 [sub_resource type="Animation" id="Animation_3r0ps"]
@@ -297,7 +311,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0, 12.8, 13.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -320), Vector2(0, -320), Vector2(0, -140)]
+"values": [Vector2(0, -320), Vector2(0, -320), Vector2(0, -100)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -326,12 +340,42 @@ tracks/12/keys = {
 "times": PackedFloat32Array(8.2)
 }
 tracks/12/use_blend = true
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Logo:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 12.8, 13.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(427, -92), Vector2(427, -92), Vector2(427, 50)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3oxd"]
 _data = {
 "RESET": SubResource("Animation_h06ay"),
 "bigCloudIntro": SubResource("Animation_3r0ps")
 }
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohc2u"]
+texture = ExtResource("19_ambjl")
+modulate_color = Color(0.881937, 0.881937, 0.881937, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7i1sw"]
+texture = ExtResource("19_ambjl")
+modulate_color = Color(0.473976, 0.473976, 0.473976, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bkomo"]
+texture = ExtResource("19_ambjl")
+modulate_color = Color(0.54099, 0.54099, 0.54099, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uleh3"]
+texture = ExtResource("19_ambjl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ruk1"]
+texture = ExtResource("19_ambjl")
 
 [node name="MainMenuScene" type="Node2D"]
 script = ExtResource("1_1foie")
@@ -424,6 +468,11 @@ position = Vector2(593, 354)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("14_rirv7")
 
+[node name="Logo" type="Sprite2D" parent="BGContainer"]
+position = Vector2(427, -92)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("19_834d6")
+
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
 
@@ -436,25 +485,55 @@ offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="NewGameButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "new_game"
-script = ExtResource("11_23asy")
-
 [node name="SettingsButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
+visible = false
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxTexture_ohc2u")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_uleh3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uleh3")
 text = "settings"
 script = ExtResource("5_aejgw")
+
+[node name="NewGameButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxTexture_ohc2u")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_2ruk1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2ruk1")
+text = "new_game"
+script = ExtResource("11_23asy")
 
 [node name="FadeOverlay" parent="UI" instance=ExtResource("3_kf1us")]
 unique_name_in_owner = true
