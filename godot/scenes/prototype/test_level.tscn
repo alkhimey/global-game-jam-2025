@@ -1,16 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=19 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
 [ext_resource type="PackedScene" uid="uid://dak20sxfrsnsk" path="res://ui/overlays/gameplay_overlay.tscn" id="2_0w7mu"]
-[ext_resource type="PackedScene" path="res://scenes/sun.tscn" id="2_2ff6t"]
+[ext_resource type="PackedScene" uid="uid://dljjgbb38olsj" path="res://scenes/sun.tscn" id="2_2ff6t"]
 [ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_ejleg"]
 [ext_resource type="PackedScene" path="res://scenes/twins.tscn" id="3_mfu3e"]
 [ext_resource type="PackedScene" path="res://scenes/cloud1.tscn" id="4_r2a02"]
 [ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="5_x6g50"]
 [ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
-[ext_resource type="PackedScene" path="res://scenes/cloud3.tscn" id="6_vx1kp"]
 [ext_resource type="PackedScene" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
@@ -37,7 +36,7 @@ offset_bottom = 480.0
 color = Color(0.835294, 0.968627, 1, 1)
 
 [node name="Sun" parent="BGContainer" instance=ExtResource("2_2ff6t")]
-position = Vector2(672, 106)
+position = Vector2(797, 80)
 scale = Vector2(0.35, 0.35)
 
 [node name="Twins" parent="BGContainer" instance=ExtResource("3_mfu3e")]
@@ -52,11 +51,6 @@ scale = Vector2(0.35, 0.35)
 [node name="Cloud2" parent="BGContainer" instance=ExtResource("5_x6g50")]
 z_index = -1
 position = Vector2(565, 289)
-scale = Vector2(0.35, 0.35)
-
-[node name="Cloud3" parent="BGContainer" instance=ExtResource("6_vx1kp")]
-z_index = -1
-position = Vector2(770, 147)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud4" parent="BGContainer" instance=ExtResource("7_smwqh")]
