@@ -6,22 +6,27 @@ const SETTINGS_FILE = "user://settings.cfg"
 const MASTERVOLUME_ENABLED = "mastervolume_enabled"
 const MUSICVOLUME_ENABLED = "musicvolume_enabled"
 const SOUNDVOLUME_ENABLED = "soundvolume_enabled"
+const CROWDVOLUME_ENABLED = "crowdvolume_enabled"
 const MASTERVOLUME = "mastervolume"
 const MUSICVOLUME = "musicvolume"
 const SOUNDVOLUME = "soundvolume"
+const CROWDVOLUME = "crowdvolume"
 const GAME_LANGUAGE = "game_locale"
 
 const AUDIO_BUS_MASTER = "Master"
 const AUDIO_BUS_SOUND = "Sound"
 const AUDIO_BUS_MUSIC = "Music"
+const AUDIO_BUS_CROWD = "Crowd"
 	
 var USER_SETTING_DEFAULTS = {
 	MASTERVOLUME_ENABLED:true,
 	MUSICVOLUME_ENABLED:true,
 	SOUNDVOLUME_ENABLED:true,
+	CROWDVOLUME_ENABLED:true,
 	MASTERVOLUME:100,
 	MUSICVOLUME:70,
 	SOUNDVOLUME:100,
+	CROWDVOLUME:70,
 	GAME_LANGUAGE:"en"
 }
 
@@ -42,12 +47,16 @@ func set_value(key, value):
 		_update_volume(SOUNDVOLUME, AUDIO_BUS_SOUND)
 	if key == MUSICVOLUME:
 		_update_volume(MUSICVOLUME, AUDIO_BUS_MUSIC)
+	if key == MUSICVOLUME:
+		_update_volume(CROWDVOLUME, AUDIO_BUS_CROWD)
 	if key == MASTERVOLUME_ENABLED:
 		_mute_bus(MASTERVOLUME_ENABLED, AUDIO_BUS_MASTER)
 	if key == MUSICVOLUME_ENABLED:
 		_mute_bus(MUSICVOLUME_ENABLED, AUDIO_BUS_MUSIC)
 	if key == SOUNDVOLUME_ENABLED:
 		_mute_bus(SOUNDVOLUME_ENABLED, AUDIO_BUS_SOUND)
+	if key == CROWDVOLUME_ENABLED:
+		_mute_bus(CROWDVOLUME_ENABLED, AUDIO_BUS_CROWD)
 	if key == GAME_LANGUAGE:
 		TranslationServer.set_locale(value)
 	emit_signal("on_value_change", key, value)
@@ -67,9 +76,11 @@ func _configure_audio():
 	_update_volume(MASTERVOLUME, AUDIO_BUS_MASTER)
 	_update_volume(MUSICVOLUME, AUDIO_BUS_MUSIC)
 	_update_volume(SOUNDVOLUME, AUDIO_BUS_SOUND)
+	_update_volume(CROWDVOLUME, AUDIO_BUS_CROWD)
 	_mute_bus(MASTERVOLUME_ENABLED, AUDIO_BUS_MASTER)
 	_mute_bus(MUSICVOLUME_ENABLED, AUDIO_BUS_MUSIC)
 	_mute_bus(SOUNDVOLUME_ENABLED, AUDIO_BUS_SOUND)
+	_mute_bus(CROWDVOLUME_ENABLED, AUDIO_BUS_CROWD)
 	
 func _update_volume(property, bus):
 	var current = (get_value_with_default(property, USER_SETTING_DEFAULTS[property]) -100) / 2

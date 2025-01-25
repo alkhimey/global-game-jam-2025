@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dh4yh3ql8rtl1"]
 
-[ext_resource type="AudioStream" uid="uid://dt1tgk64uyofl" path="res://Assets/sound/music/hakfar.tres" id="1_0bwcu"]
+[ext_resource type="AudioStream" uid="uid://m5cid6ed1msk" path="res://Assets/sound/music/music.tres" id="1_m6rge"]
 [ext_resource type="AudioStream" uid="uid://slvg3g2xj5mt" path="res://Assets/sound/ambience/CrowdAmbience.wav" id="2_mi7fm"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_0bwcu")
+stream = ExtResource("1_m6rge")
 autoplay = true
 bus = &"Music"
 

@@ -214,9 +214,10 @@ _data = {
 "walk": SubResource("Animation_beq6i")
 }
 
-[node name="AudienceHuman" type="Node2D"]
+[node name="AudienceHuman" type="Node2D" node_paths=PackedStringArray("chat_label")]
 scale = Vector2(60, 60)
 script = ExtResource("1_dhd2a")
+chat_label = NodePath("CanvasLayer/ChatBubbleLabel")
 body_sprites = [ExtResource("3_mkk7n"), ExtResource("3_r5dw1")]
 eyes_sprites = [ExtResource("4_7aosx"), ExtResource("3_cqrw3"), ExtResource("4_3whhj"), ExtResource("5_tevgj"), ExtResource("6_mytpn")]
 head_sprites = [ExtResource("2_vl0wv"), ExtResource("10_n37pk")]
@@ -288,7 +289,6 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ChatBubbleLabel" parent="CanvasLayer" instance=ExtResource("21_l01cp")]
-visible = true
 offset_left = -25.0
 offset_top = -96.0
 offset_right = 84.0

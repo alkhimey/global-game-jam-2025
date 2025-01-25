@@ -12,6 +12,8 @@ settings_volume_music_enabled,Music enabled,Musik an,מוזיקה,موسيقى
 settings_volume_music,Music Volume,Musik Lautstärke,עוצמת מוזיקה,حجم الموسيقى
 settings_volume_sound_enabled,Sound enabled,Sound an,צלילים,يبدو
 settings_volume_sound,Sound Volume,Sound Lautstärke,עוצמת צלילים,أصوات الحجم
+settings_volume_crowd_enabled,Crowd enabled,Menge an,קהל,حشد
+settings_volume_crowd,Crowd Volume,Menge Lautstärke,עוצמת קהל,حجم الحشد
 settings_language,Game Language,Spielsprache,שפת משחק,لغة اللعبة
 game_paused,Game paused,Spiel pausiert,המשחק מושהה,تم إيقاف اللعبة مؤقتًا
 resume_game,Resume game,Weiterspielen,המשך משחק,مواصلة اللعب

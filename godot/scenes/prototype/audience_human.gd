@@ -7,6 +7,8 @@ var sign_type: int
 # var skin_color: int
 var seat: int
 
+@export var chat_label: Label
+
 @export var walk_speed: float = 5
 @export var starting_side: Array = [-10, 890, 580]
 # @export var starting_height: Array = [105, 186, 272, 366, 456]

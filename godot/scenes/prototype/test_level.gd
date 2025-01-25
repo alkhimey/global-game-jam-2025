@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var pause_overlay = %PauseOverlay
 @onready var gameover_overlay = $CanvasLayer/GameoverOverlay
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 
 func _ready():

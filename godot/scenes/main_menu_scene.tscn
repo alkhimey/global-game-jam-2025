@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dv2y18ye8j7o0"]
+[gd_scene load_steps=24 format=3 uid="uid://dv2y18ye8j7o0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu_scene.gd" id="1_1foie"]
 [ext_resource type="PackedScene" uid="uid://rxarikcb81yp" path="res://scenes/prototype/test_level.tscn" id="2_yvyk1"]
@@ -10,26 +10,15 @@
 [ext_resource type="PackedScene" path="res://scenes/sun.tscn" id="9_82qti"]
 [ext_resource type="AudioStream" uid="uid://dhf37sf4r87ro" path="res://Assets/sound/sfx/menu/MenuSelect.wav" id="9_jxcgy"]
 [ext_resource type="PackedScene" path="res://scenes/twins.tscn" id="10_6g3dc"]
+[ext_resource type="Script" path="res://ui/components/new_button_sfx.gd" id="11_23asy"]
 [ext_resource type="PackedScene" path="res://scenes/cloud1.tscn" id="11_n1g06"]
 [ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="12_lmal3"]
+[ext_resource type="AudioStream" uid="uid://dirt6br5f5jlb" path="res://Assets/sound/music/hakfar.ogg" id="13_aws4q"]
 [ext_resource type="PackedScene" path="res://scenes/cloud3.tscn" id="13_cgitd"]
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="14_ilda6"]
+[ext_resource type="AudioStream" uid="uid://dc7ex0skdkjke" path="res://Assets/sound/sfx/menu/MenuHover-01.wav" id="15_8ygmo"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="15_lnfqx"]
-
-[sub_resource type="Animation" id="Animation_3r0ps"]
-resource_name = "bigCloudIntro"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BigCloud:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(428, 536), Vector2(428, 442)]
-}
+[ext_resource type="AudioStream" uid="uid://cvfeygsyosnh3" path="res://Assets/sound/sfx/menu/Pause.wav" id="17_xrjb5"]
 
 [sub_resource type="Animation" id="Animation_h06ay"]
 length = 0.001
@@ -44,6 +33,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(428, 441)]
+}
+
+[sub_resource type="Animation" id="Animation_3r0ps"]
+resource_name = "bigCloudIntro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BigCloud:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(428, 536), Vector2(428, 442)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3oxd"]
@@ -125,7 +129,7 @@ theme_override_constants/separation = 5
 unique_name_in_owner = true
 layout_mode = 2
 text = "continue"
-script = ExtResource("5_aejgw")
+script = ExtResource("11_23asy")
 
 [node name="NewGameButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -133,7 +137,7 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "new_game"
-script = ExtResource("5_aejgw")
+script = ExtResource("11_23asy")
 
 [node name="SettingsButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -167,6 +171,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_aws4q")
 autoplay = true
 bus = &"Music"
 
@@ -175,4 +180,6 @@ unique_name_in_owner = true
 bus = &"Sound"
 script = ExtResource("7_pgd0i")
 hover_sound = ExtResource("8_jpy55")
+new_hover_sound = ExtResource("15_8ygmo")
 click_sound = ExtResource("9_jxcgy")
+pause_sound = ExtResource("17_xrjb5")

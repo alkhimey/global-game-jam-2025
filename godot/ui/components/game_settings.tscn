@@ -87,7 +87,26 @@ unique_name_in_owner = true
 layout_mode = 2
 property = "soundvolume"
 
+[node name="CrowdEnabledLabel" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "settings_volume_crowd_enabled"
+
+[node name="CrowdEnabledToggle" type="CheckButton" parent="MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="CrowdVolumeLabel" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "settings_volume_crowd"
+
+[node name="CrowdVolumeSlider" parent="MarginContainer/GridContainer" instance=ExtResource("1_0gpwr")]
+unique_name_in_owner = true
+layout_mode = 2
+property = "crowdvolume"
+
 [connection signal="item_selected" from="MarginContainer/GridContainer/LanguageDropdown" to="." method="_on_language_dropdown_item_selected"]
 [connection signal="toggled" from="MarginContainer/GridContainer/MasterEnabledToggle" to="." method="_on_master_volume_toggle_toggled"]
 [connection signal="toggled" from="MarginContainer/GridContainer/MusicEnabledToggle" to="." method="_on_music_enabled_toggle_toggled"]
 [connection signal="toggled" from="MarginContainer/GridContainer/SoundEnabledToggle" to="." method="_on_sound_enabled_toggle_toggled"]
+[connection signal="toggled" from="MarginContainer/GridContainer/CrowdEnabledToggle" to="." method="_on_crowd_enabled_toggle_toggled"]
