@@ -37,7 +37,7 @@ script = ExtResource("1_4cd2k")
 chat_bubble = NodePath("CanvasLayer/ChatBubbleLabel")
 image1 = NodePath("Bubble1")
 image2 = NodePath("Bubble2")
-curses = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$", "!&%$%#$*$%#%"]
+curses = ["@!$*", "%#!*", "%!#(", "$#!*", ":OOO", "!!!!", "@*#!", ">:((", "#*@!"]
 chat_offset = Vector2(-71, -70)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
