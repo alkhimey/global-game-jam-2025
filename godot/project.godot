@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="MyGame"
+config/name="BasketBubble"
 run/main_scene="res://scenes/main_menu_scene.tscn"
 config/features=PackedStringArray("4.3")
 boot_splash/bg_color=Color(0.835294, 0.968627, 1, 1)
