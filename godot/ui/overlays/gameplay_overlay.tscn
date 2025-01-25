@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://ck8hby85lnafy" path="res://ui/overlays/gameplay_overlay.tres" id="2_bksk7"]
 [ext_resource type="PackedScene" uid="uid://b0wpn1xbj610y" path="res://ui/components/Timer.tscn" id="2_prh4y"]
 
-[node name="GameplayOverlay" type="Control" node_paths=PackedStringArray("textUpdateTimer", "LevelTime", "timerLabel")]
+[node name="GameplayOverlay" type="Control" node_paths=PackedStringArray("LevelTime", "timerLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ksrd8")
-textUpdateTimer = NodePath("TextUpdateTimer")
 LevelTime = NodePath("LevelTimer")
 timerLabel = NodePath("Grid/TimerLabel")
 
@@ -22,6 +21,7 @@ one_shot = true
 autostart = true
 
 [node name="TextUpdateTimer" type="Timer" parent="."]
+wait_time = 0.05
 autostart = true
 
 [node name="Grid" type="GridContainer" parent="."]

@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="5_x6g50"]
 [ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
 [ext_resource type="PackedScene" path="res://scenes/cloud3.tscn" id="6_vx1kp"]
-[ext_resource type="PackedScene" uid="uid://dh4yh3ql8rtl1" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
+[ext_resource type="PackedScene" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
-[ext_resource type="PackedScene" uid="uid://bs24g6fax1ua2" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
+[ext_resource type="PackedScene" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
 [ext_resource type="Texture2D" uid="uid://3led6eknjaj0" path="res://Assets/Arrow.png" id="10_3l0qp"]
 [ext_resource type="Shader" path="res://scenes/prototype/arrowRainbow.gdshader" id="10_y7h0s"]
 
