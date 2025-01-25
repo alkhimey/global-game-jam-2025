@@ -6,9 +6,11 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6etf"]
 bg_color = Color(0, 0, 0, 0.313726)
 
-[sub_resource type="LabelSettings" id="LabelSettings_sr0x2"]
+[sub_resource type="LabelSettings" id="LabelSettings_vaxhc"]
 font = ExtResource("2_heodp")
 font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
 [node name="TimerLabel" type="Label"]
 anchors_preset = 15
@@ -18,4 +20,4 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_dk5av")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n6etf")
-label_settings = SubResource("LabelSettings_sr0x2")
+label_settings = SubResource("LabelSettings_vaxhc")
