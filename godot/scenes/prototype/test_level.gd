@@ -24,20 +24,19 @@ func _ready():
 	]
 
 func _process(delta: float) -> void:
+	pass
 	#if currentGoalPositionPreset < length(goalPositionPresets) - 1:
 		#if levelTimer.time_left < nextGoalPositionWhenTimeLeft[currentGoalPositionPreset]:
 			#nextGoalPositionWhenTimeLeft += 1
 			#var tween = get_tree().create_tween()
 			#tween.tween_property($Sprite, "position", goalPositionPresets[currentGoalPositionPreset], 1)
 			#tween.tween_callback($Sprite.queue_free)
-	GameplayGlobal.game_reset.emit()
-
 
 func on_game_over(_playerId: int):
 	print("show gameover")
-	# get_viewport().set_input_as_handled()
-	# gameover_overlay.grab_button_focus()
-	# gameover_overlay.visible = true
+	get_viewport().set_input_as_handled()
+	gameover_overlay.grab_button_focus()
+	gameover_overlay.visible = true
 
 
 func _input(event: InputEvent) -> void:
