@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=20 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
@@ -15,8 +15,6 @@
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
 [ext_resource type="PackedScene" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
-[ext_resource type="Texture2D" uid="uid://3led6eknjaj0" path="res://Assets/Arrow.png" id="10_3l0qp"]
-[ext_resource type="Shader" path="res://scenes/prototype/arrowRainbow.gdshader" id="10_y7h0s"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -26,12 +24,6 @@ normal = Vector2(0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_064jb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnddl"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_td5fp"]
-shader = ExtResource("10_y7h0s")
-shader_parameter/strength = 0.7
-shader_parameter/speed = 1.0
-shader_parameter/angle = 90.0
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_sti86")
@@ -142,18 +134,10 @@ offset_bottom = 479.0
 grow_horizontal = 0
 color = Color(0, 0, 0, 0.156863)
 
-[node name="Goal" parent="." node_paths=PackedStringArray("arrow") instance=ExtResource("3_25nnm")]
+[node name="Goal" parent="." instance=ExtResource("3_25nnm")]
 position = Vector2(418, 180)
 scale = Vector2(0.6, 0.6)
 playerId = 1
-arrow = NodePath("Arrow")
-
-[node name="Arrow" type="Sprite2D" parent="Goal"]
-z_index = 9
-material = SubResource("ShaderMaterial_td5fp")
-position = Vector2(-5, -21.6667)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_3l0qp")
 
 [node name="Player1" parent="." instance=ExtResource("1_gg1j7")]
 position = Vector2(197, 265)
