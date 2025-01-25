@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dh4yh3ql8rtl1" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
-[ext_resource type="PackedScene" uid="uid://bs24g6fax1ua2" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
+[ext_resource type="PackedScene" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
 [ext_resource type="Script" path="res://scenes/prototype/win_text.gd" id="17_06ea3"]
 [ext_resource type="PackedScene" uid="uid://g7tiurii878c" path="res://scenes/prototype/SFX_player.tscn" id="18_pwp3y"]
 [ext_resource type="Script" path="res://scenes/prototype/music_player.gd" id="19_swl43"]
@@ -28,8 +28,9 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnddl"]
 
-[node name="TestLevel" type="Node2D"]
+[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("goal")]
 script = ExtResource("1_sti86")
+goal = NodePath("Goal")
 
 [node name="BGContainer" type="Node2D" parent="."]
 
