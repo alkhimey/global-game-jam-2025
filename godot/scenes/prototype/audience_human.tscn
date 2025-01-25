@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b37hirgcr57sc"]
+[gd_scene load_steps=38 format=3 uid="uid://b37hirgcr57sc"]
 
 [ext_resource type="Script" path="res://scenes/prototype/audience_human.gd" id="1_dhd2a"]
 [ext_resource type="Texture2D" uid="uid://bhq02d36be3xe" path="res://Assets/audience/audience_head1.png" id="2_vl0wv"]
@@ -206,12 +206,98 @@ tracks/2/keys = {
 "values": [Vector2(0.0333333, -0.5), Vector2(0.033, -0.45), Vector2(0.033, -0.5)]
 }
 
+[sub_resource type="Animation" id="Animation_nt1la"]
+resource_name = "walk_headsign"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.06, -0.5), Vector2(0.06, -0.6), Vector2(0.06, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.08, -0.5), Vector2(0.08, -0.55), Vector2(0.08, -0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.033, -0.8), Vector2(0.033, -0.75), Vector2(0.033, -0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_brjq3"]
+resource_name = "goal_headsign"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.06, -0.5), Vector2(0.06, -0.6), Vector2(0.06, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.08, -0.5), Vector2(0.08, -0.55), Vector2(0.08, -0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.033, -0.8), Vector2(0.033, -0.75), Vector2(0.033, -0.8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lbxi5"]
 _data = {
 "RESET": SubResource("Animation_ww12a"),
 "goal": SubResource("Animation_gj608"),
+"goal_headsign": SubResource("Animation_brjq3"),
 "idle": SubResource("Animation_jm8ii"),
-"walk": SubResource("Animation_beq6i")
+"walk": SubResource("Animation_beq6i"),
+"walk_headsign": SubResource("Animation_nt1la")
 }
 
 [node name="AudienceHuman" type="Node2D" node_paths=PackedStringArray("chat_label")]
@@ -268,8 +354,8 @@ texture = ExtResource("9_phwni")
 
 [node name="HeadSign" type="MeshInstance2D" parent="Hands"]
 visible = false
-position = Vector2(-0.0666667, 0.4)
-scale = Vector2(1.4, 1.4)
+position = Vector2(-0.067, 0.5)
+scale = Vector2(1.3, 1.3)
 mesh = SubResource("QuadMesh_8a5i8")
 texture = ExtResource("10_vhfpb")
 
