@@ -23,13 +23,13 @@ script = ExtResource("1_ksrd8")
 LevelTime = NodePath("LevelTimer")
 timerLabel = NodePath("Grid/TimerLabel")
 
-[node name="LevelTimer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [node name="TextUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
 
 [node name="Grid" type="GridContainer" parent="."]
 layout_mode = 1

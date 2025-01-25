@@ -41,6 +41,7 @@ func on_game_start():
 
 	text = "[rainbow][center][wave]GO!"
 	GameplayGlobal.can_goal = true
+	GameplayGlobal.end_countdown.emit()
 
 	await get_tree().create_timer(0.5).timeout
 
