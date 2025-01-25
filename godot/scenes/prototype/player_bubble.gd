@@ -131,12 +131,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = prevVelocity.bounce(collision.get_normal()) 
 	jump()
-	if Input.is_action_just_pressed(down_input_name):
-		velocity.y = downSpeed
+	if GameplayGlobal.can_goal:
+		if Input.is_action_just_pressed(down_input_name):
+			velocity.y = downSpeed
 		
 	# This is instead of the jump.
-	if Input.is_action_just_pressed(up_input_name):
-		velocity.y = upSpeed
+	if GameplayGlobal.can_goal:
+		if Input.is_action_just_pressed(up_input_name):
+			velocity.y = upSpeed
 
 	collidedWithFloorLastPass = collidedWithFloorThisPass
 	
