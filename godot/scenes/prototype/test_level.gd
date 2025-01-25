@@ -20,9 +20,12 @@ func _ready():
 
 	goalPositionPresets = [
 		goal.position,
-		Vector2(210,228),
-		Vector2(678, 261)
+		Vector2(randf_range(200, 600),randf_range(160, 250)),
+		Vector2(randf_range(200, 600), randf_range(160, 250))
 	]
+	
+	#x = 600 - 200
+	#y = 160 -250
 	
 	nextGoalPositionWhenTimeLeft = [
 		(GameplayGlobal.countdown_time * 2.0) / 3.0,
