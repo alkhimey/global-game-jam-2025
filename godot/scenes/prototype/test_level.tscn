@@ -33,8 +33,10 @@ shader_parameter/strength = 0.7
 shader_parameter/speed = 1.0
 shader_parameter/angle = 90.0
 
-[node name="TestLevel" type="Node2D"]
+[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("levelTimer", "goal")]
 script = ExtResource("1_sti86")
+levelTimer = NodePath("LevelTimer")
+goal = NodePath("Goal")
 
 [node name="BGContainer" type="Node2D" parent="."]
 
@@ -142,13 +144,12 @@ offset_bottom = 479.0
 grow_horizontal = 0
 color = Color(0, 0, 0, 0.156863)
 
-[node name="Goal" parent="." node_paths=PackedStringArray("arrow") instance=ExtResource("3_25nnm")]
+[node name="Goal" parent="." instance=ExtResource("3_25nnm")]
 position = Vector2(418, 180)
 scale = Vector2(0.6, 0.6)
 playerId = 1
-arrow = NodePath("Arrow")
 
-[node name="Arrow" type="Sprite2D" parent="Goal"]
+[node name="Arrow2" type="Sprite2D" parent="Goal"]
 z_index = 9
 material = SubResource("ShaderMaterial_td5fp")
 position = Vector2(-5, -21.6667)
@@ -171,9 +172,10 @@ initial_position = Vector2(655, 265)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GameplayOverlay" parent="CanvasLayer" instance=ExtResource("2_0w7mu")]
+[node name="GameplayOverlay" parent="CanvasLayer" node_paths=PackedStringArray("LevelTime") instance=ExtResource("2_0w7mu")]
 scale = Vector2(1, 1.00368)
 mouse_filter = 2
+LevelTime = NodePath("../../LevelTimer")
 
 [node name="PauseOverlay" parent="CanvasLayer" instance=ExtResource("3_ejleg")]
 unique_name_in_owner = true
@@ -201,3 +203,7 @@ bbcode_enabled = true
 text = "[tornado freq=3.0][rainbow val=0.8]Goal!!![tornado]"
 
 [node name="MusicPlayer" parent="." instance=ExtResource("7_n4jgj")]
+
+[node name="LevelTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true

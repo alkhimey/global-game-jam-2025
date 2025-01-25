@@ -1,5 +1,9 @@
 extends Node
 
+
+const countdown_time: float = 60  # Store as float for precise timing
+
+
 # Player 1 score
 var score1: int = 0
 # Player 2 score

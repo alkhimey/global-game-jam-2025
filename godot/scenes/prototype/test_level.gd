@@ -4,10 +4,33 @@ extends Node2D
 @onready var gameover_overlay = $CanvasLayer/GameoverOverlay
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
+@export var levelTimer: Timer
+@export var goal: Node2D
+
+var currentGoalPositionPreset = 0
 
 func _ready():
 	GameplayGlobal.player_win.connect(on_game_over)
 
+	var goalPositionPresets = [
+		goal.position,
+		Vector2(210,228),
+		Vector2(678, 261)
+	]
+	
+	var nextGoalPositionWhenTimeLeft = [
+		(GameplayGlobal.countdown_time * 2.0) / 3.0,
+		GameplayGlobal.countdown_time / 3.0
+	]
+
+func _process(delta: float) -> void:
+	pass
+	#if currentGoalPositionPreset < length(goalPositionPresets) - 1:
+		#if levelTimer.time_left < nextGoalPositionWhenTimeLeft[currentGoalPositionPreset]:
+			#nextGoalPositionWhenTimeLeft += 1
+			#var tween = get_tree().create_tween()
+			#tween.tween_property($Sprite, "position", goalPositionPresets[currentGoalPositionPreset], 1)
+			#tween.tween_callback($Sprite.queue_free)
 
 func on_game_over(_playerId: int):
 	print("show gameover")
