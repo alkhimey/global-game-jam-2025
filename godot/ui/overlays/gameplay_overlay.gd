@@ -16,6 +16,7 @@ func start_level_timer() -> void:
 	LevelTime.start()
 	update_label()
 
+
 func format_time(time: float) -> String:
 	var minutes = int(time) / 60
 	var seconds = int(time) % 60

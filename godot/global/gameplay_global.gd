@@ -114,6 +114,7 @@ func _on_player_win(playerId: int):
 	elif playerId == 2:
 		wins2 += 1
 
+	await get_tree().create_timer(3.0).timeout
 	await key_pressed
 
 	game_reset.emit()
@@ -125,4 +126,5 @@ func on_game_reset():
 
 
 func _input(_event):
-	key_pressed.emit()
+	if _event is InputEventKey:
+		key_pressed.emit()
