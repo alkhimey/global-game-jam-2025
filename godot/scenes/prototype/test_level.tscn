@@ -170,6 +170,7 @@ initial_position = Vector2(655, 265)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameplayOverlay" parent="CanvasLayer" instance=ExtResource("2_0w7mu")]
+scale = Vector2(1, 1.00368)
 mouse_filter = 2
 
 [node name="PauseOverlay" parent="CanvasLayer" instance=ExtResource("3_ejleg")]

@@ -3,7 +3,7 @@ extends Control
 @export var LevelTime: Timer
 @export var timerLabel: Label
 
-var countdown_time: float = 90.0  # Store as float for precise timing
+var countdown_time: float = 60  # Store as float for precise timing
 
 func _ready() -> void:
 	start_level_timer()
@@ -18,7 +18,10 @@ func format_time(time: float) -> String:
 	var minutes = int(time) / 60
 	var seconds = int(time) % 60
 	var milliseconds = int((time - int(time)) * 100)  # Get two-digit ms
-	return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2) + ":" + str(milliseconds).pad_zeros(2)
+	if countdown_time < 10:
+		return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2) + ":" + str(milliseconds).pad_zeros(2)
+	else:
+		return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)
 
 func _process(delta: float) -> void:
 	if countdown_time > 0:
