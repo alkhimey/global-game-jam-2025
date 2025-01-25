@@ -13,6 +13,7 @@ var seats = [[true, true, true, true, true, true, true],
 func _ready() -> void:
 	GameplayGlobal.player_win.connect(on_win)
 	GameplayGlobal.goal.connect(on_goal)
+	GameplayGlobal.game_reset.connect(on_game_reset)
 	
 	# Test for summoning audience
 	# summon_audience(4, 1)
@@ -48,3 +49,10 @@ func summon_audience(amount: int, player_num: int):
 		audience_node.change_player(player_num)
 
 		await get_tree().create_timer(inbetween_seconds).timeout
+
+
+func on_game_reset():
+	var children := get_children()
+
+	for i in children:
+		i.queue_free()

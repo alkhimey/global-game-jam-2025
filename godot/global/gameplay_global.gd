@@ -36,6 +36,8 @@ signal goal_reset()
 signal player_win(playerId:int)
 # When the match timer reaches 0
 signal timer_end()
+signal game_reset()
+signal key_pressed()
 
 
 func _ready():
@@ -44,6 +46,7 @@ func _ready():
 	timer_end.connect(on_timer_end)
 	goal_reset.connect(on_goal_reset)
 	player_win.connect(_on_player_win)
+	game_reset.connect(on_game_reset)
 
 
 func on_goal(playerId: int):
@@ -111,3 +114,16 @@ func _on_player_win(playerId: int):
 		wins1 += 1
 	elif playerId == 2:
 		wins2 += 1
+
+	await key_pressed
+
+	game_reset.emit()
+
+
+func on_game_reset():
+	score1 = 0
+	score2 = 0
+
+
+func _input(_event):
+	key_pressed.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfs2qwsf0kuix"]
+[gd_scene load_steps=4 format=3 uid="uid://dljjgbb38olsj"]
 
 [ext_resource type="Texture2D" uid="uid://4d0ygofwk5i6" path="res://Assets/Sun-Beams.png" id="1_iodg6"]
 [ext_resource type="Texture2D" uid="uid://7vijs6ygeyp0" path="res://Assets/Sun.png" id="2_idc3e"]
@@ -9,8 +9,10 @@
 [node name="Beams" type="Sprite2D" parent="."]
 texture = ExtResource("1_iodg6")
 
-[node name="Sun" type="Sprite2D" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="Sun" type="Sprite2D" parent="CanvasGroup"]
 texture = ExtResource("2_idc3e")
 
-[node name="Face" type="Sprite2D" parent="."]
+[node name="Face" type="Sprite2D" parent="CanvasGroup"]
 texture = ExtResource("3_1vr3n")
