@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=23 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
@@ -15,8 +15,6 @@
 [ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
 [ext_resource type="PackedScene" uid="uid://bs24g6fax1ua2" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
-[ext_resource type="Texture2D" uid="uid://3led6eknjaj0" path="res://Assets/Arrow.png" id="10_3l0qp"]
-[ext_resource type="Shader" path="res://scenes/prototype/arrowRainbow.gdshader" id="10_y7h0s"]
 [ext_resource type="Script" path="res://scenes/prototype/win_text.gd" id="17_06ea3"]
 [ext_resource type="PackedScene" uid="uid://g7tiurii878c" path="res://scenes/prototype/SFX_player.tscn" id="18_pwp3y"]
 [ext_resource type="Script" path="res://scenes/prototype/music_player.gd" id="19_swl43"]
@@ -59,17 +57,17 @@ scale = Vector2(0.35, 0.35)
 
 [node name="Cloud2" parent="BGContainer" instance=ExtResource("5_x6g50")]
 z_index = -1
-position = Vector2(741, 349)
+position = Vector2(741, 380)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud3" parent="BGContainer" instance=ExtResource("6_vx1kp")]
 z_index = -1
-position = Vector2(772, 123)
+position = Vector2(772, 192)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud4" parent="BGContainer" instance=ExtResource("7_smwqh")]
 z_index = -1
-position = Vector2(778, 234)
+position = Vector2(778, 272)
 scale = Vector2(0.35, 0.35)
 
 [node name="BigCloud" parent="BGContainer" instance=ExtResource("8_rkbee")]

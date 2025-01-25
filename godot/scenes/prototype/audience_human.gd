@@ -15,7 +15,7 @@ var seat: int
 @export var starting_side: Array = [-10, 890, 580]
 # @export var starting_height: Array = [105, 186, 272, 366, 456]
 @export var seats: Array = [[Vector2(50, 152), Vector2(167, 152), Vector2(64, 318), Vector2(129, 317), Vector2(239, 455), Vector2(311, 443), Vector2(377, 440)],
-							[Vector2(710, 334), Vector2(772, 334), Vector2(774, 228), Vector2(774, 118), Vector2(456, 437), Vector2(523, 444), Vector2(592, 455)]]
+							[Vector2(710, 368), Vector2(772, 368), Vector2(774, 272), Vector2(774, 193), Vector2(456, 437), Vector2(523, 444), Vector2(592, 455)]]
 # @export var player2_seats: Array = [770, 827]
 @export var body_sprites: Array = []
 @export var eyes_sprites: Array = []
