@@ -23,6 +23,7 @@ var seat: int
 # @export var jump_offset: Vector2 = Vector2(0, 3)
 @export var goal_time: float = 2.0
 @export var curses: Array = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$", "!&%$%#$*$#%"]
+@export var curse_time_range: Array = [0.1,1]
 
 @onready var body_node = $Body
 @onready var head_node = $Head
@@ -131,9 +132,10 @@ func on_goal(_playerId: int):
 		await get_tree().create_timer(goal_time).timeout
 
 		animation_player.play("walk")
-		return
 		# change_speed(3)
 		# start_tween()
+	else:
+		pass
 
 
 func almost_goal():
