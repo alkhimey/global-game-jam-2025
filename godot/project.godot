@@ -13,6 +13,8 @@ config_version=5
 config/name="MyGame"
 run/main_scene="res://scenes/main_menu_scene.tscn"
 config/features=PackedStringArray("4.3")
+boot_splash/bg_color=Color(0.835294, 0.968627, 1, 1)
+boot_splash/image="res://Assets/logo_vertical_color_light.png"
 config/icon="res://Assets/ggj-bubble-blue-64.png"
 
 [autoload]

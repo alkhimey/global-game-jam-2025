@@ -23,6 +23,7 @@ var seat: int
 # @export var jump_offset: Vector2 = Vector2(0, 3)
 @export var goal_time: float = 2.0
 @export var curses: Array = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$", "!&%$%#$*$#%"]
+@export var curse_time_range: Array = [0.1,1]
 
 @onready var body_node = $Body
 @onready var head_node = $Head
@@ -49,7 +50,10 @@ func _process(_delta: float) -> void:
 
 func start_tween():
 	var tween = create_tween()
-	animation_player.play("walk")
+	if sign_type == 4:
+		animation_player.play("walk_headsign")
+	else:
+		animation_player.play("walk")
 
 	match seat:
 		0, 1, 2, 3:
@@ -69,11 +73,13 @@ func change_player(_playerId: int):
 
 	match sign_type:
 		0,1:
-			pass
+			hand_node.position.y = -0.5
 		2,3:
+			hand_node.position.y = -0.5
 			body_sign_node.visible = true
 			head_node.texture = head_sprites[0]
 		4:
+			hand_node.position.y = -0.8
 			head_sign_node.visible = true
 
 	body_node.texture = body_sprites.pick_random()
@@ -126,14 +132,21 @@ func change_player(_playerId: int):
 
 func on_goal(_playerId: int):
 	if _playerId == playerId:
-		animation_player.play("goal")
+		if sign_type == 4:
+			animation_player.play("goal_headsign")
+		else:
+			animation_player.play("goal")
 
 		await get_tree().create_timer(goal_time).timeout
 
-		animation_player.play("walk")
-		return
+		if sign_type == 4:
+			animation_player.play("walk_headsign")
+		else:
+			animation_player.play("walk")
 		# change_speed(3)
 		# start_tween()
+	else:
+		pass
 
 
 func almost_goal():
