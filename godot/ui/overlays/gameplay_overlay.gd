@@ -5,7 +5,6 @@ extends Control
 
 func _ready() -> void:
 	start_level_timer()
-	
 
 func start_level_timer() -> void:
 	LevelTime.wait_time = GameplayGlobal.countdown_time
@@ -22,7 +21,7 @@ func format_time(time: float) -> String:
 	var seconds = int(time) % 60
 	var milliseconds = int((time - int(time)) * 100)  # Get two-digit ms
 
-	if LevelTime.time_left < 10:
+	if time < 10:
 		return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2) + ":" + str(milliseconds).pad_zeros(2)
 	else:
 		return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)
@@ -35,7 +34,10 @@ func _process(_delta: float) -> void:
 	update_label()
 
 func update_label() -> void:
-	timerLabel.text = format_time(LevelTime.time_left)
+	if LevelTime.is_stopped():
+		timerLabel.text = format_time(GameplayGlobal.countdown_time)
+	else:
+		timerLabel.text = format_time(LevelTime.time_left)
 
 
 func _on_level_timer_timeout() -> void:
