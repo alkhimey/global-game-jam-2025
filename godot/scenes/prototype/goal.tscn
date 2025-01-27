@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/prototype/goal.gd" id="1_ylmaa"]
 [ext_resource type="Texture2D" uid="uid://dr0l2ejualy8w" path="res://Assets/particles/2.png" id="2_204i2"]
 [ext_resource type="PackedScene" uid="uid://7xrepgvl1f58" path="res://scenes/bird.tscn" id="2_oi512"]
-[ext_resource type="PackedScene" path="res://scenes/basket_back.tscn" id="3_53x68"]
-[ext_resource type="PackedScene" path="res://scenes/basket_front.tscn" id="4_gqlth"]
+[ext_resource type="PackedScene" uid="uid://dm5hhaj1s5oq0" path="res://scenes/basket_back.tscn" id="3_53x68"]
+[ext_resource type="PackedScene" uid="uid://dgvceeydnqcat" path="res://scenes/basket_front.tscn" id="4_gqlth"]
 [ext_resource type="Shader" path="res://scenes/prototype/arrowRainbow.gdshader" id="6_lhnmg"]
 [ext_resource type="Texture2D" uid="uid://3led6eknjaj0" path="res://Assets/Arrow.png" id="7_lv3im"]
 

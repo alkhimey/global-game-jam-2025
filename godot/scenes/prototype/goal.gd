@@ -3,7 +3,7 @@ extends Node2D
 @export var playerId: int
 
 
-var arrowPresentationTimeSeconds: float = 5.0
+var arrowPresentationTimeSeconds: float = 0.0
 var arrowOrigPos: Vector2
 
 func _ready() -> void:
@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	var arrow: Sprite2D = get_node("Arrow")
-	if Time.get_ticks_msec() - arrowPresentationTimeSeconds > 5 * 1000:
+	if Time.get_ticks_msec() - arrowPresentationTimeSeconds > 12 * 1000:
 		arrow.hide()
 	particles_handle()
 		

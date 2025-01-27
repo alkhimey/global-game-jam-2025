@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwmepubyekgek"]
+[gd_scene load_steps=3 format=3 uid="uid://ddxlaa0o466t8"]
 
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="1_xa27s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op3o0"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="ChatBubbleLabel" type="Label"]
 visible = false
@@ -9,4 +23,10 @@ offset_top = -92.0
 offset_right = 62.0
 offset_bottom = -67.0
 theme = ExtResource("1_xa27s")
-text = "default"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_op3o0")
+text = "test"
+vertical_alignment = 1

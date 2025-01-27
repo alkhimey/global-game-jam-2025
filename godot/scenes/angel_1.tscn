@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmfbdr2uho0ey"]
+
+[ext_resource type="Texture2D" uid="uid://rw5tx3qxjya5" path="res://Assets/angels/2Body.png" id="1_uqyg5"]
+[ext_resource type="Texture2D" uid="uid://cjmvd5bmtixy3" path="res://Assets/angels/1Head.png" id="2_i6u1i"]
+[ext_resource type="Texture2D" uid="uid://dq2dsbj1sbj1h" path="res://Assets/angels/1Hands.png" id="3_n7csu"]
+
+[sub_resource type="Animation" id="Animation_yvc1o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hands:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0kpnp"]
+resource_name = "arrival"
+length = 2.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 1, 1.43333, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, -0.174533, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hands:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4333, 1, 1.43333, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0436332, 0.0, 0.0436332, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ed7f"]
+_data = {
+"RESET": SubResource("Animation_yvc1o"),
+"arrival": SubResource("Animation_0kpnp")
+}
+
+[node name="Angel1" type="Node2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+rotation = -0.00887275
+texture = ExtResource("1_uqyg5")
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(24, -196)
+texture = ExtResource("2_i6u1i")
+
+[node name="Hands" type="Sprite2D" parent="."]
+texture = ExtResource("3_n7csu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7ed7f")
+}
+autoplay = "arrival"

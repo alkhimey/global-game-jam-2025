@@ -1,27 +1,37 @@
-[gd_scene load_steps=24 format=3 uid="uid://dv2y18ye8j7o0"]
+[gd_scene load_steps=38 format=3 uid="uid://dv2y18ye8j7o0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu_scene.gd" id="1_1foie"]
 [ext_resource type="PackedScene" uid="uid://rxarikcb81yp" path="res://scenes/prototype/test_level.tscn" id="2_yvyk1"]
 [ext_resource type="PackedScene" uid="uid://g4qhvbvdm62w" path="res://scenes/game_settings_scene.tscn" id="3_dgs4d"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="3_kf1us"]
+[ext_resource type="PackedScene" uid="uid://cmfbdr2uho0ey" path="res://scenes/angel_1.tscn" id="4_2dli4"]
+[ext_resource type="AudioStream" uid="uid://waln3cql0udh" path="res://Assets/sound/sfx/SunandAngels 2.wav" id="4_b61h4"]
+[ext_resource type="PackedScene" uid="uid://fx43jxejnrty" path="res://scenes/angel_2.tscn" id="5_6c5w5"]
 [ext_resource type="Script" path="res://ui/components/button_sfx.gd" id="5_aejgw"]
+[ext_resource type="PackedScene" uid="uid://x62o8kjuofwy" path="res://scenes/angel_3.tscn" id="6_ssv4w"]
 [ext_resource type="Script" path="res://ui/components/sfx_player.gd" id="7_pgd0i"]
 [ext_resource type="AudioStream" uid="uid://dkdf2u1ak5gik" path="res://Assets/sound/sfx/menu/MenuHover.wav" id="8_jpy55"]
-[ext_resource type="PackedScene" path="res://scenes/sun.tscn" id="9_82qti"]
+[ext_resource type="PackedScene" uid="uid://dljjgbb38olsj" path="res://scenes/sun.tscn" id="9_82qti"]
 [ext_resource type="AudioStream" uid="uid://dhf37sf4r87ro" path="res://Assets/sound/sfx/menu/MenuSelect.wav" id="9_jxcgy"]
-[ext_resource type="PackedScene" path="res://scenes/twins.tscn" id="10_6g3dc"]
+[ext_resource type="PackedScene" uid="uid://dr2x7gjxgqrfk" path="res://scenes/twins.tscn" id="10_6g3dc"]
+[ext_resource type="Texture2D" uid="uid://cx13pwgrm4b8l" path="res://Assets/Names1.png" id="11_0xsp2"]
 [ext_resource type="Script" path="res://ui/components/new_button_sfx.gd" id="11_23asy"]
-[ext_resource type="PackedScene" path="res://scenes/cloud1.tscn" id="11_n1g06"]
-[ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="12_lmal3"]
+[ext_resource type="PackedScene" uid="uid://bpi4ugvk2xpee" path="res://scenes/cloud1.tscn" id="11_n1g06"]
+[ext_resource type="Texture2D" uid="uid://c1lciw1kotwfy" path="res://Assets/signatures.png" id="12_4bgpn"]
+[ext_resource type="PackedScene" uid="uid://c4d8lx1qn3g4q" path="res://scenes/cloud2.tscn" id="12_lmal3"]
 [ext_resource type="AudioStream" uid="uid://dirt6br5f5jlb" path="res://Assets/sound/music/hakfar.ogg" id="13_aws4q"]
-[ext_resource type="PackedScene" path="res://scenes/cloud3.tscn" id="13_cgitd"]
-[ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="14_ilda6"]
+[ext_resource type="PackedScene" uid="uid://bejhu5kcq4brn" path="res://scenes/cloud3.tscn" id="13_cgitd"]
+[ext_resource type="Texture2D" uid="uid://ct5hni44sk3c4" path="res://Assets/Names2.png" id="13_fvyt6"]
+[ext_resource type="PackedScene" uid="uid://bg21vtgbnsyi" path="res://scenes/cloud4.tscn" id="14_ilda6"]
+[ext_resource type="Texture2D" uid="uid://cnpbtahtlp5se" path="res://Assets/ggj-logo.png" id="14_rirv7"]
 [ext_resource type="AudioStream" uid="uid://dc7ex0skdkjke" path="res://Assets/sound/sfx/menu/MenuHover-01.wav" id="15_8ygmo"]
-[ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="15_lnfqx"]
+[ext_resource type="PackedScene" uid="uid://dvp33aubvn4l8" path="res://scenes/big_cloud.tscn" id="15_lnfqx"]
 [ext_resource type="AudioStream" uid="uid://cvfeygsyosnh3" path="res://Assets/sound/sfx/menu/Pause.wav" id="17_xrjb5"]
+[ext_resource type="Texture2D" uid="uid://b4myvhh3tfh4t" path="res://Assets/menu/logo.png" id="19_834d6"]
+[ext_resource type="Texture2D" uid="uid://cgi5hi6ud0okq" path="res://Assets/menu/cloud-play-background.png" id="19_ambjl"]
 
 [sub_resource type="Animation" id="Animation_h06ay"]
-length = 0.001
+length = 40.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,14 +39,148 @@ tracks/0/path = NodePath("BigCloud:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.766667),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(428, 441)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Names1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Names2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sigs:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GGJ:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../UI:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BG/Angel2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(302, 634)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BG/Angel3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(504, 642)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BG/Angel1:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(390, 654)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../UI/CenterContainer:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -320)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BG/Sun:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1027, -148)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Logo:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(427, -92)]
+}
 
 [sub_resource type="Animation" id="Animation_3r0ps"]
 resource_name = "bigCloudIntro"
+length = 40.0
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,10 +188,169 @@ tracks/0/path = NodePath("BigCloud:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(6.8, 7.46667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(428, 536), Vector2(428, 442)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Names1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.33333, 2, 2.66667, 3.66232, 6, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Names2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.33333, 2, 2.66667, 3.66667, 6, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, false, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sigs:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.666667, 6, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GGJ:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.666667, 6, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GGJ:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.666667, 1.33333, 2, 2.66667, 3.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.174533, -0.174533, 0.174533, -0.174533, 0.174533]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../UI:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 12.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BG/Angel2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 7.6, 8, 9.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(302, 634), Vector2(302, 634), Vector2(302, 634), Vector2(240, 388)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BG/Angel3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(9.4, 11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(504, 642), Vector2(620, 390)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BG/Angel1:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(10.6, 12.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(390, 654), Vector2(407, 341)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../UI/CenterContainer:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 12.8, 13.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -320), Vector2(0, -320), Vector2(0, -100)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BG/Sun:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(7.6, 8.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1027, -148), Vector2(782, 25)]
+}
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../IntroSFX")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_b61h4")
+}],
+"times": PackedFloat32Array(8.2)
+}
+tracks/12/use_blend = true
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Logo:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 12.8, 13.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(427, -92), Vector2(427, -92), Vector2(427, 50)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3oxd"]
@@ -56,9 +359,23 @@ _data = {
 "bigCloudIntro": SubResource("Animation_3r0ps")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_2ikbh"]
-font_size = 8
-font_color = Color(1, 1, 1, 0.486275)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohc2u"]
+texture = ExtResource("19_ambjl")
+modulate_color = Color(0.881937, 0.881937, 0.881937, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7i1sw"]
+texture = ExtResource("19_ambjl")
+modulate_color = Color(0.473976, 0.473976, 0.473976, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bkomo"]
+texture = ExtResource("19_ambjl")
+modulate_color = Color(0.54099, 0.54099, 0.54099, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uleh3"]
+texture = ExtResource("19_ambjl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ruk1"]
+texture = ExtResource("19_ambjl")
 
 [node name="MainMenuScene" type="Node2D"]
 script = ExtResource("1_1foie")
@@ -78,6 +395,23 @@ autoplay = "bigCloudIntro"
 offset_right = 854.0
 offset_bottom = 480.0
 color = Color(0.835294, 0.968627, 1, 1)
+
+[node name="Angel2" parent="BGContainer/BG" instance=ExtResource("5_6c5w5")]
+position = Vector2(302, 634)
+rotation = -0.305433
+scale = Vector2(-0.2, 0.2)
+
+[node name="Angel3" parent="BGContainer/BG" instance=ExtResource("6_ssv4w")]
+position = Vector2(504, 642)
+rotation = 0.235619
+scale = Vector2(0.25, 0.25)
+
+[node name="Angel1" parent="BGContainer/BG" instance=ExtResource("4_2dli4")]
+position = Vector2(390, 654)
+scale = Vector2(0.33, 0.33)
+
+[node name="Sun" parent="BGContainer/BG" instance=ExtResource("9_82qti")]
+position = Vector2(1027, -148)
 
 [node name="Sun" parent="BGContainer" instance=ExtResource("9_82qti")]
 visible = false
@@ -112,59 +446,94 @@ scale = Vector2(0.35, 0.35)
 position = Vector2(428, 441)
 scale = Vector2(0.35, 0.35)
 
+[node name="Names1" type="Sprite2D" parent="BGContainer"]
+position = Vector2(374, 237)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_0xsp2")
+
+[node name="Names2" type="Sprite2D" parent="BGContainer"]
+visible = false
+position = Vector2(375, 233)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_fvyt6")
+
+[node name="Sigs" type="Sprite2D" parent="BGContainer"]
+position = Vector2(410, 224)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_4bgpn")
+
+[node name="GGJ" type="Sprite2D" parent="BGContainer"]
+visible = false
+position = Vector2(593, 354)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("14_rirv7")
+
+[node name="Logo" type="Sprite2D" parent="BGContainer"]
+position = Vector2(427, -92)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("19_834d6")
+
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -320.0
+offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ContinueButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "continue"
-script = ExtResource("11_23asy")
-
-[node name="NewGameButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "new_game"
-script = ExtResource("11_23asy")
-
 [node name="SettingsButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
+visible = false
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxTexture_ohc2u")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_uleh3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uleh3")
 text = "settings"
 script = ExtResource("5_aejgw")
 
-[node name="ExitButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "leave_game"
-script = ExtResource("5_aejgw")
-
-[node name="Credits" type="MarginContainer" parent="UI/CenterContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_top = 10
-
-[node name="Label" type="Label" parent="UI/CenterContainer/VBoxContainer/Credits"]
-layout_mode = 2
-text = "credits"
-label_settings = SubResource("LabelSettings_2ikbh")
-horizontal_alignment = 1
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxTexture_ohc2u")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bkomo")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7i1sw")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_2ruk1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2ruk1")
+text = "new_game"
+script = ExtResource("11_23asy")
 
 [node name="FadeOverlay" parent="UI" instance=ExtResource("3_kf1us")]
 unique_name_in_owner = true
@@ -183,3 +552,7 @@ hover_sound = ExtResource("8_jpy55")
 new_hover_sound = ExtResource("15_8ygmo")
 click_sound = ExtResource("9_jxcgy")
 pause_sound = ExtResource("17_xrjb5")
+
+[node name="IntroSFX" type="AudioStreamPlayer" parent="."]
+volume_db = 10.0
+bus = &"Sound"

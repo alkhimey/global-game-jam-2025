@@ -5,7 +5,6 @@ extends CharacterBody2D
 
 @export var image1: Sprite2D
 @export var image2: Sprite2D
-
 # Name for left input
 @export var left_input_name: String = "player1_left"
 # Name for right input
@@ -16,7 +15,7 @@ extends CharacterBody2D
 @export var down_input_name: String = "player1_down"
 
 # List of curses for the player
-@export var curses: Array = ["@!%#$*", "%!#(*!*)", "$!*@!*!$"]
+@export var curses: Array = ["@!$*", "%#!*", "%!#(", "$#!*", "!!!!", "$!*@", "!*!$"]
 # Starting position on reset
 @export var initial_position: Vector2 = Vector2(0,0)
 # Position offset for chat bubble
@@ -131,12 +130,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = prevVelocity.bounce(collision.get_normal()) 
 	jump()
-	if Input.is_action_just_pressed(down_input_name):
-		velocity.y = downSpeed
+	if GameplayGlobal.can_goal:
+		if Input.is_action_just_pressed(down_input_name):
+			velocity.y = downSpeed
 		
 	# This is instead of the jump.
-	if Input.is_action_just_pressed(up_input_name):
-		velocity.y = upSpeed
+	if GameplayGlobal.can_goal:
+		if Input.is_action_just_pressed(up_input_name):
+			velocity.y = upSpeed
 
 	collidedWithFloorLastPass = collidedWithFloorThisPass
 	

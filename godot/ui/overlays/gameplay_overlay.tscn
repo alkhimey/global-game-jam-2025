@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://dak20sxfrsnsk"]
+[gd_scene load_steps=9 format=3 uid="uid://dak20sxfrsnsk"]
 
 [ext_resource type="Script" path="res://ui/overlays/gameplay_overlay.gd" id="1_ksrd8"]
 [ext_resource type="PackedScene" uid="uid://dn500v2d7cuu5" path="res://ui/components/score_label.tscn" id="1_xuvx6"]
-[ext_resource type="Theme" uid="uid://ck8hby85lnafy" path="res://ui/overlays/gameplay_overlay.tres" id="2_bksk7"]
+[ext_resource type="Theme" path="res://ui/overlays/gameplay_overlay.tres" id="2_bksk7"]
 [ext_resource type="PackedScene" uid="uid://b0wpn1xbj610y" path="res://ui/components/Timer.tscn" id="2_prh4y"]
-[ext_resource type="FontFile" uid="uid://bwmlj1qoe2xk3" path="res://fonts/ARCADECLASSIC.TTF" id="5_2q71j"]
+[ext_resource type="FontFile" uid="uid://c2hmtytvupyaa" path="res://fonts/Ruluko-Regular.ttf" id="4_n5v8v"]
+[ext_resource type="Script" path="res://ui/overlays/score_label_normal.gd" id="5_isbxv"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_x3tyt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b5plu"]
-font = ExtResource("5_2q71j")
+font = ExtResource("4_n5v8v")
 font_size = 32
-outline_size = 4
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="GameplayOverlay" type="Control" node_paths=PackedStringArray("LevelTime", "timerLabel")]
@@ -21,35 +24,85 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ksrd8")
 LevelTime = NodePath("LevelTimer")
-timerLabel = NodePath("Grid/TimerLabel")
+timerLabel = NodePath("TimerLabel")
 
-[node name="LevelTimer" type="Timer" parent="."]
-one_shot = true
-autostart = true
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.5
+offset_top = 7.0
+offset_right = 43.5
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "01:00"
+
+[node name="TimerLabel2" parent="." instance=ExtResource("2_prh4y")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 377.0
+offset_top = 428.0
+offset_right = 662.0
+offset_bottom = 467.0
+size_flags_horizontal = 3
+theme = ExtResource("2_bksk7")
+theme_override_styles/normal = SubResource("StyleBoxLine_x3tyt")
+text = "01:00"
+label_settings = SubResource("LabelSettings_b5plu")
+horizontal_alignment = 1
+
+[node name="Label1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = -2.0
+offset_right = 359.0
+offset_bottom = 64.0
+rotation = -0.122173
+theme_override_colors/font_color = Color(0, 0, 0.945098, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
+script = ExtResource("5_isbxv")
+playerId = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = -5.0
+offset_right = 540.0
+offset_bottom = 61.0
+rotation = 0.122173
+theme_override_colors/font_color = Color(0.733333, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 50
+text = "0
+"
+script = ExtResource("5_isbxv")
+playerId = 2
+
+[node name="ScoreLabel" parent="." instance=ExtResource("1_xuvx6")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 160.0
+offset_right = 284.0
+offset_bottom = 194.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 3
+theme = ExtResource("2_bksk7")
+text = "0:0"
 
 [node name="TextUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
-[node name="Grid" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 92.0
-grow_horizontal = 2
-mouse_filter = 2
-columns = 3
-
-[node name="ScoreLabel" parent="Grid" instance=ExtResource("1_xuvx6")]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_bksk7")
-text = "0:0"
-
-[node name="TimerLabel" parent="Grid" instance=ExtResource("2_prh4y")]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_bksk7")
-text = "00:00"
-label_settings = SubResource("LabelSettings_b5plu")
-horizontal_alignment = 1
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true

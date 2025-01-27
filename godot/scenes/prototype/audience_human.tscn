@@ -1,9 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://b37hirgcr57sc"]
+[gd_scene load_steps=40 format=3 uid="uid://q6oipm1jvq0e"]
 
 [ext_resource type="Script" path="res://scenes/prototype/audience_human.gd" id="1_dhd2a"]
+[ext_resource type="AudioStream" uid="uid://clucflhh2m6jj" path="res://Assets/sound/curses/L/CursesL.tres" id="2_u2m12"]
 [ext_resource type="Texture2D" uid="uid://bhq02d36be3xe" path="res://Assets/audience/audience_head1.png" id="2_vl0wv"]
 [ext_resource type="Texture2D" uid="uid://c1e8mtxd5i8ne" path="res://Assets/audience/audience_eyes_2.png" id="3_cqrw3"]
 [ext_resource type="Texture2D" uid="uid://dalung6mmksa6" path="res://Assets/audience/audience_body1.png" id="3_mkk7n"]
+[ext_resource type="AudioStream" uid="uid://dtk50qemllaw3" path="res://Assets/sound/curses/S/CursesS.tres" id="3_nm8wg"]
 [ext_resource type="Texture2D" uid="uid://c06ot5h3vi7p" path="res://Assets/audience/audience_body2.png" id="3_r5dw1"]
 [ext_resource type="Texture2D" uid="uid://5qpjyt56k80u" path="res://Assets/audience/audience_eyes_3.png" id="4_3whhj"]
 [ext_resource type="Texture2D" uid="uid://bwyk44crx2sor" path="res://Assets/audience/audience_eyes_1.png" id="4_7aosx"]
@@ -20,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://db1t3c5405vxs" path="res://Assets/audience/audience_halo1.png" id="15_hlxhb"]
 [ext_resource type="Texture2D" uid="uid://dya2ptn1u3hps" path="res://Assets/audience/audience_halo2.png" id="16_nwe7s"]
 [ext_resource type="Texture2D" uid="uid://2qrmuvanfxf7" path="res://Assets/audience/audience_halo3.png" id="17_rnw15"]
-[ext_resource type="PackedScene" uid="uid://bwmepubyekgek" path="res://scenes/prototype/chat_bubble_label.tscn" id="21_l01cp"]
+[ext_resource type="PackedScene" uid="uid://ddxlaa0o466t8" path="res://scenes/prototype/chat_bubble_label.tscn" id="21_l01cp"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ggvyt"]
 
@@ -120,6 +122,48 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0.0333333, -0.5), Vector2(0.033, -0.45), Vector2(0.033, -0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_brjq3"]
+resource_name = "goal_headsign"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.06, -0.5), Vector2(0.06, -0.6), Vector2(0.06, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.08, -0.5), Vector2(0.08, -0.55), Vector2(0.08, -0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.033, -0.8), Vector2(0.033, -0.75), Vector2(0.033, -0.8)]
 }
 
 [sub_resource type="Animation" id="Animation_jm8ii"]
@@ -248,48 +292,6 @@ tracks/2/keys = {
 "values": [Vector2(0.033, -0.8), Vector2(0.033, -0.75), Vector2(0.033, -0.8)]
 }
 
-[sub_resource type="Animation" id="Animation_brjq3"]
-resource_name = "goal_headsign"
-length = 0.2
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.06, -0.5), Vector2(0.06, -0.6), Vector2(0.06, -0.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.08, -0.5), Vector2(0.08, -0.55), Vector2(0.08, -0.5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hands:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.033, -0.8), Vector2(0.033, -0.75), Vector2(0.033, -0.8)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lbxi5"]
 _data = {
 "RESET": SubResource("Animation_ww12a"),
@@ -300,10 +302,12 @@ _data = {
 "walk_headsign": SubResource("Animation_nt1la")
 }
 
-[node name="AudienceHuman" type="Node2D" node_paths=PackedStringArray("chat_label")]
-scale = Vector2(60, 60)
+[node name="AudienceHuman" type="Node2D" node_paths=PackedStringArray("chat_bubble")]
+scale = Vector2(50, 50)
 script = ExtResource("1_dhd2a")
-chat_label = NodePath("CanvasLayer/ChatBubbleLabel")
+chat_bubble = NodePath("CanvasLayer/ChatBubbleLabel")
+curse_sounds1 = ExtResource("2_u2m12")
+curse_sounds2 = ExtResource("3_nm8wg")
 body_sprites = [ExtResource("3_mkk7n"), ExtResource("3_r5dw1")]
 eyes_sprites = [ExtResource("4_7aosx"), ExtResource("3_cqrw3"), ExtResource("4_3whhj"), ExtResource("5_tevgj"), ExtResource("6_mytpn")]
 head_sprites = [ExtResource("2_vl0wv"), ExtResource("10_n37pk")]
@@ -380,3 +384,7 @@ offset_top = -96.0
 offset_right = 84.0
 offset_bottom = -71.0
 scale = Vector2(0.5, 0.5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 7.0
+bus = &"Sound"

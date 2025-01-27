@@ -1,5 +1,7 @@
 extends Node
 
+const countdown_time: float = 60  # Store as float for precise timing
+
 # Player 1 score
 var score1: int = 0
 # Player 2 score
@@ -32,6 +34,10 @@ signal goal_reset()
 signal player_win(playerId:int)
 # When the match timer reaches 0
 signal timer_end()
+signal end_countdown()
+signal game_reset()
+signal scence_reset()
+signal key_pressed()
 
 
 func _ready():
@@ -40,6 +46,7 @@ func _ready():
 	timer_end.connect(on_timer_end)
 	goal_reset.connect(on_goal_reset)
 	player_win.connect(_on_player_win)
+	game_reset.connect(on_game_reset)
 
 
 func on_goal(playerId: int):
@@ -99,7 +106,6 @@ func on_game_end():
 func _on_player_win(playerId: int):
 	if playerId == 0:
 		print("Game over: tie")
-		return
 		
 	print("Game over: P" + str(playerId) +" won")
 
@@ -107,3 +113,19 @@ func _on_player_win(playerId: int):
 		wins1 += 1
 	elif playerId == 2:
 		wins2 += 1
+
+	await get_tree().create_timer(3.0).timeout
+	await key_pressed
+
+	game_reset.emit()
+	scence_reset.emit()
+
+
+func on_game_reset():
+	score1 = 0
+	score2 = 0
+
+
+func _input(_event):
+	if _event is InputEventKey:
+		key_pressed.emit()

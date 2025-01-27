@@ -1,0 +1,81 @@
+[1mdiff --git a/godot/scenes/angel_1.tscn b/godot/scenes/angel_1.tscn[m
+[1mindex 4e40b6b..6efa659 100644[m
+[1m--- a/godot/scenes/angel_1.tscn[m
+[1m+++ b/godot/scenes/angel_1.tscn[m
+[36m@@ -4,10 +4,8 @@[m
+ [ext_resource type="Texture2D" uid="uid://cjmvd5bmtixy3" path="res://Assets/angels/1Head.png" id="2_i6u1i"][m
+ [ext_resource type="Texture2D" uid="uid://dq2dsbj1sbj1h" path="res://Assets/angels/1Hands.png" id="3_n7csu"][m
+ [m
+[31m-[sub_resource type="Animation" id="Animation_0kpnp"][m
+[31m-resource_name = "arrival"[m
+[31m-length = 2.1[m
+[31m-loop_mode = 1[m
+[32m+[m[32m[sub_resource type="Animation" id="Animation_yvc1o"][m
+[32m+[m[32mlength = 0.001[m
+ tracks/0/type = "value"[m
+ tracks/0/imported = false[m
+ tracks/0/enabled = true[m
+[36m@@ -15,10 +13,10 @@[m [mtracks/0/path = NodePath("Head:rotation")[m
+ tracks/0/interp = 1[m
+ tracks/0/loop_wrap = true[m
+ tracks/0/keys = {[m
+[31m-"times": PackedFloat32Array(0, 0.433333, 1, 1.43333, 2.03333),[m
+[31m-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),[m
+[32m+[m[32m"times": PackedFloat32Array(0),[m
+[32m+[m[32m"transitions": PackedFloat32Array(1),[m
+ "update": 0,[m
+[31m-"values": [0.0, 0.174533, 0.0, -0.174533, 0.0][m
+[32m+[m[32m"values": [0.0][m
+ }[m
+ tracks/1/type = "value"[m
+ tracks/1/imported = false[m
+[36m@@ -27,14 +25,16 @@[m [mtracks/1/path = NodePath("Hands:rotation")[m
+ tracks/1/interp = 1[m
+ tracks/1/loop_wrap = true[m
+ tracks/1/keys = {[m
+[31m-"times": PackedFloat32Array(0, 0.4333, 1, 1.43333, 2.03333),[m
+[31m-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),[m
+[32m+[m[32m"times": PackedFloat32Array(0),[m
+[32m+[m[32m"transitions": PackedFloat32Array(1),[m
+ "update": 0,[m
+[31m-"values": [0.0, -0.0436332, 0.0, 0.0436332, 0.0][m
+[32m+[m[32m"values": [0.0][m
+ }[m
+ [m
+[31m-[sub_resource type="Animation" id="Animation_yvc1o"][m
+[31m-length = 0.001[m
+[32m+[m[32m[sub_resource type="Animation" id="Animation_0kpnp"][m
+[32m+[m[32mresource_name = "arrival"[m
+[32m+[m[32mlength = 2.1[m
+[32m+[m[32mloop_mode = 1[m
+ tracks/0/type = "value"[m
+ tracks/0/imported = false[m
+ tracks/0/enabled = true[m
+[36m@@ -42,10 +42,10 @@[m [mtracks/0/path = NodePath("Head:rotation")[m
+ tracks/0/interp = 1[m
+ tracks/0/loop_wrap = true[m
+ tracks/0/keys = {[m
+[31m-"times": PackedFloat32Array(0),[m
+[31m-"transitions": PackedFloat32Array(1),[m
+[32m+[m[32m"times": PackedFloat32Array(0, 0.433333, 1, 1.43333, 2.03333),[m
+[32m+[m[32m"transitions": PackedFloat32Array(1, 1, 1, 1, 1),[m
+ "update": 0,[m
+[31m-"values": [0.0][m
+[32m+[m[32m"values": [0.0, 0.174533, 0.0, -0.174533, 0.0][m
+ }[m
+ tracks/1/type = "value"[m
+ tracks/1/imported = false[m
+[36m@@ -54,10 +54,10 @@[m [mtracks/1/path = NodePath("Hands:rotation")[m
+ tracks/1/interp = 1[m
+ tracks/1/loop_wrap = true[m
+ tracks/1/keys = {[m
+[31m-"times": PackedFloat32Array(0),[m
+[31m-"transitions": PackedFloat32Array(1),[m
+[32m+[m[32m"times": PackedFloat32Array(0, 0.4333, 1, 1.43333, 2.03333),[m
+[32m+[m[32m"transitions": PackedFloat32Array(1, 1, 1, 1, 1),[m
+ "update": 0,[m
+[31m-"values": [0.0][m
+[32m+[m[32m"values": [0.0, -0.0436332, 0.0, 0.0436332, 0.0][m
+ }[m
+ [m
+ [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ed7f"][m

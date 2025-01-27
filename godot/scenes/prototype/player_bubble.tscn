@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dbht1davmdqwd" path="res://Assets/playar_face_sprite.png" id="4_is5sc"]
 [ext_resource type="Texture2D" uid="uid://bnawc7h0eyrip" path="res://Assets/ggj-bubble-blue-64.png" id="4_vgo2r"]
 [ext_resource type="Texture2D" uid="uid://cqpx2eqmcgwes" path="res://Assets/ggj-bubble-red-64.png" id="5_08j46"]
-[ext_resource type="PackedScene" path="res://scenes/prototype/chat_bubble_label.tscn" id="6_weu2v"]
+[ext_resource type="PackedScene" uid="uid://ddxlaa0o466t8" path="res://scenes/prototype/chat_bubble_label.tscn" id="6_weu2v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0waut"]
 radius = 31.0
@@ -37,7 +37,7 @@ script = ExtResource("1_4cd2k")
 chat_bubble = NodePath("CanvasLayer/ChatBubbleLabel")
 image1 = NodePath("Bubble1")
 image2 = NodePath("Bubble2")
-curses = ["@!%#$*@#$$", "@!#(*!*)@#$@#", "$!*@!*!$@#%@#$", "!&%$%#$*$%#%"]
+curses = ["@!$*", "%#!*", "%!#(", "$#!*", ":OOO", "!!!!", "@*#!", ">:((", "#*@!"]
 chat_offset = Vector2(-71, -70)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

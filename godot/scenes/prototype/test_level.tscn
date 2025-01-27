@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=23 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
@@ -6,14 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://dljjgbb38olsj" path="res://scenes/sun.tscn" id="2_2ff6t"]
 [ext_resource type="PackedScene" uid="uid://3j4dnutfuks4" path="res://scenes/prototype/goal.tscn" id="3_25nnm"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_ejleg"]
-[ext_resource type="PackedScene" path="res://scenes/twins.tscn" id="3_mfu3e"]
-[ext_resource type="PackedScene" path="res://scenes/cloud1.tscn" id="4_r2a02"]
-[ext_resource type="PackedScene" path="res://scenes/cloud2.tscn" id="5_x6g50"]
-[ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
+[ext_resource type="PackedScene" uid="uid://dr2x7gjxgqrfk" path="res://scenes/twins.tscn" id="3_mfu3e"]
+[ext_resource type="PackedScene" uid="uid://bpi4ugvk2xpee" path="res://scenes/cloud1.tscn" id="4_r2a02"]
+[ext_resource type="PackedScene" uid="uid://c4d8lx1qn3g4q" path="res://scenes/cloud2.tscn" id="5_x6g50"]
+[ext_resource type="PackedScene" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
+[ext_resource type="PackedScene" uid="uid://bejhu5kcq4brn" path="res://scenes/cloud3.tscn" id="6_vx1kp"]
 [ext_resource type="PackedScene" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
-[ext_resource type="PackedScene" path="res://scenes/cloud4.tscn" id="7_smwqh"]
-[ext_resource type="PackedScene" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
-[ext_resource type="PackedScene" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
+[ext_resource type="PackedScene" uid="uid://bg21vtgbnsyi" path="res://scenes/cloud4.tscn" id="7_smwqh"]
+[ext_resource type="PackedScene" uid="uid://dvp33aubvn4l8" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
+[ext_resource type="PackedScene" uid="uid://bs24g6fax1ua2" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
+[ext_resource type="Script" path="res://scenes/prototype/win_text.gd" id="17_06ea3"]
+[ext_resource type="PackedScene" path="res://scenes/prototype/SFX_player.tscn" id="18_pwp3y"]
+[ext_resource type="Script" path="res://scenes/prototype/music_player.gd" id="19_swl43"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -24,8 +28,9 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnddl"]
 
-[node name="TestLevel" type="Node2D"]
+[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("goal")]
 script = ExtResource("1_sti86")
+goal = NodePath("Goal")
 
 [node name="BGContainer" type="Node2D" parent="."]
 
@@ -34,6 +39,9 @@ visible = false
 offset_right = 854.0
 offset_bottom = 480.0
 color = Color(0.835294, 0.968627, 1, 1)
+
+[node name="Audience" parent="BGContainer" instance=ExtResource("9_1uvb7")]
+z_index = -1
 
 [node name="Sun" parent="BGContainer" instance=ExtResource("2_2ff6t")]
 position = Vector2(797, 80)
@@ -50,20 +58,23 @@ scale = Vector2(0.35, 0.35)
 
 [node name="Cloud2" parent="BGContainer" instance=ExtResource("5_x6g50")]
 z_index = -1
-position = Vector2(565, 289)
+position = Vector2(741, 380)
+scale = Vector2(0.35, 0.35)
+
+[node name="Cloud3" parent="BGContainer" instance=ExtResource("6_vx1kp")]
+z_index = -1
+position = Vector2(772, 192)
 scale = Vector2(0.35, 0.35)
 
 [node name="Cloud4" parent="BGContainer" instance=ExtResource("7_smwqh")]
 z_index = -1
-position = Vector2(766, 342)
+position = Vector2(778, 272)
 scale = Vector2(0.35, 0.35)
 
 [node name="BigCloud" parent="BGContainer" instance=ExtResource("8_rkbee")]
 z_index = -1
-position = Vector2(428, 441)
+position = Vector2(428, 448)
 scale = Vector2(0.35, 0.35)
-
-[node name="Audience" parent="BGContainer" instance=ExtResource("9_1uvb7")]
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 460)
@@ -161,21 +172,20 @@ visible = false
 [node name="GameoverOverlay" parent="CanvasLayer" instance=ExtResource("5_ykg2k")]
 visible = false
 
-[node name="Goal!" type="RichTextLabel" parent="CanvasLayer"]
+[node name="WinText" type="RichTextLabel" parent="CanvasLayer"]
 visible = false
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 148.0
-offset_top = 88.0
-offset_right = 148.0
-offset_bottom = 88.0
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
-text = "[tornado freq=3.0][rainbow val=0.8]Goal!!![tornado]"
+fit_content = true
+script = ExtResource("17_06ea3")
 
 [node name="MusicPlayer" parent="." instance=ExtResource("7_n4jgj")]
+script = ExtResource("19_swl43")
+
+[node name="SfxPlayer" parent="." instance=ExtResource("18_pwp3y")]
