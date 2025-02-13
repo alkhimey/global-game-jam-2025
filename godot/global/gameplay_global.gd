@@ -127,5 +127,5 @@ func on_game_reset():
 
 
 func _input(_event):
-	if _event is InputEventKey:
+	if _event is not InputEventMouseMotion:
 		key_pressed.emit()

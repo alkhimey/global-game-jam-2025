@@ -198,6 +198,7 @@ script = ExtResource("19_swl43")
 [node name="TouchButtons" type="Node2D" parent="."]
 
 [node name="Player1" type="Node2D" parent="TouchButtons"]
+position = Vector2(-10.665, 0)
 
 [node name="Left" type="TouchScreenButton" parent="TouchButtons/Player1"]
 position = Vector2(44, 335)
