@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://rxarikcb81yp"]
+[gd_scene load_steps=26 format=3 uid="uid://rxarikcb81yp"]
 
 [ext_resource type="PackedScene" uid="uid://bgmgv5446mwlk" path="res://scenes/prototype/player_bubble.tscn" id="1_gg1j7"]
 [ext_resource type="Script" path="res://scenes/prototype/test_level.gd" id="1_sti86"]
@@ -9,15 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://dr2x7gjxgqrfk" path="res://scenes/twins.tscn" id="3_mfu3e"]
 [ext_resource type="PackedScene" uid="uid://bpi4ugvk2xpee" path="res://scenes/cloud1.tscn" id="4_r2a02"]
 [ext_resource type="PackedScene" uid="uid://c4d8lx1qn3g4q" path="res://scenes/cloud2.tscn" id="5_x6g50"]
-[ext_resource type="PackedScene" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
+[ext_resource type="PackedScene" uid="uid://b3ir7wqeljqxq" path="res://ui/overlays/gameover_overlay.tscn" id="5_ykg2k"]
 [ext_resource type="PackedScene" uid="uid://bejhu5kcq4brn" path="res://scenes/cloud3.tscn" id="6_vx1kp"]
-[ext_resource type="PackedScene" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
+[ext_resource type="PackedScene" uid="uid://dh4yh3ql8rtl1" path="res://scenes/prototype/music_player.tscn" id="7_n4jgj"]
 [ext_resource type="PackedScene" uid="uid://bg21vtgbnsyi" path="res://scenes/cloud4.tscn" id="7_smwqh"]
 [ext_resource type="PackedScene" uid="uid://dvp33aubvn4l8" path="res://scenes/big_cloud.tscn" id="8_rkbee"]
 [ext_resource type="PackedScene" uid="uid://bs24g6fax1ua2" path="res://scenes/prototype/audience.tscn" id="9_1uvb7"]
 [ext_resource type="Script" path="res://scenes/prototype/win_text.gd" id="17_06ea3"]
-[ext_resource type="PackedScene" path="res://scenes/prototype/SFX_player.tscn" id="18_pwp3y"]
+[ext_resource type="PackedScene" uid="uid://g7tiurii878c" path="res://scenes/prototype/SFX_player.tscn" id="18_pwp3y"]
 [ext_resource type="Script" path="res://scenes/prototype/music_player.gd" id="19_swl43"]
+[ext_resource type="Texture2D" uid="uid://bb7bq3owcauiq" path="res://Assets/touch/leftbutton.png" id="19_wxrrh"]
+[ext_resource type="Texture2D" uid="uid://myksxoyui6bh" path="res://Assets/touch/leftbuttonpressed.png" id="20_u1s1r"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhtvs"]
 
@@ -27,6 +29,9 @@ normal = Vector2(0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_064jb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnddl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37guo"]
+size = Vector2(70, 70)
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("goal")]
 script = ExtResource("1_sti86")
@@ -189,3 +194,89 @@ script = ExtResource("17_06ea3")
 script = ExtResource("19_swl43")
 
 [node name="SfxPlayer" parent="." instance=ExtResource("18_pwp3y")]
+
+[node name="TouchButtons" type="Node2D" parent="."]
+
+[node name="Player1" type="Node2D" parent="TouchButtons"]
+position = Vector2(-10.665, 0)
+
+[node name="Left" type="TouchScreenButton" parent="TouchButtons/Player1"]
+position = Vector2(44, 335)
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player1_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="TouchButtons/Player1"]
+position = Vector2(268, 407)
+rotation = 3.14159
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player1_right"
+visibility_mode = 1
+
+[node name="Up" type="TouchScreenButton" parent="TouchButtons/Player1"]
+position = Vector2(191, 291)
+rotation = 1.5708
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player1_up"
+visibility_mode = 1
+
+[node name="Down" type="TouchScreenButton" parent="TouchButtons/Player1"]
+position = Vector2(120, 456)
+rotation = -1.5708
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player1_down"
+visibility_mode = 1
+
+[node name="Player2" type="Node2D" parent="TouchButtons"]
+position = Vector2(550, 0)
+
+[node name="Left" type="TouchScreenButton" parent="TouchButtons/Player2"]
+position = Vector2(44, 335)
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player2_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="TouchButtons/Player2"]
+position = Vector2(268, 407)
+rotation = 3.14159
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player2_right"
+visibility_mode = 1
+
+[node name="Up" type="TouchScreenButton" parent="TouchButtons/Player2"]
+position = Vector2(191, 291)
+rotation = 1.5708
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player2_up"
+visibility_mode = 1
+
+[node name="Down" type="TouchScreenButton" parent="TouchButtons/Player2"]
+position = Vector2(120, 456)
+rotation = -1.5708
+texture_normal = ExtResource("19_wxrrh")
+texture_pressed = ExtResource("20_u1s1r")
+shape = SubResource("RectangleShape2D_37guo")
+shape_visible = false
+action = "player2_down"
+visibility_mode = 1
